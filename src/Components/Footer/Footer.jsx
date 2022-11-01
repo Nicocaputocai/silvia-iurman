@@ -62,7 +62,7 @@ const Footer = () => {
           </Container>
         </Navbar>
 
-        <Navbar.Collapse bg="light" variant="light">
+        <Navbar bg="light" variant="light">
           <Container >
           <Nav className="m-auto">
 
@@ -75,7 +75,7 @@ const Footer = () => {
             </Nav>
           </Container>
 
-        </Navbar.Collapse>
+        </Navbar>
       </footer>
     </>
   );

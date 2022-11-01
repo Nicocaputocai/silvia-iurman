@@ -13,11 +13,11 @@ const Home = () => {
           <Col xs={12} md={6} xl={7}>
             <br />
             <br />
-          <h1 >Silvia Iurman</h1>
-          <p>Nuevas Constelaciones familiares</p>
+            <h1 >SILVIA IURMAN</h1>
+            <p >Nuevas Constelaciones Familiares Argentina</p>
           </Col>
           <Col xs={12} md={6} xl={5}>
-          <Image src={silvia} roundedCircle="true" style={{width:'auto', height:'300px'}}/>
+            <Image src={silvia} roundedCircle="true" style={{width:'auto', height:'300px'}}/>
           </Col>
         </Row>
 
@@ -36,9 +36,12 @@ const Home = () => {
           <iframe width="400" height="400px" src="https://www.youtube.com/embed/Pe_tb5iKR-Q" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           </Col>
         </Row>
+        <br />
         <div align="center">
         
         </div>
+        <h2>Próximas actividades</h2>
+        <br />
         <CardGroup>
       <Card>
         <Card.Img variant="top" src={activity} />
