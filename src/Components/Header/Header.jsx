@@ -21,10 +21,10 @@ function CollapsibleExample() {
           <Nav className="me-auto">
             <Nav.Link href="/talleres-presenciales">Talleres presenciales</Nav.Link>
             <Nav.Link href="/talleres-virtuales">Talleres virtuales</Nav.Link>
-            <Nav.Link href="/ncf-y-eneagrama">Formación en Eneagrama y Nuevas Constelaciones Familiares </Nav.Link>
+            <Nav.Link href="/NCFA">Formación en Eneagrama y Nuevas Constelaciones Familiares </Nav.Link>
             <Nav.Link href="/cursos">Cursos</Nav.Link>
             <Nav.Link href="/articulos">Articulos</Nav.Link>
-            <Nav.Link href="conoceme">Conoceme</Nav.Link>
+            <Nav.Link href="/conoceme">Conoceme</Nav.Link>
             {/* <Nav.Link href=""></Nav.Link> */}
           </Nav>
           <Nav>

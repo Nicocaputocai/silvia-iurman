@@ -1,4 +1,5 @@
 import { Container, Row, Col, Image, CardGroup, Card } from "react-bootstrap"
+import { Helmet } from "react-helmet"
 import logo from "../assets/logo1.jpg"
 import silvia from "../assets/Silvia.jpg"
 import banner from "../assets/banner.jpg"
@@ -7,6 +8,10 @@ import activity from "../assets/actividad.png"
 const Home = () => {
   return (
     <>
+    <Helmet>
+      <title>Silvia Iurman - Home</title>
+      <meta name="description" content="Home de la página de Silvia Iurman - Nuevas Constelaciones Familiares Argentina"/>
+    </Helmet>
       <Container fluid>
         
       <Row className="banner aligh-items-center">
