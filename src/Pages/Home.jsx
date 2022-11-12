@@ -1,21 +1,33 @@
 import { Container, Row, Col, Image, CardGroup, Card } from "react-bootstrap"
+import React, { useState, useEffect } from 'react';
 import { Helmet } from "react-helmet"
 import logo from "../assets/logo1.jpg"
 import silvia from "../assets/Silvia.jpg"
-import banner from "../assets/banner.jpg"
+import bannerPC from "../assets/BANNER HORIZONTAL SILVIA IURMAN .jpg"
+import bannerCEL from "../assets/BANNER VERTICAL SILVIA IURMAN.jpg"
 import activity from "../assets/actividad.png"
 
 const Home = () => {
+  const[matches, setMatches] = useState(
+    window.matchMedia("(min-wid: 768px)").matches
+  )
+  useEffect(() =>{
+    window
+    .matchMedia("(min-width: 768px)")
+    .addEventListener('change', e => setMatches(e.matches))
+  })
   return (
     <>
     <Helmet>
       <title>Silvia Iurman - Home</title>
       <meta name="description" content="Home de la página de Silvia Iurman - Nuevas Constelaciones Familiares Argentina"/>
     </Helmet>
-      <Container fluid>
+      <Container>
         
-      <Row className="banner aligh-items-center">
-          <Col xs={12} md={6} xl={7}>
+      <Row className="aligh-items-center">
+        {matches && <img className="aligh-items-center" style={{height:"70vh", weight:"100vw"}} src={bannerPC} alt="" />}
+        {!matches && <img className="aligh-items-center" style={{height:"65vh", weight:"100vw"}} src={bannerCEL} alt="" />}
+          {/* <Col xs={12} md={6} xl={7}>
             <br />
             <br />
             <h1 >SILVIA IURMAN</h1>
@@ -23,12 +35,17 @@ const Home = () => {
           </Col>
           <Col xs={12} md={6} xl={5}>
             <Image src={silvia} roundedCircle="true" style={{width:'auto', height:'300px'}}/>
-          </Col>
+          </Col> */}
         </Row>
+{/* 
+        <Row id="bannerCel" className="aligh-items-center">
+          <img src={bannerCEL} alt="" />
+        </Row> */}
 
-      </Container>
+      {/* </Container> */}
         <br />
-      <Container>
+        <br />
+      {/* <Container> */}
         <Row>
           <Col lg="4">
             <h2>Silvia Iurman</h2>

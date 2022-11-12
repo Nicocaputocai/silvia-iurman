@@ -1,13 +1,13 @@
 // import  from 'react-bootstrap/Container';
 // import  from 'react-bootstrap/Nav';
 // import  from 'react-bootstrap/Navbar';
-import logo from "../../assets/logo1.jpg"
+import logo from "../../assets/LOGO SILVIA IURMAN 2 PNG.png"
 import { Container, Nav, Navbar } from "react-bootstrap"
 
 function CollapsibleExample() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-      <Container>
+      <Container fluid>
         <Navbar.Brand href="/">
           <img src={logo}               
               alt="logo"
@@ -18,7 +18,7 @@ function CollapsibleExample() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-auto" >
             <Nav.Link href="/talleres-presenciales">Talleres presenciales</Nav.Link>
             <Nav.Link href="/talleres-virtuales">Talleres virtuales</Nav.Link>
             <Nav.Link href="/NCFA">Formación en Eneagrama y Nuevas Constelaciones Familiares </Nav.Link>

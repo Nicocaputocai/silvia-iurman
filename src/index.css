@@ -3,7 +3,8 @@ body {
   font-family: 'Montserrat', "Arimo",sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #F3F3F3;
+  /* background-color: #F3F3F3; */
+  background-color: white;
 }
 
 /* code {
@@ -21,14 +22,16 @@ h2,h3 {
 }
 /************ Banner Css ************/
 .banner {
+  background-image: url("./assets/BANNER HORIZONTAL SILVIA IURMAN .jpg");
   margin-top: 0;
   padding: 60px 0 100px 0;
-  background-color:bisque ;
+  background-color:white ;
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
 }
-.banner .tagline {
+
+/* .banner .tagline {
   font-weight: 700;
   letter-spacing: 0.8px;
   padding: 8px 10px;
@@ -37,8 +40,8 @@ h2,h3 {
   font-size: 20px;
   margin-bottom: 16px;
   display: inline-block;
-}
-.banner h1 {
+} */
+/* .banner h1 {
   font-size: 65px;
   font-weight: 700;
   letter-spacing: 0.8px;
@@ -73,11 +76,11 @@ h2,h3 {
 }
 .banner button:hover svg {
   margin-left: 25px;
-}
+} */
 /* .banner img {
   animation: updown 3s linear infinite;
 } */
-@keyframes updown {
+/* @keyframes updown {
     0% {
         transform: translateY(-20px);
     }
@@ -90,4 +93,4 @@ h2,h3 {
 }
 .txt-rotate > .wrap {
   border-right: 0.08em solid #666;
-}
+} */

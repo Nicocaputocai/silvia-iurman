@@ -4,7 +4,8 @@ import {
   Navbar,
 } from "react-bootstrap";
 import "./Footer.css";
-import logo from "../../assets/logo1.jpg";
+import logo from "../../assets/LOGO SILVIA IURMAN 2 PNG.png"
+import logo2 from "../../assets/LOGO SILVIA IURMAN PNG.png"
 
 const Footer = () => {
   return (
@@ -15,7 +16,7 @@ const Footer = () => {
             <Nav className="justify-content-start align-items-center">
               <Nav.Item >
                 <img
-                  src={logo}
+                  src={logo2}
                   alt="logo"
                   width="100"
                   height="80"
@@ -65,11 +66,22 @@ const Footer = () => {
         <Navbar bg="light" variant="light">
           <Container >
           <Nav className="m-auto">
+            <Nav.Item>
+              <Nav.Link href="https://www.instagram.com/emilyestuvoaqui/" target="_blank">
+                <span>Diseño &copy; 2022 Emily Harnan</span>
+              </Nav.Link>
+            </Nav.Item>
 
+            <Nav.Item>
+              <Nav.Link>
+                |
+              </Nav.Link>
+            </Nav.Item>
+            
             <Nav.Item>
               <Nav.Link href="https://www.divisioncode.net.ar/" target="_blank">
 
-                <span>&copy; 2021 The Division Code </span>
+                <span>Desarrollo &copy; 2022 The Division Code<a href=""></a></span>
               </Nav.Link>
             </Nav.Item>
             </Nav>
