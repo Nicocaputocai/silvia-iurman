@@ -8,14 +8,7 @@ import bannerCEL from "../assets/BANNER VERTICAL SILVIA IURMAN.jpg"
 import activity from "../assets/actividad.png"
 
 const Home = () => {
-  const[matches, setMatches] = useState(
-    window.matchMedia("(min-wid: 768px)").matches
-  )
-  useEffect(() =>{
-    window
-    .matchMedia("(min-width: 768px)")
-    .addEventListener('change', e => setMatches(e.matches))
-  })
+
   return (
     <>
     <Helmet>
@@ -25,27 +18,14 @@ const Home = () => {
       <Container>
         
       <Row className="aligh-items-center">
-        {matches && <img className="aligh-items-center" style={{height:"70vh", weight:"100vw"}} src={bannerPC} alt="" />}
-        {!matches && <img className="aligh-items-center" style={{height:"65vh", weight:"100vw"}} src={bannerCEL} alt="" />}
-          {/* <Col xs={12} md={6} xl={7}>
-            <br />
-            <br />
-            <h1 >SILVIA IURMAN</h1>
-            <p >Nuevas Constelaciones Familiares Argentina</p>
-          </Col>
-          <Col xs={12} md={6} xl={5}>
-            <Image src={silvia} roundedCircle="true" style={{width:'auto', height:'300px'}}/>
-          </Col> */}
         </Row>
-{/* 
-        <Row id="bannerCel" className="aligh-items-center">
-          <img src={bannerCEL} alt="" />
-        </Row> */}
+        <Row className="aligh-items-center">
+          <img className="bigscreen" src={bannerPC} alt="banner" />
+          <img className="smallscreen" src={bannerCEL} alt="banner" />
+        </Row>
+        <br />
+        <br />
 
-      {/* </Container> */}
-        <br />
-        <br />
-      {/* <Container> */}
         <Row>
           <Col lg="4">
             <h2>Silvia Iurman</h2>
@@ -64,48 +44,22 @@ const Home = () => {
         </div>
         <h2>Próximas actividades</h2>
         <br />
-        <CardGroup>
-      <Card>
-        <Card.Img variant="top" src={activity} />
-        <Card.Body>
-          <Card.Title>Actividad 1</Card.Title>
-          <Card.Text>
+        <Row xs={1} md={3} className="g-4">
+      {Array.from({ length: 3 }).map((_, idx) => (
+        <Col>
+          <Card>
+          <Card.Img variant="top" src={activity} />
+            <Card.Body>
+            <Card.Title>Actividad </Card.Title>
+            <Card.Text>
             This is a wider card with supporting text below as a natural lead-in
             to additional content. This content is a little bit longer.
           </Card.Text>
-        </Card.Body>
-        {/* <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </Card.Footer> */}
-      </Card>
-      <Card>
-        <Card.Img variant="top" src={activity} />
-        <Card.Body>
-          <Card.Title>Actividad 2</Card.Title>
-          <Card.Text>
-            This card has supporting text below as a natural lead-in to
-            additional content.{' '}
-          </Card.Text>
-        </Card.Body>
-        {/* <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </Card.Footer> */}
-      </Card>
-      <Card>
-        <Card.Img variant="top" src={activity} />
-        <Card.Body>
-          <Card.Title>Actividad 3</Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This card has even longer content than the
-            first to show that equal height action.
-          </Card.Text>
-        </Card.Body>
-        {/* <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </Card.Footer> */}
-      </Card>
-    </CardGroup>
+            </Card.Body>
+          </Card>
+        </Col>
+      ))}
+    </Row>
       </Container>
     </>
   );
