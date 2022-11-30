@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from "react-helmet"
 import logo from "../assets/logo1.jpg"
 import silvia from "../assets/Silvia.jpg"
-import bannerPC from "../assets/BANNER HORIZONTAL SILVIA IURMAN .jpg"
-import bannerCEL from "../assets/BANNER VERTICAL SILVIA IURMAN.jpg"
+import bannerPC from "../assets/banner2.jpg"
+import bannerCEL from "../assets/banner2.jpg"
 import activity from "../assets/actividad.png"
 
 const Home = () => {
@@ -15,14 +15,18 @@ const Home = () => {
       <title>Silvia Iurman - Home</title>
       <meta name="description" content="Home de la página de Silvia Iurman - Nuevas Constelaciones Familiares Argentina"/>
     </Helmet>
-      <Container>
+      
+        <Container fluid>
+
         
       <Row className="aligh-items-center">
         </Row>
         <Row className="aligh-items-center">
-          <img className="bigscreen" src={bannerPC} alt="banner" />
-          <img className="smallscreen" src={bannerCEL} alt="banner" />
+          <img className="imgfluid" src={bannerPC} alt="banner" />
+          {/* <img className="smallscreen" src={bannerCEL} alt="banner" /> */}
         </Row>
+        </Container>
+        <Container>
         <br />
         <br />
 
