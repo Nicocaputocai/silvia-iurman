@@ -41,22 +41,22 @@ const Footer = () => {
 
             <Nav className="justify-content-end">
               <Nav.Item>
-              <Nav.Link href="https://www.instagram.com/" target="_blank">
+              <Nav.Link href="https://www.instagram.com/" target="_blank" className="img-fluid">
                 <i class="fab fa-instagram fa-2x"></i>
               </Nav.Link>
               </Nav.Item>
 
-              <Nav.Link href="https://www.facebook.com/" target="_blank">
+              <Nav.Link href="https://www.facebook.com/" target="_blank" className="img-fluid">
                 <i class="fab fa-facebook fa-2x"></i>
               </Nav.Link>
 
               <Nav.Item>
-              <Nav.Link href="https://www.youtube.com/" target="_blank">
+              <Nav.Link href="https://www.youtube.com/" target="_blank" className="img-fluid">
                 <i class="fab fa-youtube fa-2x"></i>
               </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-              <Nav.Link href="https://www.spotify.com/" target="_blank">
+              <Nav.Link href="https://www.spotify.com/" target="_blank" className="img-fluid">
                 <i class="fab fa-spotify fa-2x"></i>
               </Nav.Link>
               </Nav.Item>

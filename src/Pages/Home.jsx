@@ -28,7 +28,7 @@ const Home = () => {
         </Container>
         <Container>
         <br />
-        <br />
+
 
         <Row>
         <Col lg="4">
