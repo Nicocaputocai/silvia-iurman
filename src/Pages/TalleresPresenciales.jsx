@@ -13,7 +13,7 @@ const CursosPresenciales = ()=>{
     <h2 >Talleres presenciales</h2>
                 <Row>
                     <Col md={6} sm={12}>
-                        <Image className="img-fluid" src={activity} alt="" />
+                        <Image className="img-fluid" src={activity} alt=""  />
                     </Col>
 
                     <Col md={6} sm={12}>

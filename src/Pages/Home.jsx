@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from "react-helmet"
 import logo from "../assets/logo1.jpg"
 import silvia from "../assets/Silvia.jpg"
-import bannerPC from "../assets/banner2.jpg"
+import bannerPC from "../assets/A BANNER HORIZONTAL NUEVO.jpg"
 import bannerCEL from "../assets/banner2.jpg"
 import activity from "../assets/actividad.png"
 
@@ -22,7 +22,7 @@ const Home = () => {
       <Row className="aligh-items-center">
         </Row>
         <Row className="aligh-items-center">
-          <img className="imgfluid" src={bannerPC} alt="banner" />
+          <img className="img-fluid"  src={bannerPC} alt="banner" style={{ borderRadius: "2%"}}/>
           {/* <img className="smallscreen" src={bannerCEL} alt="banner" /> */}
         </Row>
         </Container>
@@ -31,22 +31,22 @@ const Home = () => {
         <br />
 
         <Row>
-          <Col lg="4">
-            <h2>Silvia Iurman</h2>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum dolorum perferendis maxime ipsum. Harum sapiente dolor amet earum quos illo temporibus facilis atque! Temporibus deserunt quia quidem iste? Dignissimos beatae sunt id saepe totam rem odit porro minus omnis debitis repellat neque exercitationem sint sapiente eum aliquid tempora commodi doloremque voluptatum, magnam vel laborum necessitatibus magni odio! Voluptatibus iste ratione aliquam amet assumenda dicta, ipsam maiores nulla totam libero qui tempora inventore accusamus tempore at, dolorum a voluptas quibusdam doloremque perspiciatis quisquam voluptatem officia. Id, provident dolores? Ea delectus unde ad, praesentium ullam iusto eum nam dignissimos qui? Culpa, impedit.</p>
+        <Col lg="4">
+            <Image className="img-fluid" src={silvia} style={{width:'400', height:'400px', borderRadius: "2%"}}/>
           </Col>
           <Col lg="4">
-            <Image src={silvia} style={{width:'400', height:'400px'}}/>
+            <h2 style={{ borderRadius: "3%"}}>Silvia Iurman</h2>
+            <p>Lorem ipsum dolor. Harum sapiente dolor amet earum quos illo temporibus facilis atque! Temporibus deserunt quia quidem iste? Dignissimos beatae sunt id saepe totam rem odit porro minus omnis debitis repellat neque exercitationem sint sapiente eum aliquid tempora commodi doloremque voluptatum, magnam vel laborum necessitatibus magni odio! Voluptatibus iste ratione aliquam amet assumenda dicta, ipsam maiores nulla totam libero qui tempora inventore accusamus tempore at, dolorum a voluptas quibusdam doloremque perspiciatis quisquam voluptatem officia. Id, provident dolores? Ea delectus unde ad, praesentium ullam iusto eum nam dignissimos qui? Culpa, impedit.</p>
           </Col>
           <Col lg="4">
-          <iframe width="400" height="400px" src="https://www.youtube.com/embed/Pe_tb5iKR-Q" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <iframe style={{ borderRadius: "2%"}} width="400" height="400px" src="https://www.youtube.com/embed/Pe_tb5iKR-Q" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           </Col>
         </Row>
         <br />
         <div align="center">
         
         </div>
-        <h2>Próximas actividades</h2>
+        <h2 style={{ borderRadius: "3%"}}>Próximas actividades</h2>
         <br />
         <Row xs={1} md={3} className="g-4">
       {Array.from({ length: 3 }).map((_, idx) => (

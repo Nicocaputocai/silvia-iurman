@@ -19,7 +19,8 @@ const Footer = () => {
                   src={logo2}
                   alt="logo"
                   width="100"
-                  height="80"
+                  height="100"
+                  // className="img-fluid"
                   style={{
                     borderRadius: "50%",
                     margin: "auto",
