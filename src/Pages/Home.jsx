@@ -26,20 +26,19 @@ const Home = () => {
           {/* <img className="smallscreen" src={bannerCEL} alt="banner" /> */}
         </Row>
         </Container>
+        {/* <br /> */}
         <Container>
-        <br />
-
 
         <Row>
-        <Col lg="4">
-            <Image className="img-fluid" src={silvia} style={{width:'400', height:'400px', borderRadius: "2%"}}/>
-          </Col>
-          <Col lg="4">
+          <Col lg="4" style={{marginTop:"15px"}}>
             <h2 style={{ borderRadius: "3%"}}>Silvia Iurman</h2>
             <p>Lorem ipsum dolor. Harum sapiente dolor amet earum quos illo temporibus facilis atque! Temporibus deserunt quia quidem iste? Dignissimos beatae sunt id saepe totam rem odit porro minus omnis debitis repellat neque exercitationem sint sapiente eum aliquid tempora commodi doloremque voluptatum, magnam vel laborum necessitatibus magni odio! Voluptatibus iste ratione aliquam amet assumenda dicta, ipsam maiores nulla totam libero qui tempora inventore accusamus tempore at, dolorum a voluptas quibusdam doloremque perspiciatis quisquam voluptatem officia. Id, provident dolores? Ea delectus unde ad, praesentium ullam iusto eum nam dignissimos qui? Culpa, impedit.</p>
           </Col>
-          <Col lg="4">
-          <iframe style={{ borderRadius: "2%"}} width="400" height="400px" src="https://www.youtube.com/embed/Pe_tb5iKR-Q" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <Col lg="4" style={{marginTop:"15px"}}>
+            <Image className="img-fluid" src={silvia} style={{width:'400', height:'400px', borderRadius: "2%"}}/>
+          </Col>
+          <Col lg="4" style={{marginTop:"15px"}}>
+          <iframe  style={{ borderRadius: "2%"}} width="400vw" height="400px" src="https://www.youtube.com/embed/Pe_tb5iKR-Q" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           </Col>
         </Row>
         <br />

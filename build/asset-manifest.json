@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.7624b03d.css",
-    "main.js": "/static/js/main.5672263e.js",
+    "main.js": "/static/js/main.f29d6879.js",
     "static/js/787.59d80a2c.chunk.js": "/static/js/787.59d80a2c.chunk.js",
     "static/media/actividad.png": "/static/media/actividad.7d8da0b84eb31dbb184b.png",
     "static/media/LOGO SILVIA IURMAN PNG.png": "/static/media/LOGO SILVIA IURMAN PNG.4b8b714d5a8ce86fb3b3.png",
@@ -12,11 +12,11 @@
     "static/media/logo1.jpg": "/static/media/logo1.70ada8233977a8ddef65.jpg",
     "index.html": "/index.html",
     "main.7624b03d.css.map": "/static/css/main.7624b03d.css.map",
-    "main.5672263e.js.map": "/static/js/main.5672263e.js.map",
+    "main.f29d6879.js.map": "/static/js/main.f29d6879.js.map",
     "787.59d80a2c.chunk.js.map": "/static/js/787.59d80a2c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7624b03d.css",
-    "static/js/main.5672263e.js"
+    "static/js/main.f29d6879.js"
   ]
 }
