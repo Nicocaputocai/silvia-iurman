@@ -20,10 +20,11 @@ function CollapsibleExample() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto" >
-            <Nav.Link href="/talleres-presenciales">Talleres presenciales</Nav.Link>
-            <Nav.Link href="/talleres-virtuales">Talleres virtuales</Nav.Link>
+            {/* Desplegable de talleres virtuales y presenciales */}
+            <Nav.Link href="/talleres-presenciales">Talleres de constelaciones</Nav.Link> 
+            {/* <Nav.Link href="/talleres-virtuales">Talleres virtuales</Nav.Link> */}
             <Nav.Link href="/NCFA">Formación en Eneagrama y Nuevas Constelaciones Familiares </Nav.Link>
-            <Nav.Link href="/cursos">Seminarios</Nav.Link>
+            <Nav.Link href="/cursos">Calendario</Nav.Link>
             <Nav.Link href="/articulos">Articulos</Nav.Link>
             <Nav.Link href="/conoceme">Conoceme</Nav.Link>
             {/* <Nav.Link href=""></Nav.Link> */}

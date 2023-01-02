@@ -60,7 +60,7 @@ const CursosPresenciales = () => {
                 textAlign: "left",
               }}
             >
-              Próximo curso: 29 de noviembre 2022
+              Próximo taller: 29 de noviembre 2022
             </h3>
 
             <p>

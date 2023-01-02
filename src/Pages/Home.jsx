@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from "react-helmet"
 import logo from "../assets/logo1.jpg"
 import silvia from "../assets/Silvia.jpg"
-import bannerPC from "../assets/A BANNER HORIZONTAL NUEVO.jpg"
+import bannerPC from "../assets/B BANNER HORIZONTAL NUEVO.jpg"
 import bannerCEL from "../assets/banner2.jpg"
 import activity from "../assets/actividad.png"
 

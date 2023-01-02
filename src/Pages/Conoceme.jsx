@@ -1,6 +1,6 @@
 import { Container,Row, Col, Image } from "react-bootstrap";
 import { Helmet } from "react-helmet";
-import silvia from "../assets/Silvia.jpg"
+import silvia from "../assets/bio1.jpg"
 const Conoceme = () => {
   return (
     <>
