@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  font-family: 'Montserrat', "Arimo",sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* background-color: #F3F3F3; */
+  background-color: white;
+}
+
+h1, h2, h3{
+  font-family: "Arimo";
+}
+h2,h3 {
+  background-color: #9d6b6c;
+  text-align: center;
+  color: #fff;
+}
+/************ Banner Css ************/
+.bigscreen {display:block;}
+.smallscreen {display:none;}
+
+@media only screen and (max-width: 800px) {
+    .bigscreen {display:none;}
+    .smallscreen {display:block;}
+}

@@ -1,0 +1,9 @@
+.bigscreen {display:block;}
+.smallscreen {display:none;}
+
+
+@media only screen and (max-width: 800px) {
+    .bigscreen {display:none;
+    ;}
+    .smallscreen {display:block;}
+}
