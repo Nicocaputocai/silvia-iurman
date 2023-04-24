@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { Container, Row, Col, Image, Stack, Form, Modal, Button } from "react-bootstrap";
 import ActivitiesDataServices from '../../Services/ActivitiesServices';
 import moment from "moment";
