@@ -1,13 +1,8 @@
 import { Container, Row, Col, Image, CardGroup, Card } from "react-bootstrap"
 import React, { useState, useEffect } from 'react';
 import { Helmet } from "react-helmet"
-import logo from "../../assets/logo1.jpg"
-import silvia from "../../assets/Silvia.jpg"
-import bannerPC from "../../assets/B BANNER HORIZONTAL NUEVO.jpg"
-import bannerCEL from "../../assets/banner2.jpg"
-import activity from "../../assets/actividad.png"
+import {Silvia, bannerPC, bannerCEL, activity} from "../../assets/images"
 import ActivitiesDataServices from '../../Services/ActivitiesServices';
-import { act } from "react-dom/test-utils";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
@@ -49,7 +44,7 @@ const Home = () => {
 
         <Row>
         <Col lg="4" style={{marginTop:"15px"}}>
-            <Image className="img-fluid" src={silvia} style={{width:'400', height:'400px', borderRadius: "2%"}}/>
+            <Image className="img-fluid" src={Silvia} style={{width:'400', height:'400px', borderRadius: "2%"}}/>
           </Col>
           <Col lg="8" style={{marginTop:"30px"}}>
             <h2 style={{ borderRadius: "3%"}}>Silvia Iurman</h2>

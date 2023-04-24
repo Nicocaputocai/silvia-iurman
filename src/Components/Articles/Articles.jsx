@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet"
 import { Card, Col, Container, Row } from "react-bootstrap"
-import activity from "../../assets/actividad.png";
+import {activity} from "../../assets/images"; 
 import BlogDataService from '../../Services/BlogServices'
 import moment from "moment/moment";
 
@@ -38,7 +38,7 @@ const Articles = ()=>{
         <Col>
           <Card>
           <a style={{ textDecoration: 'none', color:'black'}} href={`/articulos/${article._id}`} >
-            <Card.Img variant="top" style={{height:"300px"}} src={`https://api-silvia.divisioncode.net.ar/img/${article.img}`} />
+            <Card.Img variant="top" style={{height:"300px", objectFit:'cover'}} src={`https://api-silvia.divisioncode.net.ar/img/${article.img}`} />
 
             <Card.Body>
               <Card.Title>{article.title}</Card.Title>
