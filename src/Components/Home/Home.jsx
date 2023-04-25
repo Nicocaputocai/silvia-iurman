@@ -44,7 +44,7 @@ const Home = () => {
 
         <Row>
         <Col lg="4" style={{marginTop:"15px"}}>
-            <Image className="img-fluid" src={Silvia} style={{width:'400', height:'400px', borderRadius: "2%"}}/>
+            <Image className="img-fluid rounded-circle w-100 h-auto" src={Silvia}/>
           </Col>
           <Col lg="8" style={{marginTop:"30px"}}>
             <h2 style={{ borderRadius: "3%"}}>Silvia Iurman</h2>
