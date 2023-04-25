@@ -24,9 +24,14 @@ function CollapsibleExample() {
             <NavDropdown title="Talleres de constelaciones" id="collasible-nav-dropdown">
               <NavDropdown.Item as={Link} to="/talleres-presenciales"> Talleres presenciales </NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/talleres-virtuales">Talleres virtuales </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/conoceme">Cursos grabados</NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link as={Link} to="/NCFA">Formación en Eneagrama y Nuevas Constelaciones Familiares </Nav.Link>
+            <NavDropdown  title="Formación en Eneagrama y Nuevas Constelaciones Familiares" id="collasible-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/NCFA"> Presentación </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/talleres-presenciales"> Módulos grabados </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/talleres-virtuales">Módulos en directo </NavDropdown.Item>
+            </NavDropdown>
+            {/* <Nav.Link as={Link} to="/NCFA">Formación en Eneagrama y Nuevas Constelaciones Familiares </Nav.Link> */}
+            <Nav.Link as={Link} to="/calendario">Actividades</Nav.Link>
             <Nav.Link as={Link} to="/calendario">Actividades</Nav.Link>
 
             <Nav.Link as={Link} to="/articulos">Consteladores acreditados</Nav.Link>

@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import { Carousel, Container, Image } from "react-bootstrap"
+import { Button, Carousel, Container, Image } from "react-bootstrap" 
 import CoursesDataServices from "../../Services/CoursesServices";
 import { Helmet } from "react-helmet"
 import NCFA1 from '../../assets/NCFA1.jpg'
@@ -46,7 +46,7 @@ const Constelaciones = ()=>{
                 backgroundColor: "#ffffff",
                 color: "#9d6b6c",
                 textAlign: "center",
-              }}>Nuevas Constelaciones Familiares y eneagrama</h2>
+              }}>Nuevas Constelaciones Familiares y Eneagrama</h2>
               <h4 >Podes iniciar la formación con este módulo o tomarlo como proceso de trabajo personal en orden a la sanación, transformación y evolución.</h4>
 
               <Carousel activeIndex={index} onSelect={handleSelect} >
