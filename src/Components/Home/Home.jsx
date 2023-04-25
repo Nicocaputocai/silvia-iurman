@@ -54,7 +54,7 @@ const Home = () => {
             Mi camino es contribuir y posibilitar, desde este sistema integrativo, espacios para una vida consciente y saludable en todos los órdenes y para esto incluyo el trabajo con trauma, estrés y las comprensiones de las Neurociencias aplicadas.  <br/><br/>
             Amo mi formación de grado como psicóloga clínica y agradezco a cada formación, escuela y recorrido transitado, que me dan la posibilidad de crear un sistema integrativo, en esta trama que es la vida, al servicio de una vida consciente y de la consciencia  colectiva. 
             </p>
-            <Button variant="secondary" style={{ backgroundColor: "#9d6b6c" }}>Leer biografía completa</Button>
+            <Button variant="secondary" style={{ backgroundColor: "#9d6b6c" }} className="float-end">Leer biografía completa</Button>
           </Col>
 
           {/* <Col lg="4" style={{marginTop:"15px"}}>
