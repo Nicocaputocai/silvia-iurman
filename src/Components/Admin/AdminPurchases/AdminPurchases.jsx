@@ -1,6 +1,5 @@
-import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+
+import { useEffect,useState } from 'react'
 import { Button, Col, Container, NavItem, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import PurchasesDataServices from '../../../Services/PurchasesServices'

@@ -4,8 +4,7 @@ import {
   Navbar,
 } from "react-bootstrap";
 import "./Footer.css";
-import logo from "../../assets/LOGO SILVIA IURMAN 2 PNG.png"
-import logo2 from "../../assets/LOGO SILVIA IURMAN PNG.png"
+import {logo,logo2 } from "../../assets/images"
 
 const Footer = () => {
   return (

@@ -14,22 +14,8 @@ import {
   Carousel
 } from "react-bootstrap";
 import CoursesDataServices from '../../Services/CoursesServices'
-import activity from "../../assets/actividad.png";
 import { useParams } from "react-router-dom";
-import TGP1 from "../../assets/TGP1.jpeg"
-import TGP2 from "../../assets/TGP2.jpeg"
-import TGP3 from "../../assets/TGP3.jpeg"
-import TGP4 from "../../assets/TGP4.jpeg"
-import TGP5 from "../../assets/TGP5.jpeg"
-import TGP6 from "../../assets/TGP6.jpeg"
-import TGP7 from "../../assets/TGP7.jpeg"
-import TGP8 from "../../assets/TGP8.jpeg"
-import TGP9 from "../../assets/TGP9.jpeg"
-import TGP10 from "../../assets/TGP10.jpeg"
-import TGP11 from "../../assets/TGP11.jpeg"
-import TGP12 from "../../assets/TGP12.jpeg"
-import TGP13 from "../../assets/TGP13.jpeg"
-import TGP14 from "../../assets/TGP14.jpeg"
+import { TGPimages, activity } from "../../assets/images";
 import moment from "moment";
 
 
@@ -98,106 +84,17 @@ const CursosPresenciales = () => {
           <Col lg={6} sm={12}>
 
             <Carousel activeIndex={index} onSelect={handleSelect}>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGP1}
-                  alt="First slide"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGP2}
-                  alt="Second slide"
-                />
-
-
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGP3}
-                  alt="Third slide"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGP4}
-                  alt="Third slide"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGP5}
-                  alt="Third slide"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGP6}
-                  alt="Third slide"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGP7}
-                  alt="Third slide"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGP8}
-                  alt="Third slide"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGP9}
-                  alt="Third slide"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGP10}
-                  alt="Third slide"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGP11}
-                  alt="Third slide"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGP12}
-                  alt="Third slide"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGP13}
-                  alt="Third slide"
-                />
-                              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGP14}
-                  alt="Third slide"
-                />
-              </Carousel.Item>
-              </Carousel.Item>
+              {
+                TGPimages.map((image) => (
+                      <Carousel.Item key={image.alt}>
+                        <img
+                          className="d-block w-100 h-100 object-cover"
+                          src={image.src}
+                          alt={image.alt}
+                        />
+                      </Carousel.Item>
+                ))
+              }
               
             </Carousel>
             {/* <Image className="img-fluid" src={activity} alt="" /> */}

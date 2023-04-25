@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet"
 import { Card, Col, Container, Row } from "react-bootstrap"
-import activity from "../../assets/actividad.png";
+import {activity} from "../../assets/images";
 import ActivitiesDataServices from '../../Services/ActivitiesServices';
 import moment from "moment/moment";
 

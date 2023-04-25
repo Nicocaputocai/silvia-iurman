@@ -2,7 +2,7 @@
 // import  from 'react-bootstrap/Nav';
 // import  from 'react-bootstrap/Navbar';
 import { Link } from "react-router-dom";
-import logo from "../../assets/LOGO SILVIA IURMAN 2 PNG.png"
+import { logo2 } from "../../assets/images"
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap"
 
 function CollapsibleExample() {
@@ -10,7 +10,7 @@ function CollapsibleExample() {
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
       <Container fluid>
         <Navbar.Brand as={Link} to='/'>
-          <img src={logo}               
+          <img src={logo2}               
               alt="logo"
               width="100"
               height="100" 
