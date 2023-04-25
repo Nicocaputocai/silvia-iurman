@@ -31,7 +31,6 @@ export const Login = () => {
 
   const handleSubmit= async (e) =>{
     e.preventDefault();
-
     if ([username, password].includes("")) {
       handleShowAlert("Todos los campos son obligatorios");
       return null;

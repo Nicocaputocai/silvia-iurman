@@ -2,17 +2,7 @@ import { useState,useEffect } from "react";
 import { Button, Carousel, Container, Image } from "react-bootstrap" 
 import CoursesDataServices from "../../Services/CoursesServices";
 import { Helmet } from "react-helmet"
-import NCFA1 from '../../assets/NCFA1.jpg'
-import NCFA2 from '../../assets/NCFA2.jpg'
-import NCFA3 from '../../assets/NCFA3.png'
-import NCFA4 from '../../assets/NCFA4.png'
-import NCFA5 from '../../assets/NCFA5.png'
-import NCFA6 from '../../assets/NCFA6.jpg'
-import NCFA7 from '../../assets/NCFA7.jpg'
-import NCFA8 from '../../assets/NCFA8.png'
-import NCFA9 from '../../assets/NCFA9.jpg'
-import NCFA10 from '../../assets/NCFA10.jpg'
-import NCFA11 from '../../assets/NCFA11.jpg'
+import { NFCAimages } from '../../assets/images'
 
 
 const Constelaciones = ()=>{
@@ -50,94 +40,19 @@ const Constelaciones = ()=>{
               <h4 >Podes iniciar la formación con este módulo o tomarlo como proceso de trabajo personal en orden a la sanación, transformación y evolución.</h4>
 
               <Carousel activeIndex={index} onSelect={handleSelect} >
-      <Carousel.Item>
-        <Image fluid="true"
-          className="d-block w-100"
-          src={NCFA1}
-          alt="First slide"
-        style={{height:"450px"}}
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Image fluid="true"
-          className="d-block w-100"
-          src={NCFA2}
-          alt="Second slide"
-          style={{height:"450px"}}
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Image fluid="true"
-          className="d-block w-100"
-          src={NCFA3}
-          alt="Third slide"
-          style={{height:"450px"}}
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Image fluid="true"
-          className="d-block w-100"
-          src={NCFA4}
-          alt="Third slide"
-          style={{height:"450px"}}
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Image fluid="true"
-          className="d-block w-100"
-          src={NCFA5}
-          alt="Third slide"
-          style={{height:"450px"}}
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Image fluid="true"
-          className="d-block w-100"
-          src={NCFA6}
-          alt="Third slide"
-          style={{height:"450px"}}
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Image fluid="true"
-          className="d-block w-100"
-          src={NCFA7}
-          alt="Third slide"
-          style={{height:"450px"}}
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Image fluid="true"
-          className="d-block w-100"
-          src={NCFA8}
-          alt="Third slide"
-          style={{height:"450px"}}
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Image fluid="true"
-          className="d-block w-100"
-          src={NCFA9}
-          alt="Third slide"
-          style={{height:"450px"}}
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Image fluid="true"
-          className="d-block w-100"
-          src={NCFA10}
-          alt="Third slide"
-          style={{height:"450px"}}
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <Image fluid="true"
-          className="d-block w-100"
-          src={NCFA11}
-          alt="Third slide"
-          style={{height:"450px"}}
-        />
-      </Carousel.Item>
+                {
+                  NFCAimages.map((image) => (
+                    <Carousel.Item key={image.alt}>
+                      <Image fluid="true"
+                        className="d-block w-100"
+                        src={image.src}
+                        alt={image.alt}
+                        loading="lazy"
+                      style={{height:"450px"}}
+                      />
+                    </Carousel.Item>
+                  ))
+                }
     </Carousel>
     <br />
     La siguiente presentación será desde el marco de la formación, de todos modos puedes tomar la información para hacerlo como proceso terapéutico. <br/>
