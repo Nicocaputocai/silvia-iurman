@@ -1,13 +1,8 @@
-import { Container, Row, Col, Image, CardGroup, Card } from "react-bootstrap"
+import { Container, Row, Col, Image, CardGroup, Card, Button } from "react-bootstrap"
 import React, { useState, useEffect } from 'react';
 import { Helmet } from "react-helmet"
-import logo from "../../assets/logo1.jpg"
-import silvia from "../../assets/Silvia.jpg"
-import bannerPC from "../../assets/B BANNER HORIZONTAL NUEVO.jpg"
-import bannerCEL from "../../assets/banner2.jpg"
-import activity from "../../assets/actividad.png"
+import {Silvia, bannerPC, bannerCEL, activity} from "../../assets/images"
 import ActivitiesDataServices from '../../Services/ActivitiesServices';
-import { act } from "react-dom/test-utils";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
@@ -49,11 +44,17 @@ const Home = () => {
 
         <Row>
         <Col lg="4" style={{marginTop:"15px"}}>
-            <Image className="img-fluid" src={silvia} style={{width:'400', height:'400px', borderRadius: "2%"}}/>
+            <Image className="img-fluid rounded-circle w-100 h-auto" src={Silvia}/>
           </Col>
           <Col lg="8" style={{marginTop:"30px"}}>
             <h2 style={{ borderRadius: "3%"}}>Silvia Iurman</h2>
-            <p>Lorem ipsum dolor. Harum sapiente dolor amet earum quos illo temporibus facilis atque! Temporibus deserunt quia quidem iste? Dignissimos beatae sunt id saepe totam rem odit porro minus omnis debitis repellat neque exercitationem sint sapiente eum aliquid tempora commodi doloremque voluptatum, magnam vel laborum necessitatibus magni odio! Voluptatibus iste ratione aliquam amet assumenda dicta, ipsam maiores nulla totam libero qui tempora inventore accusamus tempore at, dolorum a voluptas quibusdam doloremque perspiciatis quisquam voluptatem officia. Id, provident dolores? Ea delectus unde ad, praesentium ullam iusto eum nam dignissimos qui? Culpa, impedit.</p>
+            <p>
+            Inicié mí búsqueda consciente en mi adolescencia. A partir de entonces, he transitado por diferentes escuelas filosóficas y psicológicas, he recorrido caminos que me condujeran en lo personal y en lo clínico hacia lo Transpersonal, tomando de grandes maestros occidentales y orientales. <br/><br/>
+            La creación de Eneagrama Escuela de Vida me permitió incluir un dinamismo, neuropsicobiológico y transpersonal apoyado en el ala psicológica y espiritual del eneagrama, cuya piedra angular es la filosofía de vida de las Fuerzas del Amor de las Nuevas Constelaciones Familiares. <br/><br/>
+            Mi camino es contribuir y posibilitar, desde este sistema integrativo, espacios para una vida consciente y saludable en todos los órdenes y para esto incluyo el trabajo con trauma, estrés y las comprensiones de las Neurociencias aplicadas.  <br/><br/>
+            Amo mi formación de grado como psicóloga clínica y agradezco a cada formación, escuela y recorrido transitado, que me dan la posibilidad de crear un sistema integrativo, en esta trama que es la vida, al servicio de una vida consciente y de la consciencia  colectiva. 
+            </p>
+            <Button variant="secondary" style={{ backgroundColor: "#9d6b6c" }} className="float-end">Leer biografía completa</Button>
           </Col>
 
           {/* <Col lg="4" style={{marginTop:"15px"}}>

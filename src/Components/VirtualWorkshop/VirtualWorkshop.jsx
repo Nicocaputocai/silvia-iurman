@@ -14,11 +14,8 @@ import {
 } from "react-bootstrap";
 import './virtualWorkshop.css'
 import CoursesDataServices from '../../Services/CoursesServices'
-import activity from "../../assets/actividad.png";
 import { useParams } from "react-router-dom";
-import TGV1 from "../../assets/TGV1.png"
-import TGV2 from "../../assets/TGV2.png"
-import TGV3 from "../../assets/TGV3.png"
+import {TGVimages, activity} from "../../assets/images"
 import moment from "moment";
 
 const  CursosVirtuales= ()=>{
@@ -80,29 +77,18 @@ const  CursosVirtuales= ()=>{
           <Col lg={6} sm={12}>
 
             <Carousel activeIndex={index} onSelect={handleSelect}>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGV1}
-                  alt="First slide"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGV2}
-                  alt="Second slide"
-                />
-
-
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={TGV3}
-                  alt="Third slide"
-                />
-              </Carousel.Item>
+              {
+                TGVimages.map((image, index) => (
+                      <Carousel.Item key={index}>
+                    <img
+                      className="d-block w-100"
+                      src={image.src}
+                      alt={image.alt}
+                    />
+                  </Carousel.Item>
+                ))
+                    
+              }
             </Carousel>
             {/* <Image className="img-fluid" src={activity} alt="" /> */}
           </Col>
