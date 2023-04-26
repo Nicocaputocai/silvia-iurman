@@ -9,7 +9,7 @@ import {logo,logo2 } from "../../assets/images"
 const Footer = () => {
   return (
     <>
-      <footer>
+      <footer className="position-sticky bottom-0 w-100">
         <Navbar bg="light" variant="light">
           <Container>
             <Nav className="justify-content-start align-items-center">

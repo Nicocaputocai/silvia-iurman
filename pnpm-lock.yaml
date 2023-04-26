@@ -15,6 +15,7 @@ specifiers:
   react: ^18.2.0
   react-bootstrap: ^2.5.0
   react-dom: ^18.2.0
+  react-google-recaptcha: ^2.1.0
   react-helmet: ^6.1.0
   react-on-screen: ^2.1.1
   react-router-dom: ^6.8.1
@@ -30,6 +31,7 @@ dependencies:
   react: 18.2.0
   react-bootstrap: 2.7.4_g6eqzmexmujy3zvaqhkicj5z64
   react-dom: 18.2.0_react@18.2.0
+  react-google-recaptcha: 2.1.0_react@18.2.0
   react-helmet: 6.1.0_react@18.2.0
   react-on-screen: 2.1.1_biqbaboplfbrettd7655fr4n2y
   react-router-dom: 6.10.0_biqbaboplfbrettd7655fr4n2y
@@ -1515,6 +1517,12 @@ packages:
     dependencies:
       function-bind: 1.1.1
 
+  /hoist-non-react-statics/3.3.2:
+    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
+    dependencies:
+      react-is: 16.13.1
+    dev: false
+
   /http-errors/1.6.3:
     resolution: {integrity: sha512-lks+lVC8dgGyh97jxvxeYTWQFvh4uw4yC12gVl63Cg30sjPX4wuGcdkICVXDAESr6OJGjqGA8Iz5mkeN6zlD7A==}
     engines: {node: '>= 0.6'}
@@ -2006,6 +2014,16 @@ packages:
       unpipe: 1.0.0
     dev: false
 
+  /react-async-script/1.2.0_react@18.2.0:
+    resolution: {integrity: sha512-bCpkbm9JiAuMGhkqoAiC0lLkb40DJ0HOEJIku+9JDjxX3Rcs+ztEOG13wbrOskt3n2DTrjshhaQ/iay+SnGg5Q==}
+    peerDependencies:
+      react: '>=16.4.1'
+    dependencies:
+      hoist-non-react-statics: 3.3.2
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
   /react-bootstrap/2.7.4_g6eqzmexmujy3zvaqhkicj5z64:
     resolution: {integrity: sha512-EPKPwhfbxsKsNBhJBitJwqul9fvmlYWSft6jWE2EpqhEyjhqIqNihvQo2onE5XtS+QHOavUSNmA+8Lnv5YeAyg==}
     peerDependencies:
@@ -2045,6 +2063,16 @@ packages:
 
   /react-fast-compare/3.2.1:
     resolution: {integrity: sha512-xTYf9zFim2pEif/Fw16dBiXpe0hoy5PxcD8+OwBnTtNLfIm3g6WxhKNurY+6OmdH1u6Ta/W/Vl6vjbYP1MFnDg==}
+    dev: false
+
+  /react-google-recaptcha/2.1.0_react@18.2.0:
+    resolution: {integrity: sha512-K9jr7e0CWFigi8KxC3WPvNqZZ47df2RrMAta6KmRoE4RUi7Ys6NmNjytpXpg4HI/svmQJLKR+PncEPaNJ98DqQ==}
+    peerDependencies:
+      react: '>=16.4.1'
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-async-script: 1.2.0_react@18.2.0
     dev: false
 
   /react-helmet/6.1.0_react@18.2.0:

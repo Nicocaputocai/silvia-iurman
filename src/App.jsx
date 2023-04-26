@@ -17,10 +17,12 @@ import EditArticle from "./Components/Admin/AdminArticle/EditArticle";
 import EditCourse from "./Components/Admin/AdminCourse/EditCourse";
 import EditPurchase from "./Components/Admin/AdminPurchases/EditPurchase";
 import Login from "./Components/Admin/Login";
+import {Login as UserLogin} from "./Components/auth/Login/Login";
 import { AuthProvider } from "./context/AuthProvider";
 import { AuthLayout } from "./layouts/AuthLayout";
 import { ProtectAdminLayout } from "./layouts/ProtectAdminLayout";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Register } from "./Components/auth/register/Register";
 
 function App() {
 
@@ -28,7 +30,7 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <Header />
-        <div>
+        
           {/* Rutas públicas */}
           <Routes>
             <Route path="/" element={<AuthLayout />}>
@@ -44,6 +46,8 @@ function App() {
               <Route path="articulos" element={<Articles />} />
               <Route path="articulos/:id" element={<ArticleDetail />} />
               <Route path="conoceme" element={<About />} />
+              <Route path="login" element={<UserLogin />} />
+              <Route path="registro" element={<Register />} />
               <Route path="admin/login" element={<Login />} />
             </Route>
             {/* Rutas privadas */}
@@ -65,7 +69,6 @@ function App() {
               />
             </Route>
           </Routes>
-        </div>
 
         <Footer />
       </AuthProvider>
