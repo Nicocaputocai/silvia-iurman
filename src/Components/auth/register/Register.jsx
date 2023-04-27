@@ -1,4 +1,4 @@
-import React,{useRef, useState} from 'react'
+import {useRef, useState} from 'react'
 import { Container, Row, Col, Form, Button, Alert, Spinner } from 'react-bootstrap'
 import ReCAPTCHA from 'react-google-recaptcha'
 import {Link, useNavigate} from 'react-router-dom'
@@ -195,7 +195,6 @@ export const Register = () => {
                     </Form>
                 </Col>
             </Row>
-<>Prueba</>
         </Container>
     )
     }
