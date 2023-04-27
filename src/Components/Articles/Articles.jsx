@@ -35,7 +35,7 @@ const Articles = ()=>{
           <br />
         <Row xs={1} md={3} className="g-4">
       {articles.map((article) => (
-        <Col>
+        <Col key={article._id}>
           <Card>
           <a style={{ textDecoration: 'none', color:'black'}} href={`/articulos/${article._id}`} >
             <Card.Img variant="top" style={{height:"300px", objectFit:'cover'}} src={`https://api-silvia.divisioncode.net.ar/img/${article.img}`} />

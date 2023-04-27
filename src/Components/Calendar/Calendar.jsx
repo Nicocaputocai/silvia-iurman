@@ -36,7 +36,7 @@ const Calendar = ()=>{
         <Row xs={1} md={4} className="g-4">
       {activities.map((activity) => (
         !activity.archived && (
-        <Col>
+        <Col key={activity._id}>
           <Card>
           <a style={{ textDecoration: 'none', color:'black'}} href={`/calendario/${activity._id}`} >
             <Card.Img variant="top" style={{height:"300px"}} src={`https://api-silvia.divisioncode.net.ar/img/${activity.img}`} />
