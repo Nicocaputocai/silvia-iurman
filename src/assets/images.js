@@ -3,6 +3,7 @@ import activity from './actividad.png';
 import logo from './LOGO SILVIA IURMAN PNG.png';
 import logo2 from './LOGO SILVIA IURMAN 2 PNG.png';
 import Silvia from './Silvia.jpg';
+import SilviaCuadrada from './articulos.jpg'
 import bannerPC from './B BANNER HORIZONTAL NUEVO.jpg';
 import bannerCEL from './banner2.jpg';
 
@@ -163,6 +164,7 @@ const TGVimages = [
 
 export {
     silvia,
+    SilviaCuadrada,
     activity,
     logo,
     logo2,

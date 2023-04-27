@@ -1,7 +1,7 @@
-import { Container, Row, Col, Image, CardGroup, Card, Button } from "react-bootstrap"
+import { Container, Row, Col, Image, Card, Button } from "react-bootstrap"
 import React, { useState, useEffect } from 'react';
 import { Helmet } from "react-helmet"
-import {Silvia, bannerPC, bannerCEL, activity} from "../../assets/images"
+import {Silvia, bannerPC} from "../../assets/images"
 import ActivitiesDataServices from '../../Services/ActivitiesServices';
 import { Link } from "react-router-dom";
 import moment from "moment";
@@ -47,7 +47,7 @@ const Home = () => {
             <Image className="img-fluid rounded-circle w-100 h-auto" src={Silvia}/>
           </Col>
           <Col lg="8" style={{marginTop:"30px"}}>
-            <h2 style={{ borderRadius: "3%"}}>Silvia Iurman</h2>
+            <h1 style={{ borderRadius: "3%"}}>Silvia Iurman</h1>
             <p>
             Inicié mí búsqueda consciente en mi adolescencia. A partir de entonces, he transitado por diferentes escuelas filosóficas y psicológicas, he recorrido caminos que me condujeran en lo personal y en lo clínico hacia lo Transpersonal, tomando de grandes maestros occidentales y orientales. <br/><br/>
             La creación de Eneagrama Escuela de Vida me permitió incluir un dinamismo, neuropsicobiológico y transpersonal apoyado en el ala psicológica y espiritual del eneagrama, cuya piedra angular es la filosofía de vida de las Fuerzas del Amor de las Nuevas Constelaciones Familiares. <br/><br/>
@@ -56,6 +56,7 @@ const Home = () => {
             </p>
             <Button variant="secondary" style={{ backgroundColor: "#9d6b6c" }} className="float-end">Leer biografía completa</Button>
           </Col>
+          
 
           {/* <Col lg="4" style={{marginTop:"15px"}}>
           <iframe  style={{ borderRadius: "2%"}} width="400vw" height="400px" src="https://www.youtube.com/embed/Pe_tb5iKR-Q" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
@@ -69,7 +70,7 @@ const Home = () => {
         <br />
         <Row xs={1} md={3} className="g-4">
       {activities.slice(0,6).map((activity) =>(
-        activity.important && !activity.archived && <Col>
+        activity.important && !activity.archived && <Col key={activity._id}>
         <Card>
         <Link style={{ textDecoration: 'none', color:'black'}} to={`/calendario/${activity._id}`}>
           <Card.Img variant="top" style={{height:"300px"}} src={`https://api-silvia.divisioncode.net.ar/img/${activity.img}`} />
@@ -77,7 +78,8 @@ const Home = () => {
           <Card.Body>
             <Card.Title>{activity.name}</Card.Title>
             <Card.Text> <b>Fecha:</b> {moment(activity.day).format("DD/MM/YYYY [a las]  h:mm A [(hora Argentina (GTM -3))]")}</Card.Text>
-            <Card.Text> {truncate(activity.description)}</Card.Text>
+            {/* <Card.Text> {truncate(activity.description)}</Card.Text> */}
+            <Button variant="secondary" style={{ backgroundColor: "#9d6b6c" }} className="float-end mb-3">Ver actividad</Button> 
           </Card.Body>
 
           </Link>

@@ -5,6 +5,8 @@ import PresencialWorkshop from "./Components/PresencialWorkshop";
 import VirtualWorkshop from "./Components/VirtualWorkshop";
 import Calendar from "./Components/Calendar";
 import NCFA from "./Components/NCFA";
+import BuyPresencialModules from "./Components/NCFA/BuyPresencialModules";
+import BuyFilmedModules from "./Components/NCFA/BuyFilmedModules";
 import Articles from "./Components/Articles";
 import ArticleDetail from "./Components/ArticleDetail";
 import About from "./Components/About";
@@ -16,19 +18,22 @@ import EditActivity from "./Components/Admin/AdminActivity/EditActivity";
 import EditArticle from "./Components/Admin/AdminArticle/EditArticle";
 import EditCourse from "./Components/Admin/AdminCourse/EditCourse";
 import EditPurchase from "./Components/Admin/AdminPurchases/EditPurchase";
+import Constellators from "./Constellators";
 import Login from "./Components/Admin/Login";
-import { AuthProvider } from "./context/AuthProvider";
+import {Login as UserLogin, Register} from "./Components/auth";
 import { AuthLayout } from "./layouts/AuthLayout";
 import { ProtectAdminLayout } from "./layouts/ProtectAdminLayout";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { GlobalProvider } from "./context/GlobalProvider";
 
 function App() {
 
   return (
     <BrowserRouter>
-      <AuthProvider>
+      <GlobalProvider>
         <Header />
-        <div>
+        
           {/* Rutas públicas */}
           <Routes>
             <Route path="/" element={<AuthLayout />}>
@@ -41,9 +46,13 @@ function App() {
               <Route path="calendario" element={<Calendar />} />
               <Route path="calendario/:id" element={<Activity />} />
               <Route path="NCFA" element={<NCFA />} />
+              <Route path="NCFA/modulos-grabados" element={<BuyFilmedModules />} />
+              <Route path="NCFA/modulos-en-directo" element={<BuyPresencialModules />} />
               <Route path="articulos" element={<Articles />} />
               <Route path="articulos/:id" element={<ArticleDetail />} />
               <Route path="conoceme" element={<About />} />
+              <Route path="login" element={<UserLogin />} />
+              <Route path="registro" element={<Register />} />
               <Route path="admin/login" element={<Login />} />
             </Route>
             {/* Rutas privadas */}
@@ -65,10 +74,9 @@ function App() {
               />
             </Route>
           </Routes>
-        </div>
 
         <Footer />
-      </AuthProvider>
+      </GlobalProvider>
     </BrowserRouter>
   )
 }

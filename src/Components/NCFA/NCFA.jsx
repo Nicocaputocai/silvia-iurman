@@ -26,17 +26,17 @@ const Constelaciones = ()=>{
         <>
 
 
-    {courses.map((course) =>( course._id === '63d2d3a6dc2d95cfd1095ca4' ? 
+    {courses.map((course) =>( course._id === '63d2d3a6dc2d95cfd1095ca4' && 
     <Container>
                  <Helmet>
       <title>Silvia Iurman - Nuevas Constelaciones Familiares y Eneagrama</title>
       <meta name="description" content="Formación en Nuevas Constelaciones Familiares y Eneagrama Silvia Iurman - Nuevas Constelaciones Familiares Argentina"/>
     </Helmet>
-    <h2 style={{
+    <h1 style={{
                 backgroundColor: "#ffffff",
                 color: "#9d6b6c",
                 textAlign: "center",
-              }}>Nuevas Constelaciones Familiares y Eneagrama</h2>
+              }}>Nuevas Constelaciones Familiares y Eneagrama</h1>
               <h4 >Podes iniciar la formación con este módulo o tomarlo como proceso de trabajo personal en orden a la sanación, transformación y evolución.</h4>
 
               <Carousel activeIndex={index} onSelect={handleSelect} >
@@ -86,7 +86,7 @@ Al servicio de la vida y de la conciencia colectiva.<br/>
 
 
     </Container>
-              : ''))}
+              ))}
         </>
     )
 }

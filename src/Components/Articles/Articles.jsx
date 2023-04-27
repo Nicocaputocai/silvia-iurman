@@ -41,7 +41,7 @@ const Articles = ()=>{
             <Card.Img variant="top" style={{height:"300px", objectFit:'cover'}} src={`https://api-silvia.divisioncode.net.ar/img/${article.img}`} />
 
             <Card.Body>
-              <Card.Title>{article.title}</Card.Title>
+              <Card.Title  style={{color:"#9d6b6c"}}>{article.title}</Card.Title>
 
               <Card.Text> {truncate(article.paragraph)}</Card.Text>
               <small style={{float: "right"}}> {`Creado el ${moment(article.updatedAt).format("DD/MM/YYYY")}.`} </small>

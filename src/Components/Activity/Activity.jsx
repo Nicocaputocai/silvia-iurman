@@ -57,7 +57,7 @@ export const Activity = () => {
             </Row>
             <Row >
                 <Col className="m-3">
-                    <h2> {activity.name} </h2>
+                    <h1> {activity.name} </h1>
                 </Col>
             </Row>
             <Row>
