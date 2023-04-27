@@ -18,7 +18,7 @@ import EditActivity from "./Components/Admin/AdminActivity/EditActivity";
 import EditArticle from "./Components/Admin/AdminArticle/EditArticle";
 import EditCourse from "./Components/Admin/AdminCourse/EditCourse";
 import EditPurchase from "./Components/Admin/AdminPurchases/EditPurchase";
-import Constellators from "./Constellators";
+import Constellators from "./Components/Constellators";
 import Login from "./Components/Admin/Login";
 import {Login as UserLogin, Register} from "./Components/auth";
 import { AuthLayout } from "./layouts/AuthLayout";
@@ -45,6 +45,7 @@ function App() {
               <Route path="talleres-virtuales" element={<VirtualWorkshop />} />
               <Route path="calendario" element={<Calendar />} />
               <Route path="calendario/:id" element={<Activity />} />
+              <Route path="consteladores" element={<Constellators />} />
               <Route path="NCFA" element={<NCFA />} />
               <Route path="NCFA/modulos-grabados" element={<BuyFilmedModules />} />
               <Route path="NCFA/modulos-en-directo" element={<BuyPresencialModules />} />
