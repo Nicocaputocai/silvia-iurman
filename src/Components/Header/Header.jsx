@@ -22,19 +22,18 @@ function CollapsibleExample() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto" >
             <NavDropdown title="Talleres de constelaciones" id="collasible-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/talleres-presenciales"> Talleres presenciales </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/talleres-virtuales">Talleres virtuales </NavDropdown.Item>
+              <NavDropdown.Item  style={{color:"#9d6b6c"}} as={Link} to="/modulos-presenciales"> Talleres presenciales </NavDropdown.Item>
+              <NavDropdown.Item  style={{color:"#9d6b6c"}} as={Link} to="/modulos-grabados">Talleres virtuales </NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown  title="Formación en Eneagrama y Nuevas Constelaciones Familiares" id="collasible-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/NCFA"> Presentación </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/talleres-presenciales"> Módulos grabados </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/talleres-virtuales">Módulos en directo </NavDropdown.Item>
+            <NavDropdown style={{fontSize:"0.9rem"}} title="Formación en Eneagrama y Nuevas Constelaciones Familiares" id="collasible-nav-dropdown">
+              <NavDropdown.Item style={{color:"#9d6b6c"}} as={Link} to="/NCFA"> Presentación </NavDropdown.Item>
+              <NavDropdown.Item  style={{color:"#9d6b6c"}} as={Link} to="/NCFA/modulos-grabados"> Módulos grabados </NavDropdown.Item>
+              <NavDropdown.Item  style={{color:"#9d6b6c"}} as={Link} to="/NCFA/modulos-en-directo">Módulos en directo </NavDropdown.Item>
             </NavDropdown>
             {/* <Nav.Link as={Link} to="/NCFA">Formación en Eneagrama y Nuevas Constelaciones Familiares </Nav.Link> */}
             <Nav.Link as={Link} to="/calendario">Actividades</Nav.Link>
-            <Nav.Link as={Link} to="/calendario">Actividades</Nav.Link>
 
-            <Nav.Link as={Link} to="/articulos">Consteladores acreditados</Nav.Link>
+            <Nav.Link as={Link} to="/consteladores">Consteladores acreditados</Nav.Link>
             <Nav.Link as={Link} to="/articulos">Articulos</Nav.Link>
             <Nav.Link as={Link} to="/conoceme">Conoceme</Nav.Link>
 
