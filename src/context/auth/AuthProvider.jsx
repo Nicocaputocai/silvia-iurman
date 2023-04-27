@@ -3,7 +3,6 @@ import httpLocalCommon from "../../http-local-common";
 import AdminUserDataServices from "../../Services/AdminUserServices";
 import AuthContext from "./AuthContext";
 import {AuthReducer, TYPES, initialState} from './AuthReducer'
-import { token } from "morgan";
 
 
 const AuthProvider = ({children}) => {
