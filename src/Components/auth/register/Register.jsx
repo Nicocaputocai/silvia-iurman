@@ -195,7 +195,7 @@ export const Register = () => {
                     </Form>
                 </Col>
             </Row>
-
+<>Prueba</>
         </Container>
     )
     }
