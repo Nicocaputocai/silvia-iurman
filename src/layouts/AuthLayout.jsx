@@ -10,7 +10,7 @@ export const AuthLayout = () => {
         <>
         <Container>
           <Row className="justify-content-md-center">
-          <Spinner style={{ width: "4rem", height: "4rem" }} animation="grow" />;
+            <Spinner style={{ width: "4rem", height: "4rem" }} animation="grow" />;
           </Row>
         </Container>
         </>

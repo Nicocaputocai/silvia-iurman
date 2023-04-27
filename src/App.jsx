@@ -17,12 +17,11 @@ import EditArticle from "./Components/Admin/AdminArticle/EditArticle";
 import EditCourse from "./Components/Admin/AdminCourse/EditCourse";
 import EditPurchase from "./Components/Admin/AdminPurchases/EditPurchase";
 import Login from "./Components/Admin/Login";
-import {Login as UserLogin} from "./Components/auth/Login/Login";
+import {Login as UserLogin, Register} from "./Components/auth";
 import { AuthProvider } from "./context/AuthProvider";
 import { AuthLayout } from "./layouts/AuthLayout";
 import { ProtectAdminLayout } from "./layouts/ProtectAdminLayout";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Register } from "./Components/auth/register/Register";
 
 function App() {
 
