@@ -167,8 +167,7 @@ export const Register = () => {
                         <div className='w-full d-flex flex-column justify-content-center align-items-center my-2'>
                             <ReCAPTCHA
                                 ref={captcha}
-                                // sitekey={import.meta.env.VITE_RECAPTCHA}
-                                sitekey='6LcKsr4lAAAAAEzBEwbQTBF_iABqaOw4ItJkan9V' //Puse la clave a mano
+                                sitekey={import.meta.env.VITE_RECAPTCHA}
                                 
                             />
                             {
