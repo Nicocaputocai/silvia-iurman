@@ -70,7 +70,7 @@ const Home = () => {
         <br />
         <Row xs={1} md={3} className="g-4">
       {activities.slice(0,6).map((activity) =>(
-        activity.important && !activity.archived && <Col>
+        activity.important && !activity.archived && <Col key={activity._id}>
         <Card>
         <Link style={{ textDecoration: 'none', color:'black'}} to={`/calendario/${activity._id}`}>
           <Card.Img variant="top" style={{height:"300px"}} src={`https://api-silvia.divisioncode.net.ar/img/${activity.img}`} />

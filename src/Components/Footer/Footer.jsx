@@ -9,7 +9,7 @@ import {logo,logo2 } from "../../assets/images"
 const Footer = () => {
   return (
     <>
-      <footer>
+      <footer className="position-sticky bottom-0 w-100">
         <Navbar bg="light" variant="light">
           <Container>
             <Nav className="justify-content-start align-items-center">
@@ -39,22 +39,22 @@ const Footer = () => {
             <Nav className="justify-content-end">
               <Nav.Item>
               <Nav.Link href="https://www.instagram.com/" target="_blank" className="img-fluid">
-                <i class="fab fa-instagram fa-2x"></i>
+                <i className="fab fa-instagram fa-2x"></i>
               </Nav.Link>
               </Nav.Item>
 
               <Nav.Link href="https://www.facebook.com/" target="_blank" className="img-fluid">
-                <i class="fab fa-facebook fa-2x"></i>
+                <i className="fab fa-facebook fa-2x"></i>
               </Nav.Link>
 
               <Nav.Item>
               <Nav.Link href="https://www.youtube.com/" target="_blank" className="img-fluid">
-                <i class="fab fa-youtube fa-2x"></i>
+                <i className="fab fa-youtube fa-2x"></i>
               </Nav.Link>
               </Nav.Item>
               <Nav.Item>
               <Nav.Link href="https://www.spotify.com/" target="_blank" className="img-fluid">
-                <i class="fab fa-spotify fa-2x"></i>
+                <i className="fab fa-spotify fa-2x"></i>
               </Nav.Link>
               </Nav.Item>
             </Nav>
