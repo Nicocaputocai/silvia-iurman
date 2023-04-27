@@ -1,55 +1,34 @@
-import { useState } from 'react'
-import { Button, Container, Form, Row, Col } from "react-bootstrap"
+import { Button, Container, Form, Row, Col, Spinner,Alert } from "react-bootstrap"
 import { Link, useNavigate } from 'react-router-dom'
-import { Alerta } from '../../Alert';
-import AdminUserDataServices from '../../../Services/AdminUserServices';
+import { sucessAlert, errorAlert } from '../../SweetAlert/Alerts';
+import UserDataServices from '../../../Services/UserServices';
 import useAuth from '../../../hooks/useAuth';
-import { useForm } from '../../../hooks/useForm';
+import { TYPES } from '../../../context/auth/AuthReducer';
+import {useForm} from 'react-hook-form';
+import { useState } from "react";
 
 export const Login = () => {
-  const [alert,setAlert] = useState({});
-  const {setAuth} = useAuth();
+  const {formState:{errors}, register, handleSubmit, reset} = useForm();
+  const [loading, setLoading] = useState(false);
+  const {authDispatch} = useAuth();
   const navigate = useNavigate();
 
-  const handleShowAlert = (msg, time = true) => {
-    setAlert({
-      msg
-    });
-    if(time){
-      setTimeout(() => {
-        setAlert({});
-      }, 3000);
-    }
-    reset()
-  };
-
-  const {formValues,handleInputChange,reset} = useForm({
-    username:"",
-    passwords: ""
-  });
-  const {username,password} = formValues
-
-  const handleSubmit= async (e) =>{
-    e.preventDefault();
-    if ([username, password].includes("")) {
-      handleShowAlert("Todos los campos son obligatorios");
-      return null;
-    }
-
+  const onSubmit= async (data) =>{
+    
     try {
-    //  const {data} = await clientAxios.post('/auth/login',{
-    //     username,
-    //     password
-    //   })
-    const {data} = await AdminUserDataServices.login({username, password})
-      // console.log(data);
-      setAuth(data.user)
-      localStorage.setItem('token', data.token) //Cuando cierro el navegador se borra. Para que no se borre va en localStorage
-      navigate('/admin')
+      setLoading(true);
+      const response = await UserDataServices.login(data);
+      authDispatch({type:TYPES.LOGIN, payload:response.data.user});
+      localStorage.setItem('token', response.data.token);
+      sucessAlert('Bienvenido');
+      navigate('/');
 
     } catch (error) {
-      console.log(error);
-      handleShowAlert(error.response?.data.msg)
+      console.error(error);
+      errorAlert(error.response?.data.msg);
+    } finally {
+      setLoading(false);
+      reset();
     }
     
   }
@@ -59,16 +38,31 @@ export const Login = () => {
       <Row className="justify-content-md-center">
         <Col xs={12} md={6}>
           <h1 className="text-center">Iniciar sesión</h1>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Usuario</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Usuario"
-                name="username"
-                value={username}
-                onChange={handleInputChange}
+                {...register("user", {
+                  required: {
+                    value: true,
+                    message: 'Campo requerido'
+                  },
+                  minLength: {
+                    value: 4,
+                    message: 'Mínimo 4 caracteres'
+                  },
+                })
+                }
               />
+              {
+                  errors.user && (<Alert 
+                                      variant='danger'
+                                      className='p-2 mt-2'>
+                                      {errors.user.message}
+                                      </Alert>)
+              }
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -76,13 +70,38 @@ export const Login = () => {
               <Form.Control
                 type="password"
                 placeholder="Contraseña"
-                name="password"
-                value={password}
-                onChange={handleInputChange}
+                {...register("password", {
+                  required: {
+                    value: true,
+                    message: 'Campo requerido'
+                  },
+                  minLength: {
+                    value: 4,
+                    message: 'Mínimo 4 caracteres'
+                  },
+                  maxLength: {
+                    value: 15,
+                    message: 'Máximo 15 caracteres'
+                  }
+                })
+                }
               />
+              {
+                  errors.password && (<Alert 
+                                      variant='danger'
+                                      className='p-2 mt-2'>
+                                      {errors.password.message}
+                                      </Alert>)
+              }
             </Form.Group>
-            <Button variant="primary" type="submit" className="w-100">
-              Iniciar sesión
+            <Button 
+            variant="primary" 
+            type="submit" 
+            className="w-100"
+            disabled={loading}>
+              {
+                loading ? <Spinner animation="border" variant="light" /> : 'Iniciar sesión'
+              }
             </Button>
             <Form.Text className="text-muted text-center mt-2">
               ¿No tienes cuenta? <Link to="/registro">Registrate</Link>

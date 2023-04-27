@@ -18,16 +18,16 @@ import EditCourse from "./Components/Admin/AdminCourse/EditCourse";
 import EditPurchase from "./Components/Admin/AdminPurchases/EditPurchase";
 import Login from "./Components/Admin/Login";
 import {Login as UserLogin, Register} from "./Components/auth";
-import { AuthProvider } from "./context/AuthProvider";
 import { AuthLayout } from "./layouts/AuthLayout";
 import { ProtectAdminLayout } from "./layouts/ProtectAdminLayout";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { GlobalProvider } from "./context/GlobalProvider";
 
 function App() {
 
   return (
     <BrowserRouter>
-      <AuthProvider>
+      <GlobalProvider>
         <Header />
         
           {/* Rutas públicas */}
@@ -70,7 +70,7 @@ function App() {
           </Routes>
 
         <Footer />
-      </AuthProvider>
+      </GlobalProvider>
     </BrowserRouter>
   )
 }

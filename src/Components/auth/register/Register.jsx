@@ -189,7 +189,7 @@ export const Register = () => {
                         </Button>
 
                         <Form.Text className="text-muted text-center">
-                            ¿Ya tienes una cuenta? <Link to="/registro">Accedé</Link>
+                            ¿Ya tienes una cuenta? <Link to="/login">Accedé</Link>
                         </Form.Text>
                     </Form>
                 </Col>

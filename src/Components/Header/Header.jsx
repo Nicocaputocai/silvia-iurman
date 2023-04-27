@@ -3,9 +3,16 @@
 // import  from 'react-bootstrap/Navbar';
 import { Link } from "react-router-dom";
 import { logo2 } from "../../assets/images"
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap"
+import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap"
+import useAuth from "../../hooks/useAuth";
+
 
 function CollapsibleExample() {
+  const {auth, authDispatch} = useAuth()
+  const logout = () =>{
+    authDispatch({type:'LOGOUT'})
+    localStorage.removeItem('token')
+  }
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
       <Container fluid>
@@ -40,9 +47,15 @@ function CollapsibleExample() {
 
           </Nav>
           <Nav>
-            <Nav.Link as={Link} to="/Login" style={{margin:0, top:"50%",transform: "translate(0%, 5%)"}}>
-            Login
-            </Nav.Link>
+            {
+              auth.isLogged ? (
+                  <Button onClick={logout}>Logout</Button>
+              ) : (
+                <Nav.Link as={Link} to="/Login" style={{margin:0, top:"50%",transform: "translate(0%, 5%)"}}>
+                Login
+                </Nav.Link>
+              )
+            }
           <Nav.Link
                 href="https://www.instagram.com/"
                 target="_blank"
