@@ -1,6 +1,11 @@
+:root {
+  --baseColor: #9d6b6c
+}
+
 html{
   overflow-x: hidden;
   min-height: 100vh;
+  scroll-behavior: smooth;
 }
 
 #root{
@@ -25,9 +30,17 @@ h1, h2, h3{
   font-family: "Arimo";
 }
 .title {
-  background-color: #9d6b6c;
+  background-color: var(--baseColor);
   text-align: center;
   color: #fff;
+}
+
+.bgColor {
+  background-color: var(--baseColor);
+}
+
+.textColor {
+  color: var(--baseColor);
 }
 /************ Banner Css ************/
 .bigscreen {display:block;}
