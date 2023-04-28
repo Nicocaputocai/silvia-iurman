@@ -26,6 +26,8 @@ import { ProtectAdminLayout } from "./layouts/ProtectAdminLayout";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { GlobalProvider } from "./context/GlobalProvider";
+import { Dashboard } from "./Components/dashboard/Dashboard";
+import { Checkout } from "./Components/Checkout/Checkout";
 
 function App() {
 
@@ -55,6 +57,7 @@ function App() {
               <Route path="login" element={<UserLogin />} />
               <Route path="registro" element={<Register />} />
               <Route path="admin/login" element={<Login />} />
+              <Route path='dashboard' element={<Dashboard />} />
             </Route>
             {/* Rutas privadas */}
 
@@ -75,7 +78,7 @@ function App() {
               />
             </Route>
           </Routes>
-
+        <Checkout/>
         <Footer />
       </GlobalProvider>
     </BrowserRouter>

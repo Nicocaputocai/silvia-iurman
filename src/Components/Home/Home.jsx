@@ -66,7 +66,7 @@ const Home = () => {
         <div align="center">
         
         </div>
-        <h2 style={{ borderRadius: "3%"}}>Próximas actividades</h2>
+        <h2 className='title' style={{ borderRadius: "3%"}}>Próximas actividades</h2>
         <br />
         <Row xs={1} md={3} className="g-4">
       {activities.slice(0,6).map((activity) =>(

@@ -47,7 +47,7 @@ function CollapsibleExample() {
           {
             auth.isLogged ? (
               <NavDropdown title={auth.user.name} id="basic-nav-dropdown" className="w-50">
-                <NavDropdown.Item as={Link} to='/admin'>Dashboard</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to='/dashboard'>Dashboard</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
               </NavDropdown>
