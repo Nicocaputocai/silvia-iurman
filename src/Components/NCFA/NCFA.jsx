@@ -27,7 +27,7 @@ const Constelaciones = ()=>{
 
 
     {courses.map((course) =>( course._id === '63d2d3a6dc2d95cfd1095ca4' && 
-    <Container>
+    <Container key={course._id}>
                  <Helmet>
       <title>Silvia Iurman - Nuevas Constelaciones Familiares y Eneagrama</title>
       <meta name="description" content="Formación en Nuevas Constelaciones Familiares y Eneagrama Silvia Iurman - Nuevas Constelaciones Familiares Argentina"/>

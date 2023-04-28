@@ -50,7 +50,7 @@ function CollapsibleExample() {
               auth.isLogged ? (
                   <Button onClick={logout}>Logout</Button>
               ) : (
-                <Nav.Link as={Link} to="/Login" style={{margin:0, top:"50%",transform: "translate(0%, 5%)"}}>
+                <Nav.Link as={Link} to="/login" style={{margin:0, top:"50%",transform: "translate(0%, 5%)"}}>
                 Login
                 </Nav.Link>
               )

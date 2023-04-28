@@ -16,5 +16,5 @@ export const ProtectAdminLayout = () => {
       </>
     )
   }
-  return <>{auth._id ? <Outlet /> : <Navigate to="/admin/login" />}</>;
+  return <>{admin.user?._id ? <Outlet /> : <Navigate to="/admin/login" />}</>;
 };
