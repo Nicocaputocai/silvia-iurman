@@ -61,7 +61,6 @@ const AdminActivity = () =>{
                             </Button>
                             </NavItem>
                             <Button
-                                type="button"
                                 className="float-end"
                                 variant='danger'
                                 size="lg"

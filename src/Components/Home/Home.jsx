@@ -1,4 +1,4 @@
-import { Container, Row, Col, Image, Card, Button } from "react-bootstrap"
+import { Container, Row, Col, Image, Card, Button, NavItem } from "react-bootstrap"
 import React, { useState, useEffect } from 'react';
 import { Helmet } from "react-helmet"
 import {Silvia, bannerPC} from "../../assets/images"
@@ -54,7 +54,9 @@ const Home = () => {
             Mi camino es contribuir y posibilitar, desde este sistema integrativo, espacios para una vida consciente y saludable en todos los órdenes y para esto incluyo el trabajo con trauma, estrés y las comprensiones de las Neurociencias aplicadas.  <br/><br/>
             Amo mi formación de grado como psicóloga clínica y agradezco a cada formación, escuela y recorrido transitado, que me dan la posibilidad de crear un sistema integrativo, en esta trama que es la vida, al servicio de una vida consciente y de la consciencia  colectiva. 
             </p>
-            <Button variant="secondary" style={{ backgroundColor: "#9d6b6c" }} className="float-end">Leer biografía completa</Button>
+            <NavItem as={Link} to="/conoceme">
+            <Button variant="secondary" style={{ backgroundColor: "#9d6b6c" }} className="float-end">Biografía completa</Button>
+            </NavItem>
           </Col>
           
 
