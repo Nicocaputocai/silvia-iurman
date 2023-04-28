@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from "react";
-import httpLocalCommon from "../../http-local-common";
+import http from "../../http-common";
 import AdminUserDataServices from "../../Services/AdminUserServices";
 import AuthContext from "./AuthContext";
 import {AuthReducer, TYPES, initialState} from './AuthReducer'
@@ -25,7 +25,7 @@ const AuthProvider = ({children}) => {
         };
 
         try {
-            const {data} = await httpLocalCommon.get('user/relogged',config);
+            const {data} = await http.get('user/relogged',config);
             
             authDispatch({
                 type : TYPES.LOGIN,

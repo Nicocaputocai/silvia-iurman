@@ -14,48 +14,50 @@ function CollapsibleExample() {
     localStorage.removeItem('token')
   }
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-      <Container fluid>
-        <Navbar.Brand as={Link} to='/'>
-          <img src={logo2}               
-              alt="logo"
-              width="100"
-              height="100" 
-              className="img-fluid"
-              style={{ borderRadius: "50%",margin:"auto", display: "block" }}
-              />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto" >
-            <NavDropdown title="Talleres de constelaciones" id="collasible-nav-dropdown">
-              <NavDropdown.Item  style={{color:"#9d6b6c"}} as={Link} to="/modulos-presenciales"> Talleres presenciales </NavDropdown.Item>
-              <NavDropdown.Item  style={{color:"#9d6b6c"}} as={Link} to="/modulos-grabados">Talleres virtuales </NavDropdown.Item>
-            </NavDropdown>
-            <NavDropdown style={{fontSize:"0.9rem"}} title="Formación en Eneagrama y Nuevas Constelaciones Familiares" id="collasible-nav-dropdown">
-              <NavDropdown.Item style={{color:"#9d6b6c"}} as={Link} to="/NCFA"> Presentación </NavDropdown.Item>
-              <NavDropdown.Item  style={{color:"#9d6b6c"}} as={Link} to="/NCFA/modulos-grabados"> Módulos grabados </NavDropdown.Item>
-              <NavDropdown.Item  style={{color:"#9d6b6c"}} as={Link} to="/NCFA/modulos-en-directo">Módulos en directo </NavDropdown.Item>
-            </NavDropdown>
-            {/* <Nav.Link as={Link} to="/NCFA">Formación en Eneagrama y Nuevas Constelaciones Familiares </Nav.Link> */}
-            <Nav.Link as={Link} to="/calendario">Actividades</Nav.Link>
-
-            <Nav.Link as={Link} to="/consteladores">Consteladores acreditados</Nav.Link>
-            <Nav.Link as={Link} to="/articulos">Articulos</Nav.Link>
-            <Nav.Link as={Link} to="/conoceme">Conoceme</Nav.Link>
-
-          </Nav>
-          <Nav>
-            {
-              auth.isLogged ? (
-                  <Button onClick={logout}>Logout</Button>
-              ) : (
-                <Nav.Link as={Link} to="/login" style={{margin:0, top:"50%",transform: "translate(0%, 5%)"}}>
-                Login
-                </Nav.Link>
-              )
-            }
-          <Nav.Link
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand href="#home">
+        <img
+          src={logo2}
+          width="75"
+          height="75"
+          className="d-inline-block align-top"
+          alt="Logo"
+        />
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav" className="flex p-2 justify-content-between">
+        <Nav className="mr-auto">
+          <Nav.Link as={Link} to="/">Inicio</Nav.Link>
+          <NavDropdown title="Taller de constelaciones" id="basic-nav-dropdown">
+            <NavDropdown.Item as={Link} to='/modulos-presenciales'>Talleres presenciales</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to='/modulos-grabados'>Talleres virtuales</NavDropdown.Item>
+          </NavDropdown>
+          <Nav.Link as={Link} to="/calendario">Actividades</Nav.Link>
+          <Nav.Link as={Link} to="/consteladores">Consteladores</Nav.Link>
+        </Nav>
+        <Nav className="ml-auto">
+          <Nav.Link as={Link} to='/articulos'>Artículos</Nav.Link>
+          <NavDropdown title="Formación en Eneagrama y Nuevas Constelaciones Familiares" id="basic-nav-dropdown">
+            <NavDropdown.Item as={Link} to='/NFCA'>Presentación</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item as={Link} to='/NFCA/modulos-grabados'>Módulos grabados</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to='/NCFA/modulos-en-directo'>Módulos en directo</NavDropdown.Item>
+          </NavDropdown>
+          <Nav.Link as={Link} to="/conoceme">Conoceme</Nav.Link>
+          {
+            auth.isLogged ? (
+              <NavDropdown title={auth.user.name} id="basic-nav-dropdown" className="w-50">
+                <NavDropdown.Item as={Link} to='/admin'>Dashboard</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <Nav.Link as={Link} to="/login">Login</Nav.Link>
+            )
+          }
+        </Nav>
+        <Nav>
+        <Nav.Link
                 href="https://www.instagram.com/"
                 target="_blank"
               >
@@ -92,11 +94,12 @@ function CollapsibleExample() {
                   
                 ></i>
               </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
+        </Nav>
+      </Navbar.Collapse>
     </Navbar>
   );
 }
+
+
 
 export default CollapsibleExample;
