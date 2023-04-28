@@ -55,7 +55,7 @@ const Home = () => {
             Amo mi formación de grado como psicóloga clínica y agradezco a cada formación, escuela y recorrido transitado, que me dan la posibilidad de crear un sistema integrativo, en esta trama que es la vida, al servicio de una vida consciente y de la consciencia  colectiva. 
             </p>
             <NavItem as={Link} to="/conoceme">
-            <Button variant="secondary" style={{ backgroundColor: "#9d6b6c" }} className="float-end">Leer biografía completa</Button>
+            <Button variant="secondary" style={{ backgroundColor: "#9d6b6c" }} className="float-end">Biografía completa</Button>
             </NavItem>
           </Col>
           
