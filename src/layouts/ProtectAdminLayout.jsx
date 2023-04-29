@@ -1,11 +1,12 @@
 import { Container, Row, Spinner } from "react-bootstrap";
 import { Navigate, Outlet } from "react-router-dom";
-import useAdmin from "../hooks/useAdmin";
+import useAuth from "../hooks/useAuth";
+import { ROLES } from "../types/TYPES";
 
 
 export const ProtectAdminLayout = () => {
-  const { admin, loading } = useAdmin();
-  if (loading) {
+  const { auth } = useAuth();
+/*   if (loading) {
     return (
       <>
       <Container>
@@ -15,6 +16,6 @@ export const ProtectAdminLayout = () => {
       </Container>
       </>
     )
-  }
-  return <>{admin.user?._id ? <Outlet /> : <Navigate to="/admin/login" />}</>;
+  } */
+  return (auth.isLogged && auth.user?.role) === ROLES.ADMIN ? <Outlet /> : <Navigate to="/login" />;
 };

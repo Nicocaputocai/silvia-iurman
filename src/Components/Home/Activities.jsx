@@ -23,8 +23,13 @@ export const Activities = () => {
   return (
     <Row xs={1} md={3} className="g-4">
           {activities.slice(0, 6).map((activity) => (
-            activity.important && !activity.archived && <CardComponent key={activity._id} activity={activity}/>
+            activity.important && !activity.archived && 
+            <CardComponent 
+            key={activity._id} 
+            activity={activity}
+            button={true}
+            />
           ))}
-        </Row>
+    </Row>
   )
 }

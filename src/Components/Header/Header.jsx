@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { logo2 } from "../../assets/images"
 import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap"
 import useAuth from "../../hooks/useAuth";
+import { ROLES } from "../../types/TYPES";
 
 
 function CollapsibleExample() {
@@ -38,9 +39,9 @@ function CollapsibleExample() {
         <Nav className="ml-auto">
           <Nav.Link as={Link} to='/articulos'>Artículos</Nav.Link>
           <NavDropdown title="Formación en Eneagrama y Nuevas Constelaciones Familiares" id="basic-nav-dropdown">
-            <NavDropdown.Item as={Link} to='/NFCA'>Presentación</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to='/NCFA'>Presentación</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item as={Link} to='/NFCA/modulos-grabados'>Módulos grabados</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to='/NCFA/modulos-grabados'>Módulos grabados</NavDropdown.Item>
             <NavDropdown.Item as={Link} to='/NCFA/modulos-en-directo'>Módulos en directo</NavDropdown.Item>
           </NavDropdown>
           <Nav.Link as={Link} to="/conoceme">Conoceme</Nav.Link>
@@ -48,6 +49,9 @@ function CollapsibleExample() {
             auth.isLogged ? (
               <NavDropdown title={auth.user.name} id="basic-nav-dropdown" className="w-50">
                 <NavDropdown.Item as={Link} to='/dashboard'>Dashboard</NavDropdown.Item>
+                {
+                  auth.user.role === ROLES.ADMIN && <NavDropdown.Item as={Link} to='/admin'>Admin</NavDropdown.Item>
+                }
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
               </NavDropdown>
