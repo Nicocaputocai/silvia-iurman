@@ -17,6 +17,11 @@ export const ActivityReducer = (state, action) => {
                 ...state,
                 data: state.data.filter(activity => activity._id !== action.payload)
             }
+        case ACTIVITY.EDIT:
+            return {
+                ...state,
+                data: state.data.map(activity => activity._id === action.payload._id ? action.payload : activity)
+            }
         default:
             return state;
     }
