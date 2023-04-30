@@ -2,24 +2,19 @@ import React, { useEffect, useState } from 'react'
 import activitiesDataServices from '../../Services/ActivitiesServices';
 import { CardComponent } from '../components';
 import { Row } from 'react-bootstrap';
+import { useActivities } from '../../hooks/useActivities';
+import { PageLoader } from '../components/PageLoader';
 
 export const Activities = () => {
-    const [activities, setActivities] = useState([]);
+  const {activities,} = useActivities()
 
-    const retrieveActivities = () =>{
-        activitiesDataServices.getAllActivities()
-            .then(response =>{
-        setActivities(response.data.activities)
-        })
-            .catch(err => console.log(err))    
-    };
-
-    useEffect(() =>{
-        retrieveActivities()
-    }, []);
+  if(activities.isLoading){
+    return <PageLoader/>
+  }
+    
   return (
     <Row xs={1} md={4} className="g-4">
-      {activities.map((activity) => (
+      {activities.data.map((activity) => (
         !activity.archived && (
             <CardComponent
             key={activity._id} 

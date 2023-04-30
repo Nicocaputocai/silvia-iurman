@@ -12,6 +12,11 @@ export const ActivityReducer = (state, action) => {
                 isLoading: false,
                 data: action.payload
             }
+        case ACTIVITY.DELETE:
+            return {
+                ...state,
+                data: state.data.filter(activity => activity._id !== action.payload)
+            }
         default:
             return state;
     }

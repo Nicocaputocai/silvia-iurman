@@ -53,9 +53,9 @@ function App() {
               <Route path="registro" element={<Register />} />
               <Route path='dashboard' element={<Dashboard />} />
             </Route>
+            
             {/* Rutas privadas */}
-
-            <Route path="/admin" element={
+            <Route path="/admin/*" element={
                       <ProtectAdminLayout>
                         <AdminRoutes/>
                       </ProtectAdminLayout>}>
