@@ -4,7 +4,7 @@ import { CardComponent } from '../components';
 import { Row } from 'react-bootstrap';
 
 export const Activities = () => {
-        const [activities, setActivities] = useState([]);
+    const [activities, setActivities] = useState([]);
 
     const retrieveActivities = () =>{
         activitiesDataServices.getAllActivities()

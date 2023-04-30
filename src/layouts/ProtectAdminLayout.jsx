@@ -4,7 +4,7 @@ import useAuth from "../hooks/useAuth";
 import { ROLES } from "../types/TYPES";
 
 
-export const ProtectAdminLayout = () => {
+export const ProtectAdminLayout = ({children}) => {
   const { auth } = useAuth();
 /*   if (loading) {
     return (
@@ -17,5 +17,5 @@ export const ProtectAdminLayout = () => {
       </>
     )
   } */
-  return (auth.isLogged && auth.user?.role) === ROLES.ADMIN ? <Outlet /> : <Navigate to="/login" />;
+  return (auth.isLogged && auth.user?.role) === ROLES.ADMIN ? children : <Navigate to="/login" />;
 };

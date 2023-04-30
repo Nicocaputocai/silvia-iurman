@@ -5,12 +5,12 @@ import UserDataServices from '../../../Services/UserServices';
 import useAuth from '../../../hooks/useAuth';
 import { TYPES } from '../../../context/auth/AuthReducer';
 import {useForm} from 'react-hook-form';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Login = () => {
   const {formState:{errors}, register, handleSubmit, reset} = useForm();
   const [loading, setLoading] = useState(false);
-  const {authDispatch} = useAuth();
+  const {auth, authDispatch} = useAuth();
   const navigate = useNavigate();
 
   const onSubmit= async (data) =>{
@@ -32,6 +32,12 @@ export const Login = () => {
     }
     
   }
+
+  useEffect(() => {
+    if(auth.isLogged){
+      navigate('/');
+    }
+  }, [auth.isLogged])
 
   return (
     <Container>

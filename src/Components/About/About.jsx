@@ -1,17 +1,14 @@
 import { Container, Row, Col, Image } from "react-bootstrap";
-import { Helmet } from "react-helmet";
 import {silvia} from "../../assets/images";
 import './about.style.css'
+import { HelmetPage } from "../components";
 const Conoceme = () => {
   return (
     <>
-      <Helmet>
-        <title>Silvia Iurman - Conoceme</title>
-        <meta
-          name="description"
-          content="Conoceme Silvia Iurman - Nuevas Constelaciones Familiares Argentina"
-        />
-      </Helmet>
+      <HelmetPage
+        section="Conoceme"
+        content="Conoceme Silvia Iurman - Nuevas Constelaciones Familiares Argentina"
+      />
     
       <br />
       <Container>

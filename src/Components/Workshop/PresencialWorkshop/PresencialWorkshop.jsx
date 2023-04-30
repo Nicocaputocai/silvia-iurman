@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
 import "./presencialWorkshop.css";
 import {
   Container,
@@ -17,6 +16,7 @@ import CoursesDataServices from "../../../Services/CoursesServices";
 import { useParams } from "react-router-dom";
 import { TGPimages, activity } from "../../../assets/images";
 import moment from "moment";
+import { HelmetPage } from "../../components";
 
 const CursosPresenciales = () => {
   const [index, setIndex] = useState(0);
@@ -61,13 +61,10 @@ const CursosPresenciales = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Silvia Iurman - Talleres Presenciales</title>
-        <meta
-          name="description"
-          content="Talleres presenciales de Silvia Iurman - Nuevas Constelaciones Familiares Argentina"
-        />
-      </Helmet>
+      <HelmetPage
+        section='Talleres Presenciales'
+        content='Talleres presenciales de Silvia Iurman - Nuevas Constelaciones Familiares Argentina'
+      />
       <Container fluid>
         <h1>Talleres presenciales</h1>
       </Container>
