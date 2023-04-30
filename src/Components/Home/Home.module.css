@@ -1,0 +1,46 @@
+.img_bio{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 50%;
+    max-width: 300px;
+}
+
+.container_bio{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 576px) { 
+    .img_bio{
+        margin-top: 0rem;
+    }
+ }
+
+
+@media (min-width: 768px) { 
+    .container_bio{
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: start;
+    }
+
+    .img_bio{
+        margin-top: 1.5rem;
+    }
+ }
+
+@media (min-width: 992px) { 
+ }
+
+
+@media (min-width: 1200px) { 
+   
+ }
+
+@media (min-width: 1400px) { 
+
+}

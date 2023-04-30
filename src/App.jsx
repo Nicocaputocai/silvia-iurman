@@ -10,7 +10,7 @@ import BuyFilmedModules from "./Components/NCFA/BuyFilmedModules";
 import Articles from "./Components/Articles";
 import ArticleDetail from "./Components/ArticleDetail";
 import About from "./Components/About";
-import Header from "./Components/Header/Header";
+import {Header} from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import Activity from "./Components/Activity";
 import Admin from "./Components/Admin";

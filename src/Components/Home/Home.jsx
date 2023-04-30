@@ -12,7 +12,7 @@ const Home = () => {
       {/*  */}
       <HelmetPage section='Inicio' content='Home de la página de Silvia Iurman - Nuevas Constelaciones Familiares Argentina'/>
       
-        <Row className="aligh-items-center">
+        <Row className="align-items-center">
           <Image fluid="true" src={bannerPC} alt="banner"/>
           {/* <img className="smallscreen" src={bannerCEL} alt="banner" /> */}
         </Row>

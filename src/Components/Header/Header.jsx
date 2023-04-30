@@ -1,14 +1,13 @@
-// import  from 'react-bootstrap/Container';
-// import  from 'react-bootstrap/Nav';
-// import  from 'react-bootstrap/Navbar';
+
 import { Link } from "react-router-dom";
 import { logo2 } from "../../assets/images"
-import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap"
+import { Nav, Navbar, NavDropdown } from "react-bootstrap"
 import useAuth from "../../hooks/useAuth";
 import { ROLES } from "../../types/TYPES";
+import styles from './Header.module.css'
+import { MediaSocials } from "../components";
 
-
-function CollapsibleExample() {
+export const Header = () => {
   const {auth, authDispatch} = useAuth()
   const logout = () =>{
     authDispatch({type:'LOGOUT'})
@@ -16,34 +15,35 @@ function CollapsibleExample() {
   }
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">
+      <Navbar.Brand as={Link} to="/">
         <img
           src={logo2}
           width="75"
-          height="75"
-          className="d-inline-block align-top"
+          className="d-inline-block align-top p-0 m-0"
           alt="Logo"
         />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav" className="flex p-2 justify-content-between">
+      <Navbar.Collapse 
+      id="basic-navbar-nav" 
+      className={styles.navbar_items}>
         <Nav className="mr-auto">
           <Nav.Link as={Link} to="/">Inicio</Nav.Link>
           <NavDropdown title="Taller de constelaciones" id="basic-nav-dropdown">
-            <NavDropdown.Item as={Link} to='/modulos-presenciales'>Talleres presenciales</NavDropdown.Item>
-            <NavDropdown.Item as={Link} to='/modulos-grabados'>Talleres virtuales</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to='/talleres-presenciales'>Talleres presenciales</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to='/talleres-virtuales'>Talleres virtuales</NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link as={Link} to="/calendario">Actividades</Nav.Link>
-          <Nav.Link as={Link} to="/consteladores">Consteladores</Nav.Link>
-        </Nav>
-        <Nav className="ml-auto">
-          <Nav.Link as={Link} to='/articulos'>Artículos</Nav.Link>
           <NavDropdown title="Formación en Eneagrama y Nuevas Constelaciones Familiares" id="basic-nav-dropdown">
             <NavDropdown.Item as={Link} to='/NCFA'>Presentación</NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item as={Link} to='/NCFA/modulos-grabados'>Módulos grabados</NavDropdown.Item>
             <NavDropdown.Item as={Link} to='/NCFA/modulos-en-directo'>Módulos en directo</NavDropdown.Item>
           </NavDropdown>
+        </Nav>
+        <Nav className="ml-auto">
+          <Nav.Link as={Link} to="/calendario">Actividades</Nav.Link>
+          <Nav.Link as={Link} to="/consteladores">Consteladores</Nav.Link>
+          <Nav.Link as={Link} to='/articulos'>Artículos</Nav.Link>
           <Nav.Link as={Link} to="/conoceme">Conoceme</Nav.Link>
           {
             auth.isLogged ? (
@@ -60,50 +60,8 @@ function CollapsibleExample() {
             )
           }
         </Nav>
-        <Nav>
-        <Nav.Link
-                href="https://www.instagram.com/"
-                target="_blank"
-              >
-                <i
-                  className="fab fa-instagram fa-2x"
-                 
-                ></i>
-              </Nav.Link>
-
-              <Nav.Link
-                href="https://www.facebook.com/"
-                target="_blank"
-              >
-                <i
-                  className="fab fa-facebook fa-2x"
-                  
-                ></i>
-              </Nav.Link>
-              <Nav.Link
-                href="https://www.youtube.com/"
-                target="_blank"
-              >
-                <i
-                  className="fab fa-youtube fa-2x"
-                  
-                ></i>
-              </Nav.Link>
-              <Nav.Link
-                href="https://www.spotify.com/"
-                target="_blank"
-              >
-                <i
-                  className="fab fa-spotify fa-2x"
-                  
-                ></i>
-              </Nav.Link>
-        </Nav>
+        <MediaSocials/>
       </Navbar.Collapse>
     </Navbar>
   );
 }
-
-
-
-export default CollapsibleExample;

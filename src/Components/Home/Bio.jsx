@@ -1,12 +1,14 @@
 import { Button, Col, Image, NavItem, Row } from 'react-bootstrap';
 import {Silvia} from '../../assets/images';
 import { Link } from 'react-router-dom';
+import styles from './Home.module.css'
 
 export const Bio = () => {
   return (
-      <Row>
+      <Row className={`m-auto ${styles.container_bio}`}>
           <Col lg="4" className='mt-3'>
-              <Image className="img-fluid rounded-circle w-100 h-auto" src={Silvia} />
+              <Image 
+              className={`img-fluid rounded-circle ${styles.img_bio}`} src={Silvia} />
           </Col>
           <Col lg="8" className='mt-5'>
               <h1 className='rounded title'>Silvia Iurman</h1>
