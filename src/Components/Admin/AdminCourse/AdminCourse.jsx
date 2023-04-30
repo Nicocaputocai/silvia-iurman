@@ -26,7 +26,7 @@ const AdminCourse = () =>{
     return(
         <> 
         {courses.map((course) =>(
-                        <Container>
+                        <Container key={course._id}>
                         <Row className="align-items-center">
                          
                           <Col lg="12">

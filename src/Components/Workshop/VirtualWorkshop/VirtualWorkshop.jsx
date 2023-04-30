@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import "./presencialWorkshop.css";
 import {
   Container,
   Col,
@@ -13,17 +12,18 @@ import {
   InputGroup,
   Carousel,
 } from "react-bootstrap";
-import CoursesDataServices from "../../Services/CoursesServices";
+import "./virtualWorkshop.css";
+import CoursesDataServices from "../../../Services/CoursesServices";
 import { useParams } from "react-router-dom";
-import { TGPimages, activity } from "../../assets/images";
+import { TGVimages, activity } from "../../../assets/images";
 import moment from "moment";
+import { HelmetPage } from "../../components";
 
-const CursosPresenciales = () => {
+const CursosVirtuales = () => {
   const [index, setIndex] = useState(0);
-  const { name } = useParams();
   const [courses, setCourse] = useState([]);
-  console.log(name);
 
+  // Función del Carousel de bootstrap
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
@@ -62,29 +62,27 @@ const CursosPresenciales = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Silvia Iurman - Talleres Presenciales</title>
-        <meta
-          name="description"
-          content="Talleres presenciales de Silvia Iurman - Nuevas Constelaciones Familiares Argentina"
-        />
-      </Helmet>
+      <HelmetPage
+        section='Talleres Virtuales'
+        content="Talleres virtuales de Silvia Iurman - Nuevas Constelaciones Familiares Argentina"
+      />
       <Container fluid>
-        <h1>Talleres presenciales</h1>
+        <h1>Talleres Virtuales</h1>
       </Container>
       {courses.map(
         (course) =>
-          course._id === "63d2d339dc2d95cfd1095bdf" && (
-            <Container>
+          course._id === "63d2d475dc2d95cfd1095e83" && (
+            <Container key={course._id}>
               <Row>
                 <Col lg={6} sm={12}>
                   <Carousel activeIndex={index} onSelect={handleSelect}>
-                    {TGPimages.map((image) => (
-                      <Carousel.Item key={image.alt}>
+                    {TGVimages.map((image, index) => (
+                      <Carousel.Item key={index}>
                         <img
-                          className="d-block w-100 h-100 object-cover"
+                          className="d-block w-100 object-fit-cover"
                           src={image.src}
                           alt={image.alt}
+                          loading="lazy"
                         />
                       </Carousel.Item>
                     ))}
@@ -248,4 +246,4 @@ const CursosPresenciales = () => {
   );
 };
 
-export default CursosPresenciales;
+export default CursosVirtuales;

@@ -36,7 +36,7 @@ const AdminArticle = () =>{
     return (
         <>
           {articles.map((article) => (
-            <Container>
+            <Container key={article._id}>
               <Row className="align-items-center">
                 <Image
                   src={`https://api-silvia.divisioncode.net.ar/img/${article.img}`}

@@ -49,7 +49,7 @@ export const AdminPurchases = () => {
   return (
     <>
     {purchases.map((purchase)=>(
-                <Container>
+                <Container key={purchase._id}>
                     <Row className="align-items-center">
                         <Col >
                             <h3>{`${purchase.firstName} ${purchase.lastName}`}</h3>

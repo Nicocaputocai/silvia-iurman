@@ -39,7 +39,7 @@ const AdminActivity = () =>{
     return (
         <>
             {activities.map((activity)=>(
-                <Container>
+                <Container key={activity._id}>
                     <Row className="align-items-center">
                         <Image
                         src={`https://api-silvia.divisioncode.net.ar/img/${activity.img}`}

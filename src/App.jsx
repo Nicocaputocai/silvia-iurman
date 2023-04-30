@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./Components/Home";
-import PresencialWorkshop from "./Components/PresencialWorkshop";
-import VirtualWorkshop from "./Components/VirtualWorkshop";
+import PresencialWorkshop from "./Components/Workshop/PresencialWorkshop";
+import VirtualWorkshop from "./Components/Workshop/VirtualWorkshop";
 import Calendar from "./Components/Calendar";
 import NCFA from "./Components/NCFA";
 import BuyPresencialModules from "./Components/NCFA/BuyPresencialModules";
