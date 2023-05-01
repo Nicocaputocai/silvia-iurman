@@ -16,6 +16,7 @@ import { PageLoader } from "../../components/PageLoader";
 import styles from './AdminActivity.module.css'
 import {ACTIVITY} from '../../../types/TYPES'
 import { errorAlert, sucessAlert } from "../../SweetAlert/Alerts";
+import Swal from "sweetalert2";
 //Falta hacer las funciones de eliminar asincrónicas
 const AdminActivity = () =>{
     const {activities, activitiesDispatch} = useActivities()
@@ -25,17 +26,28 @@ const AdminActivity = () =>{
     /* setActivities.filter(activity =>response.data.activity._id != activity.id) */
 
     const deleteActivity = async (id) =>{
-        setLoading(true)
-        try {
-            await activitiesDataServices.deleteActivity(id)
-            activitiesDispatch({type: ACTIVITY.DELETE , payload: id})
-            sucessAlert('Actividad eliminada con éxito')
-        } catch (error) {
-            console.log(error)
-            errorAlert('No se pudo eliminar la actividad')
-        } finally {
-            setLoading(false)
-        }
+        Swal.fire({
+            title: '¿Estás seguro que quieres eliminar esta actividad?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, Eliminar!'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                setLoading(true)
+                try {
+                    await activitiesDataServices.deleteActivity(id)
+                    activitiesDispatch({type: ACTIVITY.DELETE , payload: id})
+                    sucessAlert('Actividad eliminada con éxito')
+                } catch (error) {
+                    console.log(error)
+                    errorAlert('No se pudo eliminar la actividad')
+                } finally {
+                    setLoading(false)
+                }
+            }
+          })
     }
 
     if(activities.isLoading){

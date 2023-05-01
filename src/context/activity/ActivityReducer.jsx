@@ -12,6 +12,11 @@ export const ActivityReducer = (state, action) => {
                 isLoading: false,
                 data: action.payload
             }
+        case ACTIVITY.ADD:
+            return {
+                ...state,
+                data: [...state.data, action.payload]
+            }
         case ACTIVITY.DELETE:
             return {
                 ...state,

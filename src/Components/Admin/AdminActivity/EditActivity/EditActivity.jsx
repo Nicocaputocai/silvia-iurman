@@ -15,11 +15,12 @@ export const EditActivity = () => {
   const {activitiesDispatch} = useActivities()
   const [loading, setLoading] = useState(false)
   const { id } = useParams();
-  const {register, formState:{errors}, handleSubmit, reset, } = useForm();
   const [editActivity, setEditActivity] = useState({
     data: {},
     isLoading: true,
   });
+  const {register, formState:{errors, defaultValues}, handleSubmit, reset} = useForm();
+
   const [selectedImage, setSelectedImage] = useState(null); // Vista previa de la imagen
   const navigate = useNavigate()
   const handleInputFileChange = (e) => {
@@ -87,7 +88,6 @@ export const EditActivity = () => {
   if (editActivity.isLoading) {
     return <PageLoader/>;
   }
-
   return (
       (<Container>
         <Form onSubmit={handleSubmit(save)}>
@@ -123,7 +123,7 @@ export const EditActivity = () => {
               <div
               >
                 <Image
-                  style={{ maxWidth: "100%", maxHeight: 320 }}
+                  className={styles}
                   src={URL.createObjectURL(selectedImage)}
                   alt="Thumb"
                   fluid= "true"
@@ -145,8 +145,9 @@ export const EditActivity = () => {
                 required: {
                   value: true,
                   message: "La fecha es requerida",
+                  },
                 }
-                })
+                )
               }
               
             ></Form.Control>
@@ -157,6 +158,11 @@ export const EditActivity = () => {
                               {errors.day.message}
                             </Alert>
             }
+            <Alert
+            variant='warning'
+            className='p-2 mt-2'>
+              La fecha actual es: {defaultValues.day.split('T')[0]} a las {defaultValues.day.split('T')[1].split('.')[0]}
+            </Alert>
           </Form.Group>
           <Form.Group>
             <Form.Label>Descripción</Form.Label>
@@ -252,6 +258,7 @@ export const EditActivity = () => {
           <Form.Group>
             <Form.Label> ¿Importante?</Form.Label>
             <Form.Select
+              defaultValue={editActivity.data.important}
               name="important"
               type="select"
               {...register("important", {
@@ -262,11 +269,11 @@ export const EditActivity = () => {
                 })
               }
             >
-              <option value="#" disabled hidden>
+              <option selected hidden>
                 Seleccionar si es importante...
               </option>
-              <option value="0">No</option>
-              <option value="1">Si</option>
+              <option value={false}>No</option>
+              <option value={true}>Si</option>
             </Form.Select>
             {
               errors.important && <Alert 
@@ -280,6 +287,7 @@ export const EditActivity = () => {
           <Form.Group>
             <Form.Label> ¿Archivar?</Form.Label>
             <Form.Select
+              defaultValue={editActivity.data.archived}
               name="archived"
               type="select"
               {...register("archived", {
@@ -290,11 +298,11 @@ export const EditActivity = () => {
                 })
               }
             >
-              <option value="#" disabled>
+              <option selected hidden>
                 Seleccionar si es importante...
               </option>
-              <option value="0">No</option>
-              <option value="1">Si</option>
+              <option value={false}>No</option>
+              <option value={true}>Si</option>
             </Form.Select>
             {
               errors.archived && <Alert 
