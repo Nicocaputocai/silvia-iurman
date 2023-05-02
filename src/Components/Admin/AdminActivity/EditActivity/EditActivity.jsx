@@ -298,7 +298,7 @@ export const EditActivity = () => {
                 })
               }
             >
-              <option selected hidden>
+              <option value='#' selected hidden>
                 Seleccionar si es importante...
               </option>
               <option value={false}>No</option>

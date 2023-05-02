@@ -159,7 +159,7 @@ const AddActivity = () => {
               })
               }
             >
-              <option selected hidden>
+              <option value='#' selected hidden>
                 Seleccione la modalidad.....
               </option>
               <option value="Presencial">Presencial</option>

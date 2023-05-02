@@ -9,3 +9,10 @@ export const ACTIVITY = Object.freeze({
     EDIT: 'EDIT',
     DELETE: 'DELETE',
 });
+
+export const COURSE = Object.freeze({
+    GET_ALL: 'GET_ALL',
+    ADD: 'ADD',
+    EDIT: 'EDIT',
+    DELETE: 'DELETE',
+});

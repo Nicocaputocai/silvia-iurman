@@ -6,6 +6,7 @@ import AddArticle from './AddArticle';
 import AdminArticle from './AdminArticle';
 import AdminCourse from './AdminCourse';
 import AdminPurchases from './AdminPurchases';
+import { AddCourse } from './AddCourse/AddCourse';
 
 
 const Admin = () =>{
@@ -32,6 +33,9 @@ const Admin = () =>{
         <Nav.Item>
           <Nav.Link eventKey="AdminArticle">Administrar artículos</Nav.Link>
         </Nav.Item>
+        {/* <Nav.Item>
+          <Nav.Link eventKey="addCourse">Agregar curso</Nav.Link>
+        </Nav.Item> */}
         <Nav.Item>
           <Nav.Link eventKey="AdminCourse">Administrar cursos</Nav.Link>
         </Nav.Item>
@@ -56,6 +60,9 @@ const Admin = () =>{
         <Tab.Pane eventKey="AdminArticle">
           <AdminArticle />
         </Tab.Pane>
+       {/*  <Tab.Pane eventKey="addCourse">
+          <AddCourse/>
+        </Tab.Pane> */}
         <Tab.Pane eventKey="AdminCourse">
           <AdminCourse/>
         </Tab.Pane>

@@ -14,7 +14,6 @@ const AuthProvider = ({children}) => {
             authDispatch({
                 type : TYPES.LOGOUT
             })
-            console.log(token)
             return null;
         };
         const config = {
