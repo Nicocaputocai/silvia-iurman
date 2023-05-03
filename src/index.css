@@ -1,7 +1,20 @@
-html{
-  overflow-x: hidden;
+:root {
+  --baseColor: #9d6b6c
 }
 
+html{
+  overflow-x: hidden;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
+
+#root{
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 body {
   overflow-x: hidden;
   margin: 0;
@@ -10,15 +23,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* background-color: #F3F3F3; */
   background-color: white;
+  min-height: 100%;
 }
 
 h1, h2, h3{
   font-family: "Arimo";
 }
-h2,h3 {
-  background-color: #9d6b6c;
+.title {
+  background-color: var(--baseColor);
   text-align: center;
   color: #fff;
+}
+
+.bgColor {
+  background-color: var(--baseColor);
+}
+
+.textColor {
+  color: var(--baseColor);
 }
 /************ Banner Css ************/
 .bigscreen {display:block;}

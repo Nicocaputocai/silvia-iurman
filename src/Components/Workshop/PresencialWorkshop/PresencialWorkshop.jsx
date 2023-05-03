@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
 import "./presencialWorkshop.css";
 import {
   Container,
@@ -13,16 +12,16 @@ import {
   InputGroup,
   Carousel,
 } from "react-bootstrap";
-import CoursesDataServices from "../../Services/CoursesServices";
+import CoursesDataServices from "../../../Services/CoursesServices";
 import { useParams } from "react-router-dom";
-import { TGPimages, activity } from "../../assets/images";
+import { TGPimages, activity } from "../../../assets/images";
 import moment from "moment";
+import { HelmetPage } from "../../components";
 
 const CursosPresenciales = () => {
   const [index, setIndex] = useState(0);
   const { name } = useParams();
   const [courses, setCourse] = useState([]);
-  console.log(name);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -62,32 +61,32 @@ const CursosPresenciales = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Silvia Iurman - Talleres Presenciales</title>
-        <meta
-          name="description"
-          content="Talleres presenciales de Silvia Iurman - Nuevas Constelaciones Familiares Argentina"
-        />
-      </Helmet>
+      <HelmetPage
+        section='Talleres Presenciales'
+        content='Talleres presenciales de Silvia Iurman - Nuevas Constelaciones Familiares Argentina'
+      />
       <Container fluid>
         <h1>Talleres presenciales</h1>
       </Container>
       {courses.map(
         (course) =>
           course._id === "63d2d339dc2d95cfd1095bdf" && (
-            <Container>
+            <Container key={course._id}>
               <Row>
                 <Col lg={6} sm={12}>
                   <Carousel activeIndex={index} onSelect={handleSelect}>
-                    {TGPimages.map((image) => (
-                      <Carousel.Item key={image.alt}>
+                    {
+                      TGPimages.map((image, index) => (
+                      <Carousel.Item key={index}>
                         <img
-                          className="d-block w-100 h-100 object-cover"
+                          className="d-block w-100 h-100 object-fit-cover"
                           src={image.src}
                           alt={image.alt}
+                          loading="lazy"
                         />
                       </Carousel.Item>
-                    ))}
+                    ))
+                    }
                   </Carousel>
                   {/* <Image className="img-fluid" src={activity} alt="" /> */}
                 </Col>

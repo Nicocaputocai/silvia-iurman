@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { Container, Row, Col, Image, Card, Nav } from "react-bootstrap";
 import BlogDataServices from '../../Services/BlogServices';
 import moment from "moment";
-import { Helmet } from "react-helmet";
 import './ArticleDetail.css'
+import { HelmetPage } from "../components";
 
 const  ArticleDetail= ()=>{
 
@@ -27,10 +27,10 @@ const  ArticleDetail= ()=>{
     console.log(article);
     return(
         <>
-         <Helmet>
-      <title>    </title>
-      <meta name="description" content=""/>
-    </Helmet>
+        <HelmetPage
+        title={article.title}
+        description={article.paragraph}
+        />
         <Container>
             <Row>
                 <Col className="justify-content-md-center">

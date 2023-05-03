@@ -1,45 +1,28 @@
 import React from 'react'
 import { useState, useEffect } from "react";
-import {Link, useParams} from 'react-router-dom'
-import {Button,Form,Container,Image, Modal, NavItem} from 'react-bootstrap'
+import {Link, useParams, useNavigate} from 'react-router-dom'
+import {Button,Form,Container,Image, NavItem, Alert, Spinner} from 'react-bootstrap'
 import activitiesDataServices from "../../../../Services/ActivitiesServices";
+import {useForm} from 'react-hook-form'
+import { PageLoader } from '../../../components/PageLoader';
+import { createFormData } from '../../../../helpers';
+import { useActivities } from '../../../../hooks/useActivities';
+import { ACTIVITY } from '../../../../types/TYPES';
+import Swal from 'sweetalert2';
+import { errorAlert, sucessAlert } from '../../../SweetAlert/Alerts';
 
 export const EditActivity = () => {
+  const {activitiesDispatch} = useActivities()
+  const [loading, setLoading] = useState(false)
   const { id } = useParams();
-  // console.log("id: ", id);
-  const initialFormActivity = {
-    day: "",
-    name: "",
-    description: "",
-    price: "",
-    img: "",
-    modality: "",
-    city: "",
-    important: "",
-    archived: ""
-  };
-  const createFormData = (data) => {
-    const formData = new FormData();
-    Object.keys(data).forEach((key) => {
-      formData.append(key, data[key]);
-    });
-    return formData;
-  };
+  const [editActivity, setEditActivity] = useState({
+    data: {},
+    isLoading: true,
+  });
+  const {register, formState:{errors, defaultValues}, handleSubmit, reset} = useForm();
 
-  const [editActivity, setEditActivity] = useState(initialFormActivity);
-  const [submitted, setSubmitted] = useState();
-  const [show, setShow] = useState(false);
-
-  const [selectedImage, setSelectedImage] = useState(); // Vista previa de la imagen
-
-  const handleClose = () => setShow(false); //Modal de confirmación
-  const handleShow = () => setShow(true); //Modal de confirmación
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditActivity({ ...editActivity, [name]: value });
-  };
-
+  const [selectedImage, setSelectedImage] = useState(null); // Vista previa de la imagen
+  const navigate = useNavigate()
   const handleInputFileChange = (e) => {
     //Vista previa de la foto
     if (e.target.files && e.target.files.length > 0) {
@@ -49,99 +32,98 @@ export const EditActivity = () => {
     setEditActivity({ ...editActivity, [name]: files[0] });
   };
 
-  useEffect(() => {
-    const retrieveActivity = () => {
-      activitiesDataServices.getById(id)
-        .then((response) => {
-          setEditActivity(response.data.activity);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-    retrieveActivity();
-    }, []);
+  const retrieveActivity = async () => {
+    setEditActivity({ ...editActivity, isLoading: true });
+    try {
+      const {data} = await activitiesDataServices.getById(id)
+      setEditActivity({
+        data: data.activity,
+        isLoading: false,
+      });
+      reset(data.activity);
+    } catch (error) {
+      console.log(error);
+    } 
+  };
+  
+    const save = async (data) => {
+      setLoading(true)
+      Swal.fire({
+        title: 'Quieres editar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Editar!'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
 
-    const save = () => {
-      let data = {
-        name: editActivity.name,
-        day: editActivity.day,
-        description: editActivity.description,
-        price: editActivity.price,
-        img: editActivity.img,
-        modality: editActivity.modality,
-        city: editActivity.city,
-        important: editActivity.important,
-        archived: editActivity.archived
-      };
-      console.log({data});
-
-      activitiesDataServices.editActivity(id, createFormData(data))
-      .then((response) => {
-        setEditActivity({
-          name: response.data.name,
-          day: response.data.day,
-          description: response.data.description,
-          price: response.data.price,
-          img: response.data.img,
-          modality: response.data.modality,
-          city: response.data.city,
-          important: response.data.important,
-          archived: response.data.archiverd
-        });
-        setSubmitted(true);
-        handleShow(true);
+          try {
+            const updateData = {
+              ...data,
+              img: selectedImage ? selectedImage : editActivity.data.img,
+            }
+            const response = await activitiesDataServices.editActivity(id, createFormData(updateData))
+            activitiesDispatch({type: ACTIVITY.EDIT , payload: response.data.activity})
+            sucessAlert('Actividad actualizada con éxito')
+            navigate('/admin')
+          } catch (error) {
+            console.log(error);
+            errorAlert('No se pudo actualizar la actividad')
+          }
+          finally{
+            setLoading(false)
+          }
+          
+        }
       })
-      .catch((err) => console.log(err));
+
+      
   };
 
+  useEffect(() => {
+    retrieveActivity();
+  }, [id]);
 
-
+  if (editActivity.isLoading) {
+    return <PageLoader/>;
+  }
   return (
-    <>
-      {submitted ? (
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Edición realizada</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Actividad modificada correctamente</Modal.Body>
-          <Modal.Footer>
-            <Button variant="info" href="/">
-              Home
-            </Button>
-            <Button variant="success" href="/admin">
-              Volver al administrador
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      ) : (
-        <Container>
-        <Form>
+      (<Container>
+        <Form onSubmit={handleSubmit(save)}>
           <Form.Group>
             <Form.Label>Título</Form.Label>
             <Form.Control
-            defaultValue={editActivity.name}
-              name="name"
               type="text"
-              onChange={handleInputChange}
+              {...register("name", {
+                required: {
+                  value: true,
+                  message: "El título es requerido",
+                },
+              })}
             />
+            {
+              errors.name && <Alert 
+                            variant='danger'
+                            className='p-2 mt-2'>
+                            {errors.name.message}
+                            </Alert>
+            }
           </Form.Group>
           <Form.Group controlId="img">
             <Form.Label>Foto</Form.Label>
             <Form.Control
-            defaultValue={editActivity.img}
               type="file"
-              name="img"
+              name='img'
               label="Foto de portada"
               accept="image/*"
               onChange={handleInputFileChange}
             />
             {selectedImage ? (
               <div
-                
               >
                 <Image
-                  style={{ maxWidth: "100%", maxHeight: 320 }}
+                  className={styles}
                   src={URL.createObjectURL(selectedImage)}
                   alt="Thumb"
                   fluid= "true"
@@ -149,114 +131,215 @@ export const EditActivity = () => {
               </div>
             ): 
             <Image
-              src={`https://api-silvia.divisioncode.net.ar/img/${editActivity.img}`}
-                fluid= "true"
+              src={`https://api-silvia.divisioncode.net.ar/img/${editActivity?.data.img}`}
+              fluid= "true"
             ></Image>
             }
           </Form.Group>
           <Form.Group>
             <Form.Label>Fecha</Form.Label>
             <Form.Control
-              defaultValue={editActivity.day.substring(0, 16)}
               type="datetime-local"
               name="day"
-              onChange={handleInputChange}
+              {...register("day", {
+                required: {
+                  value: true,
+                  message: "La fecha es requerida",
+                  },
+                }
+                )
+              }
+              
             ></Form.Control>
+            {
+              errors.day && <Alert 
+                              variant='danger'
+                              className='p-2 mt-2'>
+                              {errors.day.message}
+                            </Alert>
+            }
+            <Alert
+            variant='warning'
+            className='p-2 mt-2'>
+              La fecha actual es: {defaultValues.day.split('T')[0]} a las {defaultValues.day.split('T')[1].split('.')[0]}
+            </Alert>
           </Form.Group>
           <Form.Group>
             <Form.Label>Descripción</Form.Label>
             <Form.Control
-              defaultValue={editActivity.description}
-              name="description"
               as="textarea"
               rows={10}
-              onChange={handleInputChange}
+              {...register("description", {
+                required: {
+                  value: true,
+                  message: "La descripción es requerida",
+                }
+                })
+              }
             ></Form.Control>
+            {
+              errors.description && <Alert 
+                                      variant='danger'
+                                      className='p-2 mt-2'>
+                                      {errors.description.message}
+                                    </Alert>
+            }
           </Form.Group>
           <Form.Group>
             <Form.Label>Precio</Form.Label>
             <Form.Text></Form.Text>
             <Form.Control
-              defaultValue={editActivity.price}
-              name="price"
               type="text"
-              onChange={handleInputChange}
+              {...register("price", {
+                required: {
+                  value: true,
+                  message: "El precio es requerido",
+                }
+                
+                })
+              }
             ></Form.Control>
+            {
+              errors.price && <Alert 
+                                  variant='danger'
+                                  className='p-2 mt-2'>
+                                  {errors.price.message}
+                              </Alert>
+            }
           </Form.Group>
           <Form.Group>
             <Form.Label> Modalidad</Form.Label>
             <Form.Select
-              name="modality"
-              onChange={handleInputChange}
               type="select"
-              defaultValue={editActivity.modality}
+              {...register("modality", 
+              {
+                required: {
+                  value: true,
+                  message: "La modalidad es requerida",
+                }
+              })
+              }
             >
-              <option value="#" disabled>
+              <option value="#" disabled hidden>
                 Seleccione la modalidad.....
               </option>
               <option value="Presencial">Presencial</option>
               <option value="Virtual">Virtual</option>
             </Form.Select>
+            {
+              errors.modality && <Alert 
+                                  variant='danger'
+                                  className='p-2 mt-2'>
+                                  {errors.modality.message}
+                              </Alert>
+            }
           </Form.Group>
           <Form.Group>
             <Form.Label>Ciudad</Form.Label>
             <Form.Control
-            defaultValue={editActivity.city}
-              name="city"
               type="text"
-              onChange={handleInputChange}
+              {...register("city", {
+                required: {
+                  value: true,
+                  message: "La ciudad es requerida",
+                }
+                })
+              }
             ></Form.Control>
+            {
+              errors.city && <Alert 
+                                  variant='danger'
+                                  className='p-2 mt-2'>
+                                  {errors.city.message}
+                              </Alert>
+            }
           </Form.Group>
 
           <Form.Group>
             <Form.Label> ¿Importante?</Form.Label>
             <Form.Select
+              defaultValue={editActivity.data.important}
               name="important"
-              onChange={handleInputChange}
               type="select"
-              defaultValue={editActivity.important}
+              {...register("important", {
+                required: {
+                  value: true,
+                  message: "La importancia es requerida",
+                }
+                })
+              }
             >
-              <option value="#" disabled>
+              <option selected hidden>
                 Seleccionar si es importante...
               </option>
-              <option value="0">No</option>
-              <option value="1">Si</option>
+              <option value={false}>No</option>
+              <option value={true}>Si</option>
             </Form.Select>
+            {
+              errors.important && <Alert 
+                                    variant='danger'
+                                    className='p-2 mt-2'>
+                                    {errors.important.message}
+                                  </Alert>
+            }
           </Form.Group>
 
           <Form.Group>
             <Form.Label> ¿Archivar?</Form.Label>
             <Form.Select
+              defaultValue={editActivity.data.archived}
               name="archived"
-              onChange={handleInputChange}
               type="select"
-              defaultValue={editActivity.archived}
+              {...register("archived", {
+                required: {
+                  value: true,
+                  message: "Desear archivar la actividad?",
+                }
+                })
+              }
             >
-              <option value="#" disabled>
+              <option value='#' selected hidden>
                 Seleccionar si es importante...
               </option>
-              <option value="0">No</option>
-              <option value="1">Si</option>
+              <option value={false}>No</option>
+              <option value={true}>Si</option>
             </Form.Select>
+            {
+              errors.archived && <Alert 
+                                  variant='danger'
+                                  className='p-2 mt-2'>
+                                  {errors.archived.message}
+                              </Alert>
+            }
           </Form.Group>
           <br />
           <NavItem as={Link} to={`/admin`}>
-          <Button className="mb-3" type={Link} size="lg" variant="danger">
-            
-            Cancelar
-          </Button>
+            <Button 
+            className="mb-3" 
+            type={Link} size="lg" v
+            ariant="danger"
+            disabled={loading}
+            >
+              Cancelar
+            </Button>
           </NavItem>
           <Button
             className="mb-3 float-end"
             size="lg"
             variant="primary"
-            onClick={save}
+            type="submit"
+            disabled={loading}
           >
-            Editar actividad
+            {loading ? <Spinner 
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                          /> : "Editar actividad"}
           </Button>
         </Form>
         </Container>
-      )}
-    </>
+      )
   );
 };

@@ -6,68 +6,92 @@ import {
     Button,
     Image,
     NavItem,
+    Spinner,
   } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import activitiesDataServices from "../../../Services/ActivitiesServices";
+import { useActivities } from "../../../hooks/useActivities";
+import { truncate } from "../../../helpers/truncate";
+import { PageLoader } from "../../components/PageLoader";
+import styles from './AdminActivity.module.css'
+import {ACTIVITY} from '../../../types/TYPES'
+import { errorAlert, sucessAlert } from "../../SweetAlert/Alerts";
+import Swal from "sweetalert2";
 //Falta hacer las funciones de eliminar asincrónicas
 const AdminActivity = () =>{
-    const [activities, setActivities] = useState([]);
-    const retrieveActivities = () =>{
-        activitiesDataServices.getAllActivities()
-            .then(response =>{
-                setActivities(response.data.activities);
-            })
-            .catch(error =>{console.log(error)})
-    };
-    useEffect(() =>{
-        retrieveActivities()
-    }, []);
+    const {activities, activitiesDispatch} = useActivities()
+    const [loading, setLoading] = useState(false)
 
-    const deleteActivity = (id) =>{
-        //Faltaría deshabilitar los botones mientras está eliminando y sumar una alerta
-        activitiesDataServices.deleteActivity(id)
-        //Este THEN debería setearme de nuevos las actividades sin la eliminada
-        .then(response =>{
-            setActivities.filter(activity =>response.data.activity._id != activity.id)
-        })
-        .catch(error =>{console.log(error)})
+    /* Explicar esto */
+    /* setActivities.filter(activity =>response.data.activity._id != activity.id) */
+
+    const deleteActivity = async (id) =>{
+        Swal.fire({
+            title: '¿Estás seguro que quieres eliminar esta actividad?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, Eliminar!'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                setLoading(true)
+                try {
+                    await activitiesDataServices.deleteActivity(id)
+                    activitiesDispatch({type: ACTIVITY.DELETE , payload: id})
+                    sucessAlert('Actividad eliminada con éxito')
+                } catch (error) {
+                    console.log(error)
+                    errorAlert('No se pudo eliminar la actividad')
+                } finally {
+                    setLoading(false)
+                }
+            }
+          })
     }
-    const truncate = (str) => {
-        return str.length > 50 ? str.substring(0, 150) + " [...]" : str;
-      };
+
+    if(activities.isLoading){
+        return <PageLoader/>
+    }
 
     return (
         <>
-            {activities.map((activity)=>(
-                <Container>
+            {activities.data.map((activity)=>(
+                <Container key={activity._id}>
                     <Row className="align-items-center">
                         <Image
                         src={`https://api-silvia.divisioncode.net.ar/img/${activity.img}`}
-                        style={{ height: "200px", width: "400px" }}
-                        >
-                        </Image>
+                        className={styles.img_activity}
+                        />
                         <Col lg="6">
                             <h3>{activity.name}</h3>
 
                             <span >{truncate(activity.description)}</span> <br /> <br />
                             {/* Chequear la ruta */}
-                            <NavItem as={Link} to={`/admin/editar-actividad/${activity._id}`}>
+                            <NavItem as={Link} to={`editar-actividad/${activity._id}`}>
                             <Button
                             type="button"
                             variant='warning'
                             size="lg"
+                            disabled={loading}
                             >
                                 Editar
                             </Button>
                             </NavItem>
                             <Button
-                                type="button"
                                 className="float-end"
                                 variant='danger'
                                 size="lg"
                                 onClick={ ()=> deleteActivity(activity._id)}
+                                disabled={loading}
                             >
-                                Borrar
+                                {loading ? <Spinner 
+                                            as="span"
+                                            animation="border"
+                                            size="sm"
+                                            role="status"
+                                            aria-hidden="true"
+                                            /> : 'Borrar'}
                             </Button>
                         </Col>
                     </Row>

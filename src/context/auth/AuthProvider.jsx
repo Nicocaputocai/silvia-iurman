@@ -1,18 +1,19 @@
-import { createContext, useEffect, useState } from "react";
-import httpLocalCommon from "../http-local-common";
-import AdminUserDataServices from "../Services/AdminUserServices";
+import { useEffect, useReducer } from "react";
+import http from "../../http-common";
+import AdminUserDataServices from "../../Services/AdminUserServices";
+import AuthContext from "./AuthContext";
+import {AuthReducer, TYPES, initialState} from './AuthReducer'
 
-const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
-    const [auth,setAuth] = useState({});
-    const [loading, setLoading] =useState(true);
-
-    useEffect(() => {
-    const authAdmin = async() =>{
+    const [auth, authDispatch] = useReducer(AuthReducer, initialState);
+    
+    const reloggedUser = async() =>{
         const token = localStorage.getItem('token');
         if(!token){
-            setLoading(false);
+            authDispatch({
+                type : TYPES.LOGOUT
+            })
             return null;
         };
         const config = {
@@ -23,28 +24,29 @@ const AuthProvider = ({children}) => {
         };
 
         try {
-            const {data} = await httpLocalCommon.get('/auth/admin/profile',config);
-
-            setAuth(data.admin)
+            const {data} = await http.get('user/relogged',config);
             
+            authDispatch({
+                type : TYPES.LOGIN,
+                payload : data.user
+            })
+
         } catch (error) {
             console.error(error);
             localStorage.removeItem('token')
         }
-        finally{
-            setLoading(false)
-        }
-    }
-    authAdmin()
-    }, [])
 
+    }
+
+   useEffect(() => {
+         reloggedUser()
+    }, [])
     return (
         <AuthContext.Provider
             value={
                 {
                     auth,
-                    setAuth,
-                    loading
+                    authDispatch
                 }
             }
         >

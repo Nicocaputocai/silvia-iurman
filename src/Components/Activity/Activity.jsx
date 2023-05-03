@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { Container, Row, Col, Image, Stack, Form, Modal, Button } from "react-bootstrap";
 import ActivitiesDataServices from '../../Services/ActivitiesServices';
 import moment from "moment";
-import { Helmet } from "react-helmet";
 import './Activity.css'
+import { HelmetPage } from "../components";
 
 export const Activity = () => {
     const {id} = useParams();
@@ -45,10 +45,10 @@ export const Activity = () => {
 
     return(
         <>
-         <Helmet>
-      <title>    </title>
-      <meta name="description" content=""/>
-    </Helmet>
+        <HelmetPage
+          title="Actividades"
+          description="Actividades"
+        />
         <Container>
             <Row>
                 <Col className="justify-content-md-center">

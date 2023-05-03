@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
 import {
   Container,
   Col,
@@ -13,10 +12,11 @@ import {
   Carousel,
 } from "react-bootstrap";
 import "./virtualWorkshop.css";
-import CoursesDataServices from "../../Services/CoursesServices";
+import CoursesDataServices from "../../../Services/CoursesServices";
 import { useParams } from "react-router-dom";
-import { TGVimages, activity } from "../../assets/images";
+import { TGVimages, activity } from "../../../assets/images";
 import moment from "moment";
+import { HelmetPage } from "../../components";
 
 const CursosVirtuales = () => {
   const [index, setIndex] = useState(0);
@@ -61,29 +61,27 @@ const CursosVirtuales = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Silvia Iurman - Talleres Virtuales</title>
-        <meta
-          name="description"
-          content="Talleres virtuales de Silvia Iurman - Nuevas Constelaciones Familiares Argentina"
-        />
-      </Helmet>
+      <HelmetPage
+        section='Talleres Virtuales'
+        content="Talleres virtuales de Silvia Iurman - Nuevas Constelaciones Familiares Argentina"
+      />
       <Container fluid>
         <h1>Talleres Virtuales</h1>
       </Container>
       {courses.map(
         (course) =>
           course._id === "63d2d475dc2d95cfd1095e83" && (
-            <Container>
+            <Container key={course._id}>
               <Row>
                 <Col lg={6} sm={12}>
                   <Carousel activeIndex={index} onSelect={handleSelect}>
                     {TGVimages.map((image, index) => (
                       <Carousel.Item key={index}>
                         <img
-                          className="d-block w-100"
+                          className="d-block w-100 object-fit-cover"
                           src={image.src}
                           alt={image.alt}
+                          loading="lazy"
                         />
                       </Carousel.Item>
                     ))}

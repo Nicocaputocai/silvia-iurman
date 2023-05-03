@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import CoursesDataServices from '../../../Services/CoursesServices'
+
 import {
     Container,
     Row,
@@ -10,23 +9,15 @@ import {
   } from "react-bootstrap";
   import moment from "moment";
 import { Link } from 'react-router-dom';
+import { useCourses } from '../../../hooks/useCourses';
 
 const AdminCourse = () =>{
-    const [courses, setCourses] = useState([]);
-    const retrieveCourses = () =>{
-        CoursesDataServices.getAllCourses()
-        .then((response) => {
-          setCourses(response.data.courses)
-        })
-        .catch(err => console.log(err))
-    }
-    useEffect(() => {
-        retrieveCourses()
-      }, [])
+    const {courses} = useCourses()
+
     return(
         <> 
-        {courses.map((course) =>(
-                        <Container>
+        {courses.data.map((course) =>(
+                        <Container key={course._id}>
                         <Row className="align-items-center">
                          
                           <Col lg="12">

@@ -1,0 +1,9 @@
+.img_activity { 
+    height: 200px; 
+    width: 400px;
+    object-fit: cover; 
+}
+
+.img_container{
+    width: 400px !important;
+}
