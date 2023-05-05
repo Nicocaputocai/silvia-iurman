@@ -13,7 +13,7 @@ const Admin = () =>{
     return(
         <> 
         <Container>
-            <h2>Panel de administración</h2>
+            <h1>Panel de administración</h1>
         </Container>
 
         <Container>

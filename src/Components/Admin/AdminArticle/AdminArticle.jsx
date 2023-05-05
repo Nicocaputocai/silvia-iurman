@@ -27,7 +27,8 @@ const AdminArticle = () =>{
     const deleteArticles = (id) =>{
         BlogDataServices.deleteArticle(id)
         .then(response =>{
-            setArticles.filter(article => response.data.articles != article.id)
+          setArticles((prev)=>{               
+            return prev.filter((article) => article._id !== id);             })
         })
     }
     const truncate = (str) => {

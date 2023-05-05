@@ -28,8 +28,8 @@ const  ArticleDetail= ()=>{
     return(
         <>
         <HelmetPage
-        title={article.title}
-        description={article.paragraph}
+        section={article.title}
+        content={article.paragraph}
         />
         <Container>
             <Row>
@@ -39,7 +39,7 @@ const  ArticleDetail= ()=>{
             </Row>
             <Row >
                 <Col className="m-3">
-                    <h2> {article.title} </h2>
+                    <h1> {article.title} </h1>
                 </Col>
             </Row>
             <Row>
