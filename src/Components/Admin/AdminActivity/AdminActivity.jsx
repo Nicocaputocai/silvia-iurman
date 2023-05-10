@@ -22,8 +22,7 @@ const AdminActivity = () =>{
     const {activities, activitiesDispatch} = useActivities()
     const [loading, setLoading] = useState(false)
 
-    /* Explicar esto */
-    /* setActivities.filter(activity =>response.data.activity._id != activity.id) */
+
 
     const deleteActivity = async (id) =>{
         Swal.fire({

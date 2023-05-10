@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Col, Container, Nav, Row, Tab } from 'react-bootstrap';
 import AddActivity from './AddActivity';
 import AdminActivity from './AdminActivity';
@@ -6,7 +5,6 @@ import AddArticle from './AddArticle';
 import AdminArticle from './AdminArticle';
 import AdminCourse from './AdminCourse';
 import AdminPurchases from './AdminPurchases';
-import { AddCourse } from './AddCourse/AddCourse';
 
 
 const Admin = () =>{
