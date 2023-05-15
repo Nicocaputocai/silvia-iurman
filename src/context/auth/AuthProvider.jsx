@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import http from "../../http-common";
 import AdminUserDataServices from "../../Services/AdminUserServices";
 import AuthContext from "./AuthContext";
@@ -7,15 +7,20 @@ import {AuthReducer, TYPES, initialState} from './AuthReducer'
 
 const AuthProvider = ({children}) => {
     const [auth, authDispatch] = useReducer(AuthReducer, initialState);
+    const [authLoading, setAuthLoading] = useState(false);
     
     const reloggedUser = async() =>{
+        setAuthLoading(true);
+       
         const token = localStorage.getItem('token');
         if(!token){
             authDispatch({
                 type : TYPES.LOGOUT
             })
+            setAuthLoading(false);
             return null;
         };
+
         const config = {
             headers : {
                 "Content-Type" : "application/json",
@@ -34,7 +39,9 @@ const AuthProvider = ({children}) => {
         } catch (error) {
             console.error(error);
             localStorage.removeItem('token')
-        }
+        } finally {
+            setAuthLoading(false);
+        } 
 
     }
 
@@ -46,7 +53,8 @@ const AuthProvider = ({children}) => {
             value={
                 {
                     auth,
-                    authDispatch
+                    authDispatch,
+                    authLoading
                 }
             }
         >

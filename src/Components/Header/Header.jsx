@@ -11,7 +11,7 @@ export const Header = () => {
   const {auth, authDispatch} = useAuth()
   const logout = () =>{
     authDispatch({type:'LOGOUT'})
-    localStorage.removeItem('token')
+    localStorage.removeItem('token');
   }
   return (
     <Navbar bg="light" expand="lg">

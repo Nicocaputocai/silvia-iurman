@@ -11,9 +11,10 @@ export const CheckoutProvider = ({children}) => {
   const [checkout, setCheckout] = useState(initialState);
 
   const addToCheckout = (product) => {
+        localStorage.setItem('purchase', JSON.stringify(product._id));
         setCheckout({
             product,
-            total: product.price,
+            total: product.pricePesos,
             modal: true, 
         })
     }

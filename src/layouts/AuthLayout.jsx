@@ -1,11 +1,11 @@
 import { Container, Row, Spinner } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
-import useAdmin from "../hooks/useAdmin";
+import useAuth from '../hooks/useAuth'
 
 
 export const AuthLayout = () => {
-    const {admin, loading} = useAdmin()    
-    if (loading) {
+    const {authLoading} = useAuth();  
+    if (authLoading) {
       return (
         <>
         <Container>
@@ -17,11 +17,9 @@ export const AuthLayout = () => {
       )
     }
   return (
-    <>
         <>
             <Outlet />
         </>
-    </>
   )
 }
 

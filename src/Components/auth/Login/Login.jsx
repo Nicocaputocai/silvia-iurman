@@ -20,6 +20,7 @@ export const Login = () => {
       const response = await UserDataServices.login(data);
       authDispatch({type:TYPES.LOGIN, payload:response.data.user});
       localStorage.setItem('token', response.data.token);
+      console.log(localStorage.getItem('token'))
       sucessAlert('Bienvenido');
       navigate('/');
 

@@ -5,8 +5,8 @@ import { ROLES } from "../types/TYPES";
 
 
 export const ProtectAdminLayout = ({children}) => {
-  const { auth } = useAuth();
-/*   if (loading) {
+  const { auth, authLoading } = useAuth();
+  if (authLoading) {
     return (
       <>
       <Container>
@@ -16,6 +16,6 @@ export const ProtectAdminLayout = ({children}) => {
       </Container>
       </>
     )
-  } */
-  return (auth.isLogged && auth.user?.role) === ROLES.ADMIN ? children : <Navigate to="/login" />;
+  }
+  return (!authLoading && auth.isLogged && auth.user?.role) === ROLES.ADMIN ? children : <Navigate to="/login" />;
 };

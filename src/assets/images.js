@@ -41,6 +41,10 @@ import TGV1 from "./TGV1.png"
 import TGV2 from "./TGV2.png"
 import TGV3 from "./TGV3.png"
 
+//logos
+import mp from './mp.webp';
+import pp from './pp.webp';
+
 const TGPimages = [
     {
         src: TGP1,
@@ -171,6 +175,8 @@ export {
     Silvia,
     bannerPC,
     bannerCEL,
+    pp,
+    mp,
     NFCAimages,
     TGPimages,
     TGVimages

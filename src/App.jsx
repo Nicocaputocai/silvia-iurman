@@ -20,9 +20,10 @@ import { ProtectAdminLayout } from "./layouts/ProtectAdminLayout";
 import { GlobalProvider } from "./context/GlobalProvider";
 import { Dashboard } from "./Components/dashboard/Dashboard";
 import { Checkout } from "./Components/Checkout/Checkout";
-import { AdminRoutes } from "./routes/AdminRoutes";
+import { AdminRoutes, CheckoutRoutes } from "./routes";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { UserNotLoggedLayout } from "./layouts/userNotLoggedLayout";
 
 function App() {
 
@@ -51,8 +52,14 @@ function App() {
               <Route path="conoceme" element={<About />} />
               <Route path="login" element={<UserLogin />} />
               <Route path="registro" element={<Register />} />
-              <Route path='dashboard' element={<Dashboard />} />
+              <Route path='dashboard' element={
+                <UserNotLoggedLayout>
+                  <Dashboard />
+                </UserNotLoggedLayout>
+              } />
             </Route>
+
+            <Route path="/checkout/*" element={<CheckoutRoutes/>}/>
             
             {/* Rutas privadas */}
             <Route path="/admin/*" element={
