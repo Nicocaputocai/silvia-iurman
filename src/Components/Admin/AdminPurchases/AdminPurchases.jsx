@@ -76,14 +76,17 @@ export const AdminPurchases = () => {
                     </Nav.Link>
                   </Nav.Item>
 
-                  <Form className="d-flex">
+                  <Form className="d-flex"
+                    onSubmit={(e)=>e.preventDefault()}
+                  >
                     <Form.Control
                       type="search"
                       placeholder="Buscar alumno"
                       className="me-2"
                       aria-label="Buscar alumno"
                       value={search}
-                      onSubmit={handleInputChange}
+                      onChange={handleInputChange}
+
                       eventKey="searchForm"
                     />
                   </Form>
