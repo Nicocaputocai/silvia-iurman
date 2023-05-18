@@ -1,6 +1,6 @@
-import { useContext } from "react";
+import {useContext} from 'react'
 import PurchaseContext from "../context/purchase/PurchaseContext";
 
-export const usePurchases = () =>{
+export const usePurchases = () => {
     return useContext(PurchaseContext)
 }

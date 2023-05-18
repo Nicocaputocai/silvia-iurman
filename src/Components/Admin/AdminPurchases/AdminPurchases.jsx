@@ -1,147 +1,118 @@
-import { useEffect, useState } from "react";
-import {
-  Button,
-  Col,
-  Container,
-  Form,
-  Nav,
-  NavDropdown,
-  NavItem,
-  Navbar,
-  Offcanvas,
-  Row,
-  Tab,
-} from "react-bootstrap";
+import { useState } from "react";
+import { Col, Container, Form, Nav, Row, Tab } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import PurchasesDataServices from "../../../Services/PurchasesServices";
-import axios from "axios";
-import PWPurchases from "./PWPurchases";
-import VWPurchases from "./VWPurchases";
-import ActivitiesPurchases from "./ActivitiesPurchases";
-import AllPurchases from "./AllPurchases/AllPurchases";
+import { usePurchases } from "../../../hooks/usePurchase";
+import { FilterView } from "./FilterView/FilterView";
 
 export const AdminPurchases = () => {
-  // const [purchases, setPurchases] = useState([]);
-  // const retrievePurchases = () => {
-  //   PurchasesDataServices.getAllPurchases()
-  //     .then((response) => {
-  //       setPurchases(response.data.purchases);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-  // useEffect(() => {
-  //   retrievePurchases();
-  // });
+  const { purchases, setPurchases } = usePurchases();
+  const [search, setSearch] = useState([]);
+  const [purchasesResult, setPurchasesResult] = useState([]);
+
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+    filter(e.target.value);
+  };
+
+  const filter = (wanted) => {
+    var searchResult = purchases.data.filter((element) => {
+      if (
+        element.firstName
+          .toString()
+          .toLowerCase()
+          .includes(wanted.toLowerCase()) ||
+        element.lastName
+          .toString()
+          .toLowerCase()
+          .includes(wanted.toLowerCase()) ||
+        element.country
+          .toString()
+          .toLowerCase()
+          .includes(wanted.toLowerCase()) ||
+        element.phone.toString().toLowerCase().includes(wanted.toLowerCase()) ||
+        element.email.toString().toLowerCase().includes(wanted.toLowerCase())
+      ) {
+        return element;
+      }
+    });
+    setPurchasesResult(searchResult);
+  };
+
   return (
     <>
-    {[false].map((expand) => (
-      <>
-        <Navbar key={expand} bg="light" expand={expand} className="mb-3">
-          <Container fluid>
-            <Navbar.Brand href="#">Filtrar</Navbar.Brand>
-            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-            <Navbar.Offcanvas
-              id={`offcanvasNavbar-expand-${expand}`}
-              aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
-              placement="end"
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  Filtros
-                </Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Nav variant="pills" className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Item>
-                <Nav.Link eventKey="AllPurchases">
-                Todas las inscripciones
-                </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="PWPurchases">Inscriptos a talleres presenciales</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="VWPurchases">Inscriptos a talleres Virtuales</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="ActivitiesPurchases">
-                Inscriptos a módulos de formación
-                </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="link-5">
-                Inscriptos a actividades
-                </Nav.Link>
-            </Nav.Item>
+      <Container id="purchasesFilter">
+        <Row>
+          <Col>
+            <>
+              <h2>Filtrar</h2>
+              <Tab.Container
+                id="purchases-tabs"
+                defaultActiveKey="AllPurchases"
+              >
+                <Nav fill variant="tabs">
+                  <Nav.Item>
+                    <Nav.Link eventKey="AllPurchases">
+                      Todas las compras
+                    </Nav.Link>
+                  </Nav.Item>
+
+                  <Nav.Item>
+                    <Nav.Link eventKey="activities">Actividades</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="liveModules">
+                      Módulos en directo
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="recordedModules">
+                      Módulos grabados
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="completedFormation">
+                      Formación Finalizada
+                    </Nav.Link>
+                  </Nav.Item>
+
+                  <Form className="d-flex">
+                    <Form.Control
+                      type="search"
+                      placeholder="Buscar alumno"
+                      className="me-2"
+                      aria-label="Buscar alumno"
+                      value={search}
+                      onSubmit={handleInputChange}
+                      eventKey="searchForm"
+                    />
+                  </Form>
                 </Nav>
-                <Form className="d-flex mt-3">
-                  <Form.Control
-                    type="text"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-success">Search</Button>
-                </Form>
-              </Offcanvas.Body>
-            </Navbar.Offcanvas>
-          </Container>
-        </Navbar>
-                <Col sm={9}>
                 <Tab.Content>
-                <Tab.Pane eventKey="AllPurchases">
-                    <AllPurchases />
-                </Tab.Pane>
+                  <Tab.Pane eventKey="AllPurchases">
+                    <Row>
+                      {search.length === 0
+                        ? purchases.data.map((purchase, index) => {
+                            return <FilterView key={index} {...purchase} />;
+                          })
+                        : purchasesResult.map((purchase, index) => {
+                            return <FilterView key={index} {...purchase} />;
+                          })}
+                    </Row>
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="activities">
+                    {purchases.data.map((purchase, index) => {
+                      if (purchase.inscription == "Taller presencial")
+                        return <FilterView key={index} {...purchase} />;
+                    })}
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="searchForm"></Tab.Pane>
                 </Tab.Content>
-                </Col>
-                </>
-      ))}
-
-
-      {/* <Container>
-        <Navbar>
-        <Nav variant="pills">
-            <Nav.Item>
-                <Nav.Link eventKey="link-5">
-                Todas las inscripciones
-                </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="link-1">Talleres presenciales</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="link-2">Talleres Virtuales</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="link-3">
-                Módulos de formación
-                </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="link-4">
-                Actividades
-                </Nav.Link>
-            </Nav.Item>
-          </Nav>
-          <Nav>
-          <Form
-            className="d-flex "
-            style={{ marginRight: "10px", position: "end" }}
-          >
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
-          </Nav>
-        </Navbar>
-      </Container> */}
-     
+              </Tab.Container>
+            </>
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 };
