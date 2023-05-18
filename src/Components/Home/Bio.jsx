@@ -22,11 +22,9 @@ export const Bio = () => {
                   <Button variant="secondary" className="float-end bgColor">Biografía completa</Button>
               </NavItem>
           </Col>
-
-
-          {/* <Col lg="4" style={{marginTop:"15px"}}>
-          <iframe  style={{ borderRadius: "2%"}} width="400vw" height="400px" src="https://www.youtube.com/embed/Pe_tb5iKR-Q" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-          </Col> */}
+          <Col sm="12" lg="4" className='mt-4'>
+          <iframe  style={{ borderRadius: "2%"}} width="400vw" height="600vh" src="https://www.youtube.com/embed/0a1cGGjUwk4" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          </Col>
       </Row>
   )
 }
