@@ -3,6 +3,7 @@ import http from "../../http-common";
 import AdminUserDataServices from "../../Services/AdminUserServices";
 import AuthContext from "./AuthContext";
 import {AuthReducer, TYPES, initialState} from './AuthReducer'
+import UserDataServices from "../../Services/UserServices";
 
 
 const AuthProvider = ({children}) => {
@@ -21,15 +22,8 @@ const AuthProvider = ({children}) => {
             return null;
         };
 
-        const config = {
-            headers : {
-                "Content-Type" : "application/json",
-                Authorization : token
-            }
-        };
-
         try {
-            const {data} = await http.get('user/relogged',config);
+            const {data} = await UserDataServices.relogin(token);
             
             authDispatch({
                 type : TYPES.LOGIN,

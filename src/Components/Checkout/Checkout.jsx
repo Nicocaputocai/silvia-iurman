@@ -4,6 +4,7 @@ import { Button, Modal, Spinner } from 'react-bootstrap';
 import checkoutServices from '../../Services/CheckoutServices'
 import {mp, pp} from '../../assets/images'
 import Styles from './Styles.module.css'
+import { errorAlert } from '../SweetAlert/Alerts';
 
 export const Checkout = () => {
     const {checkout, addToCheckout, closeModal} = useCheckout();
@@ -12,9 +13,16 @@ export const Checkout = () => {
     const handleCheckoutMP = async (product) => {
       setIsLoading(true)
       try {
-        const response = await checkoutServices.mp(product);
+        const response = await checkoutServices.mp({
+          product,
+          idPurchase: localStorage.getItem('purchase')
+        });
         window.location.href = response.data.init_url;
       } catch (error) {
+        if(!error.response.data.ok){
+          errorAlert(error.response.data.msg)
+        }
+        closeModal()
         console.log(error)
       } finally {
         setIsLoading(false)

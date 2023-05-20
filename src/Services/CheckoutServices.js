@@ -1,21 +1,18 @@
 import httpLocal from '../http-local-common';
 import http from '../http-common'
 
+const auth = {
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem('token')
+    }
+}
+
 const CheckoutServices = {
-    mp: (data) => httpLocal.post('/checkout/mp', data),
-    pp: (data) => httpLocal.post('/checkout/pp', data),
-    getStatusMP: (data) => httpLocal.post('/checkout/mp/status', data,{
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': localStorage.getItem('token')
-        }
-    }),
-    getStatusPP: (data) => httpLocal.post('/checkout/pp/status', data,{
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': localStorage.getItem('token')
-        }
-    }),
+    mp: (data) => http.post('/checkout/mp', data, auth),
+    pp: (data) => http.post('/checkout/pp', data),
+    getStatusMP: (data) => http.post('/checkout/mp/status', data, auth),
+    getStatusPP: (data) => http.post('/checkout/pp/status', data, auth),
 }
 
 export default CheckoutServices

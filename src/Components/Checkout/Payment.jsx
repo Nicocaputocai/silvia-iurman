@@ -34,6 +34,8 @@ export const Payment = () => {
           errorAlert(error.response.data.msg);
           navigate('/dashboard');
           return;
+        } finally {
+          localStorage.removeItem('purchase');
         }
       }
 
