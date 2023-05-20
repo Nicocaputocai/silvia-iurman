@@ -5,6 +5,7 @@ import {HelmetProvider} from 'react-helmet-async'
 import { CheckoutProvider } from './checkout/checkoutProvider'
 import { ActivityProvider } from './activity/ActivityProvider'
 import { CourseProvider } from './courses/CourseProvider'
+import {PurchaseProvider} from './purchase/PurchaseProvider'
 
 export const GlobalProvider = ({children}) => {
   return (
@@ -14,7 +15,9 @@ export const GlobalProvider = ({children}) => {
           <ActivityProvider>
             <CourseProvider>
               <CheckoutProvider>
-                  {children}
+                <PurchaseProvider>
+                    {children}
+                </PurchaseProvider>
               </CheckoutProvider>
             </CourseProvider>
           </ActivityProvider>

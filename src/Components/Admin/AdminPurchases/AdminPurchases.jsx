@@ -1,84 +1,121 @@
-
-import { useEffect,useState } from 'react'
-import { Button, Col, Container, NavItem, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import PurchasesDataServices from '../../../Services/PurchasesServices'
-import CoursesDataServices from '../../../Services/CoursesServices'
-import activitiesDataServices from "../../../Services/ActivitiesServices";
-import moment from 'moment'
+import { useState } from "react";
+import { Col, Container, Form, Nav, Row, Tab } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { usePurchases } from "../../../hooks/usePurchase";
+import { FilterView } from "./FilterView/FilterView";
 
 export const AdminPurchases = () => {
-    const [purchases, setPurchases] = useState([]);
-    const [courses, setCourse] = useState([])
-    const [activities, setActivity] = useState([]);
+  const { purchases, setPurchases } = usePurchases();
+  const [search, setSearch] = useState([]);
+  const [purchasesResult, setPurchasesResult] = useState([]);
 
-    const retrievePurchases = () =>{
-        PurchasesDataServices.getAllPurchases()
-        .then(response =>{
-            setPurchases(response.data.purchases);
-        })
-        .catch(error =>{console.log(error)})
-    }
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+    filter(e.target.value);
+  };
 
-    const retrieveCourse = () =>{
-        CoursesDataServices.getAllCourses()
-        .then((response) => {
-          setCourse(response.data.courses)
-        })
-        .catch(err => console.log(err))
-    }
-    // useEffect(() => {
+  const filter = (wanted) => {
+    var searchResult = purchases.data.filter((element) => {
+      if (
+        element.firstName
+          .toString()
+          .toLowerCase()
+          .includes(wanted.toLowerCase()) ||
+        element.lastName
+          .toString()
+          .toLowerCase()
+          .includes(wanted.toLowerCase()) ||
+        element.country
+          .toString()
+          .toLowerCase()
+          .includes(wanted.toLowerCase()) ||
+        element.phone.toString().toLowerCase().includes(wanted.toLowerCase()) ||
+        element.email.toString().toLowerCase().includes(wanted.toLowerCase())
+      ) {
+        return element;
+      }
+    });
+    setPurchasesResult(searchResult);
+  };
 
-    //   }, [])
-
-      const retrieveActivities = () =>{
-        activitiesDataServices.getAllActivities()
-            .then(response =>{
-                setActivity(response.data.activities);
-            })
-            .catch(error =>{console.log(error)})
-    };
-    // useEffect(() =>{
-
-    // }, []);
-    useEffect(() =>{
-        retrievePurchases()
-        retrieveCourse()
-        retrieveActivities()
-    }, [])
   return (
     <>
-    {purchases.map((purchase)=>(
-                <Container key={purchase._id}>
-                    <Row className="align-items-center">
-                        <Col >
-                            <h3>{`${purchase.firstName} ${purchase.lastName}`}</h3>
-                            <br />
-                            <span>{`País de origen: ${purchase.country}`}</span> <br />
-                            <span>{`Fecha de nacimiento: ${purchase.dateOfBirth}`}</span><br />
-                            <span>{`Email: ${purchase.email}`}</span><br />
-                            <span>{`Teléfono: ${purchase.phone}`}</span><br />
-                            <span>{`Medio de pago: ${purchase.wayToPay}`}</span><br />
-                            <span>{`¿Pagó?: ${purchase.pay? "Si" : "No"}`}</span><br />
-                            <span>{`¿Finalizó?: ${purchase.finish? "Si" : "No"}`}</span><br />
-                            <span>{`Se inscribió a: ${purchase.inscription} `}</span><br />
-                            {/* Chequear la ruta */}
-                            <NavItem as={Link} to={`/admin/administrar-inscripto/${purchase._id}`}>
-                            <Button
-                            type="button"
+      <Container id="purchasesFilter">
+        <Row>
+          <Col>
+            <>
+              <h2>Filtrar</h2>
+              <Tab.Container
+                id="purchases-tabs"
+                defaultActiveKey="AllPurchases"
+              >
+                <Nav fill variant="tabs">
+                  <Nav.Item>
+                    <Nav.Link eventKey="AllPurchases">
+                      Todas las compras
+                    </Nav.Link>
+                  </Nav.Item>
 
-                            variant='warning'
-                            size="lg"
-                            >
-                                Editar
-                            </Button>
-                            </NavItem>
-                        </Col>
+                  <Nav.Item>
+                    <Nav.Link eventKey="activities">Actividades</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="liveModules">
+                      Módulos en directo
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="recordedModules">
+                      Módulos grabados
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="completedFormation">
+                      Formación Finalizada
+                    </Nav.Link>
+                  </Nav.Item>
+
+                  <Form className="d-flex"
+                    onSubmit={(e)=>e.preventDefault()}
+                  >
+                    <Form.Control
+                      type="search"
+                      placeholder="Buscar alumno"
+                      className="me-2"
+                      aria-label="Buscar alumno"
+                      value={search}
+                      onChange={handleInputChange}
+
+                      eventKey="searchForm"
+                    />
+                  </Form>
+                </Nav>
+                <Tab.Content>
+                  <Tab.Pane eventKey="AllPurchases">
+                    <Row>
+                      {search.length === 0
+                        ? purchases.data.map((purchase, index) => {
+                            return <FilterView key={index} {...purchase} />;
+                          })
+                        : purchasesResult.map((purchase, index) => {
+                            return <FilterView key={index} {...purchase} />;
+                          })}
                     </Row>
-                    <hr />
-                </Container>
-
-            ))}
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="activities">
+                    {purchases.data.map((purchase, index) => {
+                      if (purchase.inscription == "Taller presencial")
+                        return <FilterView key={index} {...purchase} />;
+                    })}
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="searchForm"></Tab.Pane>
+                </Tab.Content>
+              </Tab.Container>
+            </>
+          </Col>
+        </Row>
+      </Container>
     </>
-  )
-}
+  );
+};

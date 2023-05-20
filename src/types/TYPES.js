@@ -16,3 +16,10 @@ export const COURSE = Object.freeze({
     EDIT: 'EDIT',
     DELETE: 'DELETE',
 });
+
+export const PURCHASE = Object.freeze({
+    GET_ALL: 'GET_ALL',
+    ADD: 'ADD',
+    EDIT: 'EDIT',
+    DELETE: 'DELETE',
+})

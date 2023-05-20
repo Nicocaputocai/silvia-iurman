@@ -46,8 +46,8 @@ export const Activity = () => {
     return(
         <>
         <HelmetPage
-          title="Actividades"
-          description="Actividades"
+          section={activity.name}
+          content= {activity.description}
         />
         <Container>
             <Row>
