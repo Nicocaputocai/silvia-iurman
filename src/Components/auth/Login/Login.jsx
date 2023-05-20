@@ -114,7 +114,7 @@ export const Login = () => {
             </Form.Text>
           </Form>
 
-          {alert.msg && <Alerta msg={alert.msg} />}
+          {alert.msg && <Alert msg={alert.msg} />}
           
         </Col>
       </Row>
