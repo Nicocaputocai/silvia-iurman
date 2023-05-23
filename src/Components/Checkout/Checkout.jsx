@@ -12,10 +12,11 @@ export const Checkout = () => {
 
     const handleCheckoutMP = async (product) => {
       setIsLoading(true)
+      const purchase = JSON.parse(localStorage.getItem('purchase'));
       try {
         const response = await checkoutServices.mp({
           product,
-          idPurchase: localStorage.getItem('purchase')
+          idPurchase: purchase.id
         });
         window.location.href = response.data.init_url;
       } catch (error) {

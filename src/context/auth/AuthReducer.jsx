@@ -1,7 +1,8 @@
 export const TYPES = Object.freeze(
     {
         LOGIN : 'LOGIN',
-        LOGOUT : 'LOGOUT'
+        LOGOUT : 'LOGOUT',
+        UPDATE: 'UPDATE'
     }
 )
 
@@ -22,6 +23,12 @@ export const AuthReducer = (state,action) => {
             }
         case TYPES.LOGOUT:
             return initialState;
+        case TYPES.UPDATE:{
+            return {
+                ...state,
+                user : payload
+            }
+        }
         default:
             return state;
     }

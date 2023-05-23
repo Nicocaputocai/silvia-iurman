@@ -17,47 +17,33 @@ import { useParams } from "react-router-dom";
 import { TGVimages, activity } from "../../../assets/images";
 import moment from "moment";
 import { HelmetPage } from "../../components";
+import { ModalWorkshop } from "../modalWorkshop/ModalWorkshop";
+import { useCourses } from "../../../hooks/useCourses";
+import useAuth from "../../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const CursosVirtuales = () => {
   const [index, setIndex] = useState(0);
-  const [courses, setCourse] = useState([]);
+  const {courses} = useCourses();
+  const { name } = useParams();
+  const {auth} = useAuth();
+  const navigate = useNavigate();
 
   // Función del Carousel de bootstrap
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
 
-  const retrieveCourse = () => {
-    CoursesDataServices.getAllCourses()
-      .then((response) => {
-        setCourse(response.data.courses);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    retrieveCourse();
-  }, []);
-
   // Modal
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  //   Validación
-
-  const [validated, setValidated] = useState(false);
-
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+  const handleSetModal = () => {
+    if(!auth.isLogged){
+      navigate('/login')
     }
+    setShow(!show);
 
-    setValidated(true);
-  };
+  }
 
   return (
     <>
@@ -68,7 +54,7 @@ const CursosVirtuales = () => {
       <Container fluid>
         <h1>Talleres Virtuales</h1>
       </Container>
-      {courses.map(
+      {courses.data.map(
         (course) =>
           course._id === "63d2d475dc2d95cfd1095e83" && (
             <Container key={course._id}>
@@ -137,107 +123,17 @@ const CursosVirtuales = () => {
                   variant="secondary"
                   style={{ backgroundColor: "#9d6b6c" }}
                   size="lg"
-                  onClick={handleShow}
+                  onClick={handleSetModal}
                 >
                   Inscribite
                 </Button>
                 <br />
               </Stack>
-              <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Inscripción</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <Form
-                    noValidate
-                    validated={validated}
-                    onSubmit={handleSubmit}
-                  >
-                    {/* <Form> */}
-                    <Row>
-                      <Col>
-                        <Form.Group className="mb-3" controlId="name">
-                          <Form.Label>Nombre</Form.Label>
-                          <Form.Control required type="firstName" autoFocus />
-                          <Form.Control.Feedback>
-                            Correcto!
-                          </Form.Control.Feedback>
-                        </Form.Group>
-                      </Col>
-
-                      <Col>
-                        <Form.Group className="mb-3" controlId="lastName">
-                          <Form.Label>Apellido</Form.Label>
-                          <Form.Control type="lastName" required />
-                          <Form.Control.Feedback>
-                            Correcto!
-                          </Form.Control.Feedback>
-                        </Form.Group>
-                      </Col>
-                    </Row>
-                    {/* </Form> */}
-                    {/* <Form> */}
-                    <Row>
-                      <Col>
-                        <Form.Group className="mb-3" controlId="country">
-                          <Form.Label>País</Form.Label>
-                          <Form.Control type="country" required />
-                          <Form.Control.Feedback>
-                            Correcto!
-                          </Form.Control.Feedback>
-                        </Form.Group>
-                      </Col>
-
-                      <Col>
-                        <Form.Group className="mb-3" controlId="birthday">
-                          <Form.Label>Fecha de nacimiento</Form.Label>
-                          <Form.Control type="date" required />
-                          <Form.Control.Feedback>
-                            Correcto!
-                          </Form.Control.Feedback>
-                        </Form.Group>
-                      </Col>
-                    </Row>
-                    {/* </Form> */}
-
-                    {/* <Form> */}
-                    <Form.Group className="mb-3" controlId="email">
-                      <Form.Label>Correo</Form.Label>
-                      <Form.Control type="email" required />
-                      <Form.Control.Feedback>Correcto!</Form.Control.Feedback>
-                    </Form.Group>
-                    {/* </Form> */}
-
-                    {/* <Form> */}
-                    <Form.Group className="mb-3" controlId="phone">
-                      <Form.Label> Teléfono </Form.Label>
-                      <Form.Control type="phone" required></Form.Control>
-                      <Form.Control.Feedback>Correcto!</Form.Control.Feedback>
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                      <Form.Check
-                        required
-                        label="Acepto los términos y condiciones"
-                        feedback="Para continuar debe aceptar los términos y condiciones."
-                        feedbackType="invalid"
-                      />
-                    </Form.Group>
-
-                    <Button
-                      variant="secondary"
-                      onClick={handleClose}
-                      style={{ marginRight: "10px", position: "end" }}
-                    >
-                      Cerrar
-                    </Button>
-                    <Button variant="primary" type="submit">
-                      Enviar
-                    </Button>
-                    {/* </Form> */}
-                  </Form>
-                </Modal.Body>
-              </Modal>
+              <ModalWorkshop 
+              show={show}
+              handleSetModal={handleSetModal}
+              workshop={course}
+              />
             </Container>
           )
       )}

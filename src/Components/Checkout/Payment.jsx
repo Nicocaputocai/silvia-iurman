@@ -4,10 +4,12 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import Styles from './Styles.module.css'
 import CheckoutServices from '../../Services/CheckoutServices'
 import { Spinner } from 'react-bootstrap'
+import { useCheckout } from '../../hooks/useCheckout'
 
 export const Payment = () => {
     const [searchParams] = useSearchParams()
     const navigate = useNavigate();
+    const purchase = JSON.parse(localStorage.getItem('purchase'));
 
     const getPaymentStatus = async () => {
 
@@ -23,7 +25,8 @@ export const Payment = () => {
       if(searchParams.get('collection_id')){
         const data = {
           id: searchParams.get('collection_id'),
-          idPurchase: localStorage.getItem('purchase'),
+          idPurchase: purchase.id,
+          type: purchase.type
         }
         try {
           const response = await CheckoutServices.getStatusMP(data);
@@ -36,13 +39,15 @@ export const Payment = () => {
           return;
         } finally {
           localStorage.removeItem('purchase');
+          console.log('finally')
         }
       }
 
       if(searchParams.get('token')){
         const data = {
           id: searchParams.get('token'),
-          idPurchase: localStorage.getItem('purchase'),
+          idPurchase: purchase.id,
+          type: purchase.type
         }
         try {
           const response = await CheckoutServices.getStatusPP(data);
