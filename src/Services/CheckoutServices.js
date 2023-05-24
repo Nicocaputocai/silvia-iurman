@@ -9,10 +9,10 @@ const auth = {
 }
 
 const CheckoutServices = {
-    mp: (data) => httpLocal.post('/checkout/mp', data, auth),
-    pp: (data) => httpLocal.post('/checkout/pp', data),
-    getStatusMP: (data) => httpLocal.post('/checkout/mp/status', data, auth),
-    getStatusPP: (data) => httpLocal.post('/checkout/pp/status', data, auth),
+    mp: (data) => http.post('/checkout/mp', data, auth),
+    pp: (data) => http.post('/checkout/pp', data),
+    getStatusMP: (data) => http.post('/checkout/mp/status', data, auth),
+    getStatusPP: (data) => http.post('/checkout/pp/status', data, auth),
 }
 
 export default CheckoutServices

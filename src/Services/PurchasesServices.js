@@ -2,11 +2,11 @@ import httpLocal from '../http-local-common';
 import http from '../http-common'
 
 const PurchasesDataServices = {
-    getAllPurchases: () => httpLocal.get('/purchases'),
-    getById: (id) => httpLocal.get(`/purchases/show/${id}`),
-    createPurchase: (data) => httpLocal.post('/purchases/create', data),
-    editPurchase: (id, data) => httpLocal.put(`/purchases/edit/${id}`, data),
-    deletePurchase: (id) => httpLocal.delete(`/purchases/delete/${id}`)
+    getAllPurchases: () => http.get('/purchases'),
+    getById: (id) => http.get(`/purchases/show/${id}`),
+    createPurchase: (data) => http.post('/purchases/create', data),
+    editPurchase: (id, data) => http.put(`/purchases/edit/${id}`, data),
+    deletePurchase: (id) => http.delete(`/purchases/delete/${id}`)
 }
 
 export default PurchasesDataServices

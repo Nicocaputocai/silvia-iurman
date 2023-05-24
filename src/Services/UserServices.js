@@ -9,10 +9,10 @@ const auth = {
 }
 
 const UserDataServices ={
-    register: async (data) => await httpLocal.post('/user/register', data),
-    login: async (data) => await httpLocal.post('/user/login', data),
-    relogin: async () => await httpLocal.get('/user/relogged', auth),
-    updateUser: async (data) => await httpLocal.put('/user/update-user', data, auth),
+    register: async (data) => await http.post('/user/register', data),
+    login: async (data) => await http.post('/user/login', data),
+    relogin: async () => await http.get('/user/relogged', auth),
+    updateUser: async (data) => await http.put('/user/update-user', data, auth),
 }
 
 export default UserDataServices
