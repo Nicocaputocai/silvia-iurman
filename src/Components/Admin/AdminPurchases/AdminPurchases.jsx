@@ -18,27 +18,26 @@ export const AdminPurchases = () => {
   const filter = (wanted) => {
     var searchResult = purchases.data.filter((element) => {
       if (
-        element.firstName
+        element.user_id.firstName
           .toString()
           .toLowerCase()
           .includes(wanted.toLowerCase()) ||
-        element.lastName
+        element.user_id.lastName
           .toString()
           .toLowerCase()
           .includes(wanted.toLowerCase()) ||
-        element.country
+        element.user_id.country
           .toString()
           .toLowerCase()
           .includes(wanted.toLowerCase()) ||
-        element.phone.toString().toLowerCase().includes(wanted.toLowerCase()) ||
-        element.email.toString().toLowerCase().includes(wanted.toLowerCase())
+        element.user_id.phone.toString().toLowerCase().includes(wanted.toLowerCase()) ||
+        element.user_id.email.toString().toLowerCase().includes(wanted.toLowerCase())
       ) {
         return element;
       }
     });
     setPurchasesResult(searchResult);
   };
-
   return (
     <>
       <Container id="purchasesFilter">

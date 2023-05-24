@@ -4,6 +4,7 @@ import styles from './dashboard.module.css'
 import { useCheckout } from '../../hooks/useCheckout'
 import { useModules } from '../../hooks/useModules'
 import useAuth from '../../hooks/useAuth'
+import { TYPE_PURCHASE } from '../../types/TYPES'
 
 
 
@@ -37,7 +38,7 @@ export const Sidebar = ({setContent}) => {
                     <Card>
                         <Card.Header>{module.title}</Card.Header>
                         <Card.Body className='d-flex justify-content-between'>
-                        <Button variant="warning" disabled={habilited.includes(module._id)} onClick={() => addToCheckout(module)}>Comprar</Button>
+                        <Button variant="warning" disabled={habilited.includes(module._id)} onClick={() => addToCheckout(module, TYPE_PURCHASE.MODULE)}>Comprar</Button>
                         <Button 
                         variant="primary" 
                         disabled={!habilited.includes(module._id)}
@@ -63,7 +64,7 @@ export const Sidebar = ({setContent}) => {
                     <Card>
                         <Card.Header>{module.title}</Card.Header>
                         <Card.Body className='d-flex justify-content-between'>
-                        <Button variant="warning" disabled={habilited.includes(module._id)} onClick={() => addToCheckout(module)}>Comprar</Button>
+                        <Button variant="warning" disabled={habilited.includes(module._id)} onClick={() => addToCheckout(module, TYPE_PURCHASE.MODULE)}>Comprar</Button>
                         <Button variant="primary" disabled={!habilited.includes(module._id)}>Continuar</Button>
                         </Card.Body>
                     </Card>

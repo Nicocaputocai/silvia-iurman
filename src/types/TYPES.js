@@ -23,3 +23,9 @@ export const PURCHASE = Object.freeze({
     EDIT: 'EDIT',
     DELETE: 'DELETE',
 })
+
+export const TYPE_PURCHASE = Object.freeze({
+    COURSE: 'Course',
+    ACTIVITY: 'Activity',
+    MODULE: 'Module',
+});

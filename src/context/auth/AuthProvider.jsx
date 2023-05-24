@@ -23,8 +23,7 @@ const AuthProvider = ({children}) => {
         };
 
         try {
-            const {data} = await UserDataServices.relogin(token);
-            
+            const {data} = await UserDataServices.relogin();
             authDispatch({
                 type : TYPES.LOGIN,
                 payload : data.user

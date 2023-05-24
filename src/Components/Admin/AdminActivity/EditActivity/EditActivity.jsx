@@ -40,12 +40,15 @@ export const EditActivity = () => {
         data: data.activity,
         isLoading: false,
       });
-      reset(data.activity);
+      reset({
+        ...data.activity,
+        day: data.activity.day.split(':')[0] + ':' + data.activity.day.split(':')[1],
+      });
     } catch (error) {
       console.log(error);
     } 
   };
-  
+
     const save = async (data) => {
       setLoading(true)
       Swal.fire({
@@ -95,7 +98,7 @@ export const EditActivity = () => {
             <Form.Label>Título</Form.Label>
             <Form.Control
               type="text"
-              {...register("name", {
+              {...register("title", {
                 required: {
                   value: true,
                   message: "El título es requerido",
@@ -158,11 +161,7 @@ export const EditActivity = () => {
                               {errors.day.message}
                             </Alert>
             }
-            <Alert
-            variant='warning'
-            className='p-2 mt-2'>
-              La fecha actual es: {defaultValues.day.split('T')[0]} a las {defaultValues.day.split('T')[1].split('.')[0]}
-            </Alert>
+            
           </Form.Group>
           <Form.Group>
             <Form.Label>Descripción</Form.Label>
