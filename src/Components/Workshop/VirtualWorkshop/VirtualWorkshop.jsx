@@ -21,11 +21,11 @@ import { ModalWorkshop } from "../modalWorkshop/ModalWorkshop";
 import { useCourses } from "../../../hooks/useCourses";
 import useAuth from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { TYPE_PURCHASE } from "../../../types/TYPES";
 
 const CursosVirtuales = () => {
   const [index, setIndex] = useState(0);
   const {courses} = useCourses();
-  const { name } = useParams();
   const {auth} = useAuth();
   const navigate = useNavigate();
 
@@ -42,7 +42,6 @@ const CursosVirtuales = () => {
       navigate('/login')
     }
     setShow(!show);
-
   }
 
   return (
@@ -119,20 +118,21 @@ const CursosVirtuales = () => {
               </Row>
               <br />
               <Stack gap={2} className="col-md-5 mx-auto">
-                <Button
-                  variant="secondary"
-                  style={{ backgroundColor: "#9d6b6c" }}
-                  size="lg"
-                  onClick={handleSetModal}
-                >
-                  Inscribite
-                </Button>
+                  <Button
+                    variant="secondary"
+                    style={{ backgroundColor: "#9d6b6c" }}
+                    size="lg"
+                    onClick={handleSetModal}
+                    >
+                      Inscribite
+                  </Button>
                 <br />
               </Stack>
               <ModalWorkshop 
               show={show}
               handleSetModal={handleSetModal}
               workshop={course}
+              type={TYPE_PURCHASE.COURSE}
               />
             </Container>
           )

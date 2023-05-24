@@ -8,9 +8,9 @@ import { TYPES } from "../../../context/auth/AuthReducer";
 import { useCheckout } from "../../../hooks/useCheckout";
 import { TYPE_PURCHASE } from "../../../types/TYPES";
 
-export const ModalWorkshop = ({show, handleSetModal, workshop}) => {
+export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
     const {formState:{errors}, register, reset, handleSubmit} = useForm();
-    const {auth, authDispatch} = useAuth();
+    const {auth, authDispatch, authLoading} = useAuth();
     const {checkout, addToCheckout} = useCheckout();
     
     const onSubmit = async (data) => {
@@ -21,7 +21,7 @@ export const ModalWorkshop = ({show, handleSetModal, workshop}) => {
                 payload : response.data.user
             })
             reset()
-            addToCheckout(workshop, TYPE_PURCHASE.COURSE);
+            addToCheckout(workshop, type);
             handleSetModal()
             //redirigir al modal de checkout
             //agregar el workshop al addToCheckout
@@ -30,9 +30,10 @@ export const ModalWorkshop = ({show, handleSetModal, workshop}) => {
             console.log(error)
         }
     }
-
     useEffect(() => {
     }, [])
+
+    if(authLoading) return (<h1>Cargando...</h1>)
     return (
         <Modal show={show} onHide={handleSetModal}>
             <Modal.Header closeButton>
@@ -141,7 +142,7 @@ export const ModalWorkshop = ({show, handleSetModal, workshop}) => {
                                 <Form.Label>Fecha de nacimiento</Form.Label>
                                 <Form.Control 
                                 type="date" 
-                                defaultValue={auth.user.dateOfBirthday}
+                                defaultValue={auth.user.dateOfBirth}
                                 required 
                                 {...register('birthday',{
                                     required: {

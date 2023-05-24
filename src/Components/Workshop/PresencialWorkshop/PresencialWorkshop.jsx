@@ -16,6 +16,7 @@ import { ModalWorkshop } from "../modalWorkshop/ModalWorkshop";
 import { useCourses } from "../../../hooks/useCourses";
 import useAuth from '../../../hooks/useAuth'
 import { useNavigate } from "react-router-dom";
+import { TYPE_PURCHASE } from "../../../types/TYPES";
 
 const CursosPresenciales = () => {
   const [index, setIndex] = useState(0);
@@ -128,6 +129,7 @@ const CursosPresenciales = () => {
               show={show} 
               handleSetModal={handleSetModal}
               workshop={course}
+              type={TYPE_PURCHASE.COURSE}
               />
             </Container>
           )

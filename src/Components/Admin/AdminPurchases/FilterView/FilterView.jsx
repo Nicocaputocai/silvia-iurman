@@ -8,7 +8,7 @@ import {
 import { PageLoader } from "../../../components/PageLoader";
 import { usePurchases } from "../../../../hooks/usePurchase";
 import { Link } from "react-router-dom";
-export const FilterView = ({_id, firstName, lastName, country, dateOfBirth, email, phone, wayToPay, pay, finish, inscription}) => {
+export const FilterView = ({_id, user_id, wayToPay, pay, finish, inscription}) => {
     const {purchases} = usePurchases();
     if(purchases.isLoading){
         return <PageLoader />
@@ -18,14 +18,14 @@ export const FilterView = ({_id, firstName, lastName, country, dateOfBirth, emai
             <Container key={_id}>
             <Row className="align-items-center">
               <Col>
-                <h3>{`${firstName} ${lastName}`}</h3>
+                <h3>{`${user_id.firstName} ${user_id.lastName}`}</h3>
                 <br />
-                <span>{`País de origen: ${country}`}</span> <br />
-                <span>{`Fecha de nacimiento: ${dateOfBirth}`}</span>
+                <span>{`País de origen: ${user_id.country}`}</span> <br />
+                <span>{`Fecha de nacimiento: ${user_id.dateOfBirth}`}</span>
                 <br />
-                <span>{`Email: ${email}`}</span>
+                <span>{`Email: ${user_id.email}`}</span>
                 <br />
-                <span>{`Teléfono: ${phone}`}</span>
+                <span>{`Teléfono: ${user_id.phone}`}</span>
                 <br />
                 <span>{`Medio de pago: ${wayToPay}`}</span>
                 <br />
@@ -33,7 +33,7 @@ export const FilterView = ({_id, firstName, lastName, country, dateOfBirth, emai
                 <br />
                 <span>{`¿Finalizó?: ${finish ? "Si" : "No"}`}</span>
                 <br />
-                <span>{`Se inscribió a: ${inscription} `}</span>
+                <span>{`Se inscribió a: ${inscription?.title} `}</span>
                 <br />
                 {/* Chequear la ruta */}
                 <NavItem

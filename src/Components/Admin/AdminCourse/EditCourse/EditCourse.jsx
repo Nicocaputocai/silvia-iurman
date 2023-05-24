@@ -28,7 +28,10 @@ const EditCourse = () => {
           data: response.data.course,
           isLoading: false,
         });
-        reset(response.data.course)
+        reset({
+          ...response.data.course,
+          day: response.data.course.day ? response.data.course.day.split('T')[0] : ''
+        })
       })
       .catch((error) => {
         console.log(error);
@@ -90,7 +93,7 @@ const EditCourse = () => {
           <Form.Label>Título</Form.Label>
           <Form.Control
             type="text"
-            {...register('name', {
+            {...register('title', {
               required: {
                   value: true,
                   message: 'El título es requerido'
@@ -114,13 +117,13 @@ const EditCourse = () => {
             type="date"
             {...register('day')}
           ></Form.Control>
-          {/* {
+          {
             errors.day && <Alert 
                             variant='danger'
                             className='p-2 mt-2'>
                             {errors.day.message}
                           </Alert>
-          } */}
+          }
         </Form.Group>
 
         <Form.Group>

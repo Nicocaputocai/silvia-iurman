@@ -47,7 +47,7 @@ export const Checkout = () => {
           <Modal.Title>{checkout.product.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            {checkout.product.description}
+            {checkout.product.description?.length < 100 && <p className='fs-5'>{checkout.product.description}</p>}
             <p className='text-end fs-2'>Total: ${checkout.total}</p>
             <div className='w-100 d-flex flex-column gap-2'>
                 <button

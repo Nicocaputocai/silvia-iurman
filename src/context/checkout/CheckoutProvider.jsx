@@ -18,7 +18,7 @@ export const CheckoutProvider = ({children}) => {
         }));
         setCheckout({
             product,
-            total: product.pricePesos,
+            total: product.pricePesos ? product.pricePesos : product.price,
             modal: true,
         })
     }
