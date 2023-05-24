@@ -23,9 +23,6 @@ export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
             reset()
             addToCheckout(workshop, type);
             handleSetModal()
-            //redirigir al modal de checkout
-            //agregar el workshop al addToCheckout
-            //asignar addToCheckout al boton enviar para que se guarde la info en local storage
         } catch (error) {
             console.log(error)
         }
@@ -52,7 +49,7 @@ export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
                                 required 
                                 type="text" 
                                 autoFocus
-                                defaultValue={auth.user.firstName}
+                                defaultValue={auth.user?.firstName}
                                 {...register('firstName',{
                                     required: {
                                         value: true,
@@ -69,7 +66,7 @@ export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
                                         (<Alert 
                                             variant='danger'
                                             className='p-2 mt-2'>
-                                            {errors.firstName.message}
+                                            {errors.firstName?.message}
                                         </Alert>)
                                     )
                                 }
@@ -82,7 +79,7 @@ export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
                                 <Form.Control 
                                 type="text" 
                                 required 
-                                defaultValue={auth.user.lastName}
+                                defaultValue={auth.user?.lastName}
                                 {...register('lastName',{
                                     required: {
                                         value: true,
@@ -100,7 +97,7 @@ export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
                                         (<Alert 
                                             variant='danger'
                                             className='p-2 mt-2'>
-                                            {errors.lastName.message}
+                                            {errors.lastName?.message}
                                         </Alert>)
                                     )
                                 }
@@ -114,7 +111,7 @@ export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
                             <Form.Group className="mb-3" controlId="country">
                                 <Form.Label>País</Form.Label>
                                 <Form.Select 
-                                defaultValue={auth.user.country}
+                                defaultValue={auth.user?.country}
                                 {...register('country',{
                                     required: {
                                         value: true,
@@ -142,7 +139,7 @@ export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
                                 <Form.Label>Fecha de nacimiento</Form.Label>
                                 <Form.Control 
                                 type="date" 
-                                defaultValue={auth.user.dateOfBirth}
+                                defaultValue={auth.user?.dateOfBirth}
                                 required 
                                 {...register('birthday',{
                                     required: {
@@ -157,7 +154,7 @@ export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
                                         (<Alert 
                                             variant='danger'
                                             className='p-2 mt-2'>
-                                            {errors.birthday.message}
+                                            {errors.birthday?.message}
                                         </Alert>)
                                     )
                                 }
@@ -172,7 +169,7 @@ export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
                         <Form.Control 
                         type="email" 
                         disabled 
-                        defaultValue={auth.user.email}
+                        defaultValue={auth.user?.email}
                         />
                         <Form.Control.Feedback>Correcto!</Form.Control.Feedback>
                     </Form.Group>
@@ -183,7 +180,7 @@ export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
                         <Form.Label> Teléfono </Form.Label>
                         <Form.Control 
                         type="phone" 
-                        defaultValue={auth.user.phone}
+                        defaultValue={auth.user?.phone}
                         required
                         {...register('phone',{
                             required: {
@@ -202,7 +199,7 @@ export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
                                 (<Alert 
                                     variant='danger'
                                     className='p-2 mt-2'>
-                                    {errors.phone.message}
+                                    {errors.phone?.message}
                                 </Alert>)
                                 )
                         }
