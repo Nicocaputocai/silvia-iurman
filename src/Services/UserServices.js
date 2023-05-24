@@ -8,11 +8,13 @@ const auth = {
     }
 }
 
+const service = http
+
 const UserDataServices ={
-    register: async (data) => await http.post('/user/register', data),
-    login: async (data) => await http.post('/user/login', data),
-    relogin: async () => await http.get('/user/relogged', auth),
-    updateUser: async (data) => await http.put('/user/update-user', data, auth),
+    register: async (data) => await service.post('/user/register', data),
+    login: async (data) => await service.post('/user/login', data),
+    relogin: async () => await service.get('/user/relogged', auth),
+    updateUser: async (data) => await service.put('/user/update-user', data, auth),
 }
 
 export default UserDataServices

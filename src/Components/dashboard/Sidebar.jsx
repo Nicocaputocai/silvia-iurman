@@ -21,7 +21,7 @@ export const Sidebar = ({setContent}) => {
 
     useEffect(() => {
       getHabilitedModules()
-    },[])
+    },[auth])
 
   return (
     <div className={`me-auto ${styles.sidebar_size}`}>

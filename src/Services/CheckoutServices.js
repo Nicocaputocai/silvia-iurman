@@ -8,11 +8,13 @@ const auth = {
     }
 }
 
+const service = http
+
 const CheckoutServices = {
-    mp: (data) => http.post('/checkout/mp', data, auth),
-    pp: (data) => http.post('/checkout/pp', data),
-    getStatusMP: (data) => http.post('/checkout/mp/status', data, auth),
-    getStatusPP: (data) => http.post('/checkout/pp/status', data, auth),
+    mp: (data) => service.post('/checkout/mp', data, auth),
+    pp: (data) => service.post('/checkout/pp', data),
+    getStatusMP: (data) => service.post('/checkout/mp/status', data, auth),
+    getStatusPP: (data) => service.post('/checkout/pp/status', data, auth),
 }
 
 export default CheckoutServices
