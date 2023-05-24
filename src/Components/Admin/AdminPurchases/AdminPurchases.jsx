@@ -17,6 +17,7 @@ export const AdminPurchases = () => {
 
   const filter = (wanted) => {
     var searchResult = purchases.data.filter((element) => {
+      var fullname = element.user_id.firstName + " " + element.user_id.lastName
       if (
         element.user_id.firstName
           .toString()
@@ -31,7 +32,11 @@ export const AdminPurchases = () => {
           .toLowerCase()
           .includes(wanted.toLowerCase()) ||
         element.user_id.phone.toString().toLowerCase().includes(wanted.toLowerCase()) ||
-        element.user_id.email.toString().toLowerCase().includes(wanted.toLowerCase())
+        element.user_id.email.toString().toLowerCase().includes(wanted.toLowerCase()) ||
+        fullname
+          .toString()
+          .toLowerCase()
+          .includes(wanted.toLowerCase())
       ) {
         return element;
       }
