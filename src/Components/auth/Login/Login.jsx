@@ -6,12 +6,16 @@ import useAuth from '../../../hooks/useAuth';
 import { TYPES } from '../../../context/auth/AuthReducer';
 import {useForm} from 'react-hook-form';
 import { useEffect, useState } from "react";
+import { ModalRecovery } from "../modal/Modal";
 
 export const Login = () => {
   const {formState:{errors}, register, handleSubmit, reset} = useForm();
   const [loading, setLoading] = useState(false);
   const {auth, authDispatch} = useAuth();
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
+
+  const handleSetModal = () => setShow(!show);
 
   const onSubmit= async (data) =>{
     
@@ -109,15 +113,21 @@ export const Login = () => {
                 loading ? <Spinner animation="border" variant="light" /> : 'Iniciar sesión'
               }
             </Button>
-            <Form.Text className="text-muted text-center mt-2">
-              ¿No tienes cuenta? <Link to="/registro">Registrate</Link>
-            </Form.Text>
+            <div className="d-flex justify-content-between align-items-center">
+              <Form.Text className="text-muted text-center mt-2">
+                ¿No tienes cuenta? <Link to="/registro">Registrate</Link>
+              </Form.Text>
+              <Form.Text className="text-muted text-center mt-2">
+                <Link as="Button" onClick={handleSetModal}>Olvide mi contraseña</Link>
+              </Form.Text>
+            </div>
           </Form>
 
           {alert.msg && <Alert msg={alert.msg} />}
           
         </Col>
       </Row>
+      <ModalRecovery handleSetModal={handleSetModal} show={show}/>
     </Container>
 
   )
