@@ -20,8 +20,8 @@ export const Checkout = () => {
         });
         window.location.href = response.data.init_url;
       } catch (error) {
-        if(!error.response.data.ok){
-          errorAlert(error.response.data.msg)
+        if(!error.response?.data.ok){
+          errorAlert(error.response?.data.msg)
         }
         closeModal()
         console.log(error)
