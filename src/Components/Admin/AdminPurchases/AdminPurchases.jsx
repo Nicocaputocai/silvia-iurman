@@ -17,7 +17,12 @@ export const AdminPurchases = () => {
 
   const filter = (wanted) => {
     var searchResult = purchases.data.filter((element) => {
-      var fullname = element.user_id.firstName + " " + element.user_id.lastName
+      let fullname = element.user_id.firstName + " " + element.user_id.lastName;
+      let nameFull = element.user_id.lastName + " " + element.user_id.firstName;
+      let country = element.user_id.country !== undefined && element.user_id.country;
+      let phone = element.user_id.phone !== undefined && element.user_id.phone;
+      let email = element.user_id.email!== undefined && element.user_id.email;
+
       if (
         element.user_id.firstName
           .toString()
@@ -27,16 +32,11 @@ export const AdminPurchases = () => {
           .toString()
           .toLowerCase()
           .includes(wanted.toLowerCase()) ||
-        element.user_id.country
-          .toString()
-          .toLowerCase()
-          .includes(wanted.toLowerCase()) ||
-        element.user_id.phone.toString().toLowerCase().includes(wanted.toLowerCase()) ||
-        element.user_id.email.toString().toLowerCase().includes(wanted.toLowerCase()) ||
-        fullname
-          .toString()
-          .toLowerCase()
-          .includes(wanted.toLowerCase())
+        country.toString().toLowerCase().includes(wanted.toLowerCase()) ||
+        phone.toString().toLowerCase().includes(wanted.toLowerCase()) ||
+        email.toString().toLowerCase().includes(wanted.toLowerCase()) ||
+        fullname.toString().toLowerCase().includes(wanted.toLowerCase()) ||
+        nameFull.toString().toLowerCase().includes(wanted.toLowerCase())
       ) {
         return element;
       }
@@ -80,9 +80,7 @@ export const AdminPurchases = () => {
                     </Nav.Link>
                   </Nav.Item>
 
-                  <Form className="d-flex"
-                    onSubmit={(e)=>e.preventDefault()}
-                  >
+                  <Form className="d-flex" onSubmit={(e) => e.preventDefault()}>
                     <Form.Control
                       type="search"
                       placeholder="Buscar alumno"
@@ -90,7 +88,6 @@ export const AdminPurchases = () => {
                       aria-label="Buscar alumno"
                       value={search}
                       onChange={handleInputChange}
-
                       eventKey="searchForm"
                     />
                   </Form>
