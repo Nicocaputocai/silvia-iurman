@@ -24,6 +24,8 @@ import { AdminRoutes, CheckoutRoutes } from "./routes";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserNotLoggedLayout } from "./layouts/userNotLoggedLayout";
+import { Confirm } from "./Components/auth/confirm/Confirm";
+import { RecoveryPassword } from "./Components/auth/recover/RecoveryPassword";
 
 function App() {
 
@@ -52,6 +54,8 @@ function App() {
               <Route path="conoceme" element={<About />} />
               <Route path="login" element={<UserLogin />} />
               <Route path="registro" element={<Register />} />
+              <Route path="confirm/:uuid" element={<Confirm />}/>
+              <Route path="recover-password/:uuid" element={<RecoveryPassword />}/>
               <Route path='dashboard' element={
                 <UserNotLoggedLayout>
                   <Dashboard />

@@ -10,7 +10,7 @@ export const Preview = ({content}) => {
             ? <span>Contenido del módulo</span>
             : 
             <ReactPlayer
-            url={content.link}
+            url={content.link ? content.module.link : content.module.link_intro}
             controls
             width="100%"
             />

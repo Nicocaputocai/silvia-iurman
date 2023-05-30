@@ -15,6 +15,10 @@ const UserDataServices ={
     login: async (data) => await service.post('/user/login', data),
     relogin: async () => await service.get('/user/relogged', auth),
     updateUser: async (data) => await service.put('/user/update-user', data, auth),
+    confirmUser: async (uuid) => await service.get(`/user/confirm/${uuid}`, auth),
+    recovery:  async (email) => await service.post('/user/recovery', email),
+    recoveryPassword: async (data) => await service.post('/user/recovery-password', data),
 }
+
 
 export default UserDataServices
