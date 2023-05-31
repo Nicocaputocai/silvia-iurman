@@ -105,8 +105,6 @@ export const Login = () => {
                                       </Alert>)
               }
             </Form.Group>
-            {/* Auth with google */}
-            <GoogleLogin/>
             <Button 
             variant="primary" 
             type="submit" 
@@ -116,6 +114,11 @@ export const Login = () => {
                 loading ? <Spinner animation="border" variant="light" /> : 'Iniciar sesión'
               }
             </Button>
+            <div className="d-flex justify-content-center align-items-center w-100">
+              <b>- O -</b>
+            </div>
+            {/* Auth with google */}
+            <GoogleLogin/>
             <div className="d-flex justify-content-between align-items-center">
               <Form.Text className="text-muted text-center mt-2">
                 ¿No tienes cuenta? <Link to="/registro">Registrate</Link>
