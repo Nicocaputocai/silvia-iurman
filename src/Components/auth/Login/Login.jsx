@@ -7,6 +7,7 @@ import { TYPES } from '../../../context/auth/AuthReducer';
 import {useForm} from 'react-hook-form';
 import { useEffect, useState } from "react";
 import { ModalRecovery } from "../modal/Modal";
+import { GoogleLogin } from "../Google/GoogleLogin";
 
 export const Login = () => {
   const {formState:{errors}, register, handleSubmit, reset} = useForm();
@@ -104,6 +105,8 @@ export const Login = () => {
                                       </Alert>)
               }
             </Form.Group>
+            {/* Auth with google */}
+            <GoogleLogin/>
             <Button 
             variant="primary" 
             type="submit" 
