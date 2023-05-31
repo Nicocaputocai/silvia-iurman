@@ -8,7 +8,7 @@ const auth = {
     }
 }
 
-const service = http
+const service = http;
 
 const UserDataServices ={
     register: async (data) => await service.post('/user/register', data),
@@ -18,6 +18,7 @@ const UserDataServices ={
     confirmUser: async (uuid) => await service.get(`/user/confirm/${uuid}`, auth),
     recovery:  async (email) => await service.post('/user/recovery', email),
     recoveryPassword: async (data) => await service.post('/user/recovery-password', data),
+    googleLogin: async (data) => await service.post('/user/google-login', data),
 }
 
 

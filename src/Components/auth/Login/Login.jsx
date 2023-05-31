@@ -7,6 +7,7 @@ import { TYPES } from '../../../context/auth/AuthReducer';
 import {useForm} from 'react-hook-form';
 import { useEffect, useState } from "react";
 import { ModalRecovery } from "../modal/Modal";
+import { GoogleLogin } from "../Google/GoogleLogin";
 
 export const Login = () => {
   const {formState:{errors}, register, handleSubmit, reset} = useForm();
@@ -113,6 +114,11 @@ export const Login = () => {
                 loading ? <Spinner animation="border" variant="light" /> : 'Iniciar sesión'
               }
             </Button>
+            <div className="d-flex justify-content-center align-items-center w-100">
+              <b>- O -</b>
+            </div>
+            {/* Auth with google */}
+            <GoogleLogin/>
             <div className="d-flex justify-content-between align-items-center">
               <Form.Text className="text-muted text-center mt-2">
                 ¿No tienes cuenta? <Link to="/registro">Registrate</Link>
