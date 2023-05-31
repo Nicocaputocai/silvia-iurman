@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Col, Container, Form, Nav, Row, Tab } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { usePurchases } from "../../../hooks/usePurchase";
 import { FilterView } from "./FilterView/FilterView";
 
@@ -16,7 +15,9 @@ export const AdminPurchases = () => {
   };
 
   const filter = (wanted) => {
-    var searchResult = purchases.data.filter((element) => {
+    let searchResult = purchases.data.filter((element) => {
+      let name = element.user_id.firstName;
+      let lastName = element.user_id.lastName;
       let fullname = element.user_id.firstName + " " + element.user_id.lastName;
       let nameFull = element.user_id.lastName + " " + element.user_id.firstName;
       let country = element.user_id.country !== undefined && element.user_id.country;
@@ -24,14 +25,8 @@ export const AdminPurchases = () => {
       let email = element.user_id.email!== undefined && element.user_id.email;
 
       if (
-        element.user_id.firstName
-          .toString()
-          .toLowerCase()
-          .includes(wanted.toLowerCase()) ||
-        element.user_id.lastName
-          .toString()
-          .toLowerCase()
-          .includes(wanted.toLowerCase()) ||
+        name.toString().toLowerCase().includes(wanted.toLowerCase()) ||
+        lastName.toString().toLowerCase().includes(wanted.toLowerCase()) ||
         country.toString().toLowerCase().includes(wanted.toLowerCase()) ||
         phone.toString().toLowerCase().includes(wanted.toLowerCase()) ||
         email.toString().toLowerCase().includes(wanted.toLowerCase()) ||
@@ -79,7 +74,6 @@ export const AdminPurchases = () => {
                       Formación Finalizada
                     </Nav.Link>
                   </Nav.Item>
-
                   <Form className="d-flex" onSubmit={(e) => e.preventDefault()}>
                     <Form.Control
                       type="search"
@@ -105,12 +99,50 @@ export const AdminPurchases = () => {
                     </Row>
                   </Tab.Pane>
                   <Tab.Pane eventKey="activities">
-                    {purchases.data.map((purchase, index) => {
-                      if (purchase.inscription == "Taller presencial")
+                  {search.length === 0 
+                        ? purchases.data.map((purchase, index) => {
+                          if (purchase?.inscriptionModel === "Activity")
+                            return <FilterView key={index} {...purchase} />;
+                          })
+                        : purchasesResult.map((purchase, index) => {
+                          if (purchase?.inscriptionModel === "Activity")
+                            return <FilterView key={index} {...purchase} />;
+                          })}
+                    {/* {purchases.data.map((purchase, index) => {
+                      if (purchase.inscriptionModel === "Activity")
                         return <FilterView key={index} {...purchase} />;
-                    })}
+                    })} */}
                   </Tab.Pane>
-                  <Tab.Pane eventKey="searchForm"></Tab.Pane>
+                  <Tab.Pane eventKey="liveModules">
+                  {search.length === 0 
+                        ? purchases.data.map((purchase, index) => {
+                          if (purchase.inscription?.typeModule === "sincronico")
+                            return <FilterView key={index} {...purchase} />;
+                          })
+                        : purchasesResult.map((purchase, index) => {
+                          if (purchase.inscription?.typeModule === "sincronico")
+                            return <FilterView key={index} {...purchase} />;
+                          })}
+                    {/* {purchases.data.map((purchase, index) => {
+                      if (purchase.inscription?.typeModule === "sincronico")
+                        return <FilterView key={index} {...purchase} />;
+                    })} */}
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="recordedModules">
+                  {search.length === 0 
+                        ? purchases.data.map((purchase, index) => {
+                          if (purchase.inscription?.typeModule === "asincronico")
+                            return <FilterView key={index} {...purchase} />;
+                          })
+                        : purchasesResult.map((purchase, index) => {
+                          if (purchase.inscription?.typeModule === "asincronico")
+                            return <FilterView key={index} {...purchase} />;
+                          })}
+                    {/* {purchases.data.map((purchase, index) => {
+                      if (purchase.inscription?.typeModule === "asincronico")
+                        return <FilterView key={index} {...purchase} />;
+                    })} */}
+                  </Tab.Pane>
                 </Tab.Content>
               </Tab.Container>
             </>
