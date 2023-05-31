@@ -49,7 +49,7 @@ export const AdminPurchases = () => {
                 id="purchases-tabs"
                 defaultActiveKey="AllPurchases"
               >
-                <Nav fill variant="tabs">
+                <Nav fill variant="pills">
                   <Nav.Item>
                     <Nav.Link eventKey="AllPurchases">
                       Todas las compras
