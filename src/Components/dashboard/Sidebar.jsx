@@ -26,13 +26,13 @@ export const Sidebar = ({setContent}) => {
     <div className={`me-auto ${styles.sidebar_size}`}>
     <Accordion defaultActiveKey="0">
       <Accordion.Item eventKey="0">
-        <Accordion.Header>Modulos Virtuales</Accordion.Header>
+        <Accordion.Header>Modulos Grabados</Accordion.Header>
         <Accordion.Body>
           <ListGroup defaultActiveKey="#link1">
               
               {
                 modules.data.map(module => (
-                  module.typeModule === 'virtual' &&
+                  module.typeModule === 'asincronico' &&
                 <ListGroup.Item key={module._id}>
                     <Card>
                         <Card.Header>{module.title}</Card.Header>
@@ -69,13 +69,13 @@ export const Sidebar = ({setContent}) => {
         </Accordion.Body>
       </Accordion.Item>
       <Accordion.Item eventKey="1">
-        <Accordion.Header>Modulos Presenciales</Accordion.Header>
+        <Accordion.Header>Modulos En Directo</Accordion.Header>
         <Accordion.Body>
           <ListGroup defaultActiveKey="#link1">
               
               {
                 modules.data.map(module => (
-                module.typeModule === 'presencial' &&
+                module.typeModule === 'sincronico' &&
                 <ListGroup.Item key={module._id}>
                     <Card>
                         <Card.Header>{module.title}</Card.Header>

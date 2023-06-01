@@ -3,34 +3,86 @@ import activitiesDataServices from "../../../Services/ActivitiesServices";
 import { Alert, Button, Form, Image, Modal, Spinner } from "react-bootstrap";
 import { createFormData } from "../../../helpers";
 import { useActivities } from "../../../hooks/useActivities";
-import {useForm} from 'react-hook-form'
-import { ACTIVITY } from "../../../types/TYPES";
+import {set, useForm} from 'react-hook-form'
+import { ACTIVITY, TYPE_PURCHASE } from "../../../types/TYPES";
 import { errorAlert, sucessAlert } from "../../SweetAlert/Alerts";
+import { useCourses } from "../../../hooks/useCourses";
+import { useModules } from "../../../hooks/useModules";
 
 const AddActivity = () => {
   const {activitiesDispatch} = useActivities()
   const { register, handleSubmit, formState:{errors}, reset} = useForm()
   const [loading, setLoading] = useState(false);
+  const [options, setOptions] = useState([]);
+  const [typeOption, setTypeOption] = useState(null);
+  const {courses} = useCourses()
+  const {modules} = useModules()
 
   const [selectedImage, setSelectedImage] = useState(); // Vista previa de la imagen
 
+  const getAssociated = (e)=> {
+    setTypeOption(e.target.value)
+    switch(e.target.value){
+      case TYPE_PURCHASE.COURSE:
+        setOptions(courses.data)
+        break;
+      case TYPE_PURCHASE.MODULE:
+        setOptions(modules.data)
+        break;
+      default:
+        setOptions([])
+    }
+  }
+  
   const handleInputFileChange = (e) => {
     //Vista previa de la foto
     if (e.target.files && e.target.files.length > 0) {
       setSelectedImage(e.target.files[0]);
     }
-    const { name, files } = e.target;
-    setCreateActivity({ ...createActivity, [name]: files[0] });
+    /* const { name, files } = e.target;
+    setCreateActivity({ ...createActivity, [name]: files[0] }); */
   };
 
   const save = async (dataForm) => {
     setLoading(true);
+    let dataToSend = {}
+    if(typeOption !== '#'){
+      dataToSend = {
+        title: dataForm.title,
+        day: dataForm.day,
+        description: dataForm.description,
+        price: dataForm.price,
+        img: selectedImage,
+        modality: dataForm.modality,
+        city: dataForm.city,
+        important: dataForm.important,
+        associate: dataForm.associate,
+        associateModel:typeOption,
+      }
+    } else {
+      dataToSend = {
+        title: dataForm.title,
+        day: dataForm.day,
+        description: dataForm.description,
+        price: dataForm.price,
+        img: selectedImage,
+        modality: dataForm.modality,
+        city: dataForm.city,
+        important: dataForm.important,
+      }
+    }
+   /*  dataToSend = {
+      ...dataForm,
+      associateModel: typeOption ? typeOption : null, 
+      img: selectedImage} */
+
     try {
-      const {data} = await activitiesDataServices.createActivity(createFormData({...dataForm, img: selectedImage}))
+      const {data} = await activitiesDataServices.createActivity(createFormData(dataToSend))
       activitiesDispatch({type: ACTIVITY.ADD, payload: data.activity})
       sucessAlert('Actividad creada con éxito')
       reset()
     } catch (error) {
+      console.log(error)
       errorAlert('No se pudo crear la actividad')
     } finally {
       setLoading(false);
@@ -43,7 +95,7 @@ const AddActivity = () => {
             <Form.Label>Título</Form.Label>
             <Form.Control
               type="text"
-              {...register("name", { 
+              {...register("title", { 
                 required: {
                   value: true,
                   message: 'El nombre es requerido'
@@ -59,6 +111,37 @@ const AddActivity = () => {
                             </Alert>
             }
           </Form.Group>
+          <div className="d-flex w-100 justify-content-between gap-2">
+            <Form.Group className="w-50">
+              <Form.Label>Asociado a </Form.Label>
+              <Form.Select
+                type="select"
+                onChange={getAssociated}
+              >
+                <option value='#'>
+                  Sin asociación
+                </option>
+                <option value={TYPE_PURCHASE.COURSE}>Taller</option>
+                <option value={TYPE_PURCHASE.MODULE}>Modúlo</option>
+              </Form.Select>
+              
+            </Form.Group>
+            <Form.Group className="w-50">
+              <Form.Label>Asocie el id</Form.Label>
+              <Form.Select
+                disabled={options.length === 0}
+                type="select"
+                {...register("associate")}
+              >
+                {
+                  options.map(option => (
+                    <option key={option._id} value={option._id}>{option.title}</option>
+                  ))
+                }
+              </Form.Select>
+              
+            </Form.Group>
+          </div>
           <Form.Group controlId="img">
             <Form.Label>Foto</Form.Label>
             <Form.Control
