@@ -8,7 +8,7 @@ const auth = {
     }
 }
 
-const service = httpLocal
+const service = http
 
 const CheckoutServices = {
     mp: (data) => service.post('/checkout/mp', data, auth),

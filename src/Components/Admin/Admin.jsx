@@ -5,10 +5,12 @@ import AddArticle from "./AddArticle";
 import AdminArticle from "./AdminArticle";
 import AdminCourse from "./AdminCourse";
 import AdminPurchases from "./AdminPurchases";
+import { HelmetPage } from "../components";
 
 const Admin = () => {
   return (
     <>
+      <HelmetPage section='Administrador' content='Administrador de la página de Silvia Iurman - Nuevas Constelaciones Familiares Argentina'/>
       <Container>
         <h1>Panel de administración</h1>
       </Container>
