@@ -7,8 +7,8 @@ const Calendar = ()=>{
     return(
       <>
         <HelmetPage
-          section='Artículos'
-          content='Artículos de Silvia Iurman - Nuevas Constelaciones Familiares Argentina'
+          section='Actividades'
+          content='Actividades de Silvia Iurman - Nuevas Constelaciones Familiares Argentina'
         />
         <Container>
           <br />
