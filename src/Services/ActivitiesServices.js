@@ -1,7 +1,7 @@
 import httpLocal from '../http-local-common';
 import http from '../http-common'
 
-const service = httpLocal
+const service = http;
 
 const activitiesDataServices = {
     getAllActivities: () => service.get('/activities'),
