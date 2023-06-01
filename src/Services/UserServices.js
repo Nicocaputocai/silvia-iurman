@@ -8,7 +8,7 @@ const auth = {
     }
 }
 
-const service = http;
+const service = httpLocal;
 
 const UserDataServices ={
     register: async (data) => await service.post('/user/register', data),
