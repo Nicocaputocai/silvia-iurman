@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CheckoutContext from "./checkoutContext";
+import useAuth from "../../hooks/useAuth";
 
 const initialState = {
     product: {},
@@ -10,6 +11,7 @@ const initialState = {
 
 export const CheckoutProvider = ({children}) => {
   const [checkout, setCheckout] = useState(initialState);
+  const {auth} = useAuth();
 
   const addToCheckout = (product, type) => {
         localStorage.setItem('purchase', JSON.stringify({
@@ -18,7 +20,7 @@ export const CheckoutProvider = ({children}) => {
         }));
         setCheckout({
             product,
-            total: product.pricePesos ? product.pricePesos : product.price,
+            total: auth.user?.country === 'Argentina' ? product.pricePesos : product.priceDolar,
             modal: true,
         })
     }
