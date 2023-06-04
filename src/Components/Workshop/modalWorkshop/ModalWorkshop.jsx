@@ -7,6 +7,7 @@ import UserDataServices from "../../../Services/UserServices";
 import { TYPES } from "../../../context/auth/AuthReducer";
 import { useCheckout } from "../../../hooks/useCheckout";
 import { TYPE_PURCHASE } from "../../../types/TYPES";
+import { paises } from "../../../assets/paises";
 
 export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
     const {formState:{errors}, register, reset, handleSubmit} = useForm();
@@ -119,8 +120,9 @@ export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
                                     }
                                 })}>
                                     <option value='#' hidden>Selecciona tu país</option>
-                                    <option value='argentina'>Argentina</option>
-                                    <option value='brasil'>Brasil</option>
+                                    {
+                                        paises.map((pais, index)=><option value={pais} key={index}>{pais}</option>)
+                                    }
                                 </Form.Select>
                                 {
                                     errors.country && (
