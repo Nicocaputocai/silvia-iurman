@@ -5,10 +5,12 @@ import checkoutServices from '../../Services/CheckoutServices'
 import {mp, pp} from '../../assets/images'
 import Styles from './Styles.module.css'
 import { errorAlert } from '../SweetAlert/Alerts';
+import useAuth from '../../hooks/useAuth';
 
 export const Checkout = () => {
     const {checkout, addToCheckout, closeModal} = useCheckout();
     const [isLoading, setIsLoading] = useState(false)
+    const {auth} = useAuth()
 
     const handleCheckoutMP = async (product) => {
       setIsLoading(true)
@@ -50,19 +52,9 @@ export const Checkout = () => {
             {checkout.product.description?.length < 100 && <p className='fs-5'>{checkout.product.description}</p>}
             <p className='text-end fs-2'>Total: ${checkout.total}</p>
             <div className='w-100 d-flex flex-column gap-2'>
-                <button
-                className={Styles.pp}
-                onClick={() => handleCheckoutPP(checkout.product)}
-                disabled={isLoading}
-                >
-                  {isLoading ? 
-                  <Spinner 
-                  animation="border"
-                  variant="light"
-                  size="sm"
-                  />
-                  : <img src={pp} alt="" />}
-                </button>
+            {
+              auth.user?.country === 'Argentina' 
+              ? 
 
                 <button 
                 className={Styles.mp}
@@ -72,11 +64,27 @@ export const Checkout = () => {
                   {isLoading ?
                   <Spinner
                   animation="border"
-                  variant="light"
+                  variant="dark"
                   size="sm"
                   />
                   :<img src={mp} alt="" />}
                 </button>
+              :
+                <button
+                className={Styles.pp}
+                onClick={() => handleCheckoutPP(checkout.product)}
+                disabled={isLoading}
+                >
+                  {isLoading ? 
+                  <Spinner 
+                  animation="border"
+                  variant="dark"
+                  size="sm"
+                  />
+                  : <img src={pp} alt="" />}
+                </button>
+            }
+
             </div>
         </Modal.Body>
         <Modal.Footer>
