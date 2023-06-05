@@ -7,7 +7,7 @@ export const Activities = () => {
   const {activities} = useActivities()
 
   return (
-    <Row xs={1} md={3} className="g-4">
+    <Row xs={1} md={3} className="mb-3 g-4">
           {activities?.data.slice(0, 6).map((activity) => (
             activity.important && !activity.archived && 
             <CardComponent 
@@ -16,6 +16,8 @@ export const Activities = () => {
             button={true}
             />
           ))}
+
     </Row>
+
   )
 }

@@ -17,6 +17,11 @@ export const COURSE = Object.freeze({
     DELETE: 'DELETE',
 });
 
+export const MODULE = Object.freeze({
+    GET_ALL: 'GET_ALL',
+    EDIT: 'EDIT',
+});
+
 export const PURCHASE = Object.freeze({
     GET_ALL: 'GET_ALL',
     ADD: 'ADD',
