@@ -14,7 +14,7 @@ export const CardComponent = ({activity, description='', button=false}) => {
 
           <Card.Body>
             <Card.Title>{activity.name}</Card.Title>
-            <Card.Text> <b>Fecha:</b> {moment(activity.day).format("DD/MM/YYYY [a las]  h:mm A [(hora Argentina (GTM -3))]")}</Card.Text>
+            <Card.Text> <b>Fecha:</b> {moment(activity.day).zone("+00").format("DD/MM/YYYY [a las]  h:mm A [(hora Argentina (GTM -3))]")}</Card.Text>
             <Card.Text> {description ? truncate(activity.description) : ''}</Card.Text>
             {
               button && <Button variant="secondary" className="float-end mb-3 bgColor">Ver actividad</Button>
