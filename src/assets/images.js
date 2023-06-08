@@ -3,6 +3,7 @@ import activity from './actividad.png';
 import logo from './LOGO SILVIA IURMAN PNG.png';
 import logo2 from './LOGO SILVIA IURMAN 2 PNG.png';
 import Silvia from './Silvia.jpg';
+import SilviaCuadrada from './articulos.jpg'
 import bannerPC from './B BANNER HORIZONTAL NUEVO.jpg';
 import bannerCEL from './banner2.jpg';
 
@@ -39,6 +40,10 @@ import TGP14 from "./TGP14.jpeg"
 import TGV1 from "./TGV1.png"
 import TGV2 from "./TGV2.png"
 import TGV3 from "./TGV3.png"
+
+//logos
+import mp from './mp.webp';
+import pp from './pp.webp';
 
 const TGPimages = [
     {
@@ -163,12 +168,15 @@ const TGVimages = [
 
 export {
     silvia,
+    SilviaCuadrada,
     activity,
     logo,
     logo2,
     Silvia,
     bannerPC,
     bannerCEL,
+    pp,
+    mp,
     NFCAimages,
     TGPimages,
     TGVimages

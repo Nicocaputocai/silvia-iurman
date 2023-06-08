@@ -27,7 +27,8 @@ const AdminArticle = () =>{
     const deleteArticles = (id) =>{
         BlogDataServices.deleteArticle(id)
         .then(response =>{
-            setArticles.filter(article => response.data.articles != article.id)
+          setArticles((prev)=>{               
+            return prev.filter((article) => article._id !== id);             })
         })
     }
     const truncate = (str) => {
@@ -36,7 +37,7 @@ const AdminArticle = () =>{
     return (
         <>
           {articles.map((article) => (
-            <Container>
+            <Container key={article._id}>
               <Row className="align-items-center">
                 <Image
                   src={`https://api-silvia.divisioncode.net.ar/img/${article.img}`}

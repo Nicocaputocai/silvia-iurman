@@ -1,90 +1,67 @@
-// import  from 'react-bootstrap/Container';
-// import  from 'react-bootstrap/Nav';
-// import  from 'react-bootstrap/Navbar';
+
 import { Link } from "react-router-dom";
 import { logo2 } from "../../assets/images"
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap"
+import { Nav, Navbar, NavDropdown } from "react-bootstrap"
+import useAuth from "../../hooks/useAuth";
+import { ROLES } from "../../types/TYPES";
+import styles from './Header.module.css'
+import { MediaSocials } from "../components";
 
-function CollapsibleExample() {
+export const Header = () => {
+  const {auth, authDispatch} = useAuth()
+  const logout = () =>{
+    authDispatch({type:'LOGOUT'})
+    localStorage.removeItem('token');
+  }
   return (
-    <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-      <Container fluid>
-        <Navbar.Brand as={Link} to='/'>
-          <img src={logo2}               
-              alt="logo"
-              width="100"
-              height="100" 
-              className="img-fluid"
-              style={{ borderRadius: "50%",margin:"auto", display: "block" }}
-              />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto" >
-            <NavDropdown title="Talleres de constelaciones" id="collasible-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/talleres-presenciales"> Talleres presenciales </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/talleres-virtuales">Talleres virtuales </NavDropdown.Item>
-            </NavDropdown>
-            <NavDropdown  title="Formación en Eneagrama y Nuevas Constelaciones Familiares" id="collasible-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/NCFA"> Presentación </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/talleres-presenciales"> Módulos grabados </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/talleres-virtuales">Módulos en directo </NavDropdown.Item>
-            </NavDropdown>
-            {/* <Nav.Link as={Link} to="/NCFA">Formación en Eneagrama y Nuevas Constelaciones Familiares </Nav.Link> */}
-            <Nav.Link as={Link} to="/calendario">Actividades</Nav.Link>
-            <Nav.Link as={Link} to="/calendario">Actividades</Nav.Link>
-
-            <Nav.Link as={Link} to="/articulos">Consteladores acreditados</Nav.Link>
-            <Nav.Link as={Link} to="/articulos">Articulos</Nav.Link>
-            <Nav.Link as={Link} to="/conoceme">Conoceme</Nav.Link>
-
-          </Nav>
-          <Nav>
-            <Nav.Link as={Link} to="/Login" style={{margin:0, top:"50%",transform: "translate(0%, 5%)"}}>
-            Login
-            </Nav.Link>
-          <Nav.Link
-                href="https://www.instagram.com/"
-                target="_blank"
-              >
-                <i
-                  class="fab fa-instagram fa-2x"
-                 
-                ></i>
-              </Nav.Link>
-
-              <Nav.Link
-                href="https://www.facebook.com/"
-                target="_blank"
-              >
-                <i
-                  class="fab fa-facebook fa-2x"
-                  
-                ></i>
-              </Nav.Link>
-              <Nav.Link
-                href="https://www.youtube.com/"
-                target="_blank"
-              >
-                <i
-                  class="fab fa-youtube fa-2x"
-                  
-                ></i>
-              </Nav.Link>
-              <Nav.Link
-                href="https://www.spotify.com/"
-                target="_blank"
-              >
-                <i
-                  class="fab fa-spotify fa-2x"
-                  
-                ></i>
-              </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand as={Link} to="/">
+        <img
+          src={logo2}
+          width="75"
+          className="d-inline-block align-top p-0 m-0"
+          alt="Logo"
+        />
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse 
+      id="basic-navbar-nav" 
+      className={styles.navbar_items}>
+        <Nav className="mr-auto">
+          <Nav.Link as={Link} to="/">Inicio</Nav.Link>
+          <NavDropdown title="Taller de constelaciones" id="basic-nav-dropdown">
+            <NavDropdown.Item as={Link} to='/talleres-presenciales'>Talleres presenciales</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to='/talleres-virtuales'>Talleres virtuales</NavDropdown.Item>
+          </NavDropdown>
+          <NavDropdown title="Formación en Eneagrama y Nuevas Constelaciones Familiares" id="basic-nav-dropdown">
+            <NavDropdown.Item as={Link} to='/NCFA'>Presentación</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item as={Link} to='/NCFA/modulos-grabados'>Módulos grabados</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to='/NCFA/modulos-en-directo'>Módulos en directo</NavDropdown.Item>
+          </NavDropdown>
+        </Nav>
+        <Nav className="ml-auto">
+          <Nav.Link as={Link} to="/calendario">Actividades</Nav.Link>
+          <Nav.Link as={Link} to="/consteladores">Consteladores</Nav.Link>
+          <Nav.Link as={Link} to='/articulos'>Artículos</Nav.Link>
+          <Nav.Link as={Link} to="/conoceme">Conoceme</Nav.Link>
+          {
+            auth.isLogged ? (
+              <NavDropdown title={auth.user.name} id="basic-nav-dropdown" className="w-50">
+                <NavDropdown.Item as={Link} to='/dashboard'>Dashboard</NavDropdown.Item>
+                {
+                  auth.user.role === ROLES.ADMIN && <NavDropdown.Item as={Link} to='/admin'>Admin</NavDropdown.Item>
+                }
+                <NavDropdown.Divider />
+                <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+              </NavDropdown>
+            ) : (
+              <Nav.Link as={Link} to="/login">Login</Nav.Link>
+            )
+          }
+        </Nav>
+        <MediaSocials/>
+      </Navbar.Collapse>
     </Navbar>
   );
 }
-
-export default CollapsibleExample;

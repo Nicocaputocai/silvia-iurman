@@ -3,12 +3,12 @@ import { Button, Container, Form } from "react-bootstrap"
 import { Link, useNavigate } from 'react-router-dom'
 import { Alerta } from '../../Alert';
 import AdminUserDataServices from '../../../Services/AdminUserServices';
-import useAuth from '../../../hooks/useAuth';
+import useAdmin from '../../../hooks/useAdmin';
 import { useForm } from '../../../hooks/useForm';
 
 export const Login = () => {
   const [alert,setAlert] = useState({});
-  const {setAuth} = useAuth();
+  const {setAdmin} = useAdmin();
   const navigate = useNavigate();
 
   const handleShowAlert = (msg, time = true) => {
@@ -43,7 +43,7 @@ export const Login = () => {
     //   })
     const {data} = await AdminUserDataServices.login({username, password})
       // console.log(data);
-      setAuth(data.user)
+      setAdmin(data.user)
       localStorage.setItem('token', data.token) //Cuando cierro el navegador se borra. Para que no se borre va en localStorage
       navigate('/admin')
 

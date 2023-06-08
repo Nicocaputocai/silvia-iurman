@@ -1,54 +1,79 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { Container, Row, Col, Image, Stack, Form, Modal, Button } from "react-bootstrap";
+import { useParams, useNavigate } from "react-router-dom";
+import { Container, Row, Col, Image, Stack, Form, Modal, Button, Spinner } from "react-bootstrap";
 import ActivitiesDataServices from '../../Services/ActivitiesServices';
-import moment from "moment";
-import { Helmet } from "react-helmet";
 import './Activity.css'
+import { HelmetPage } from "../components";
+import { ModalWorkshop } from "../Workshop/modalWorkshop/ModalWorkshop";
+import useAuth from "../../hooks/useAuth";
+import { TYPE_PURCHASE } from "../../types/TYPES";
+import { Link } from "react-router-dom";
+import { useCourses } from "../../hooks/useCourses";
 
 export const Activity = () => {
     const {id} = useParams();
     const [activity ,setActivity] = useState([])
-    // console.log(id)
+    const {auth} = useAuth();
+    const navigate = useNavigate();
+    const {courses} = useCourses();
+    // Modal
+    const [show, setShow] = useState(false);
+    const [isLoading,setIsLoading] = useState(false)
+
+    //linkExists
+    const [linkExists, setLinkExists] = useState(null);
+
+    const handleSetModal = () => {
+      if(!auth.isLogged){
+        navigate('/login')
+      }
+      setShow(!show);
+
+    }
     const retrieveActivity= () => {
+      setIsLoading(true)
       ActivitiesDataServices.getById(id)
         .then(response => {
-            console.log(response);
             setActivity(response.data.activity);
+            if(!response.data.activity.associateModel){
+              setLinkExists(null)
+              setIsLoading(false)
+            }
+            if(response.data.activity.associateModel === TYPE_PURCHASE.COURSE){
+              const course = courses.data.find(course => course._id === response.data.activity.associate);
+              if(course._id === '63d2d339dc2d95cfd1095bdf'){
+                setLinkExists('/talleres-presenciales')
+              }
+              else {
+                setLinkExists('/talleres-virtuales')
+              }
+              setIsLoading(false)
+            }
+            if(response.data.activity.associateModel === TYPE_PURCHASE.MODULE){
+              setLinkExists('/dashboard')
+              setIsLoading(false)
+            }
+            
         })
-        .catch( err => console.log(err));
+        .catch( err => {
+          setIsLoading(false)
+          console.log(err)
+        });
     };
-
     useEffect(() => {
       retrieveActivity();
     }, []);
-
-    // Modal
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  //   Validación
-
-  const [validated, setValidated] = useState(false);
-
-  const handleSubmit = (event) => {
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+    if(isLoading){
+      <div className="d-flex justify-content-center align-items-center w-full h-full">
+        <Spinner animation="border" role="status"/>
+      </div>
     }
-
-    setValidated(true);
-  };
-
     return(
         <>
-         <Helmet>
-      <title>    </title>
-      <meta name="description" content=""/>
-    </Helmet>
+        <HelmetPage
+          section={activity.title}
+          content= {activity.description}
+        />
         <Container>
             <Row>
                 <Col className="justify-content-md-center">
@@ -57,7 +82,7 @@ export const Activity = () => {
             </Row>
             <Row >
                 <Col className="m-3">
-                    <h2> {activity.name} </h2>
+                    <h1> {activity.name} </h1>
                 </Col>
             </Row>
             <Row>
@@ -67,97 +92,39 @@ export const Activity = () => {
             </Row>
             <br />
             <Stack gap={2} className="col-md-5 mx-auto">
-          <Button
-            variant="secondary"
-            style={{ backgroundColor: "#9d6b6c" }}
-            size="lg"
-            onClick={handleShow}
-          >
-            Inscribite
-          </Button>
+            {
+              isLoading ? 
+                <div className="w-full d-flex justify-content-center align-items-center">
+                  <Spinner animation="border" role="status"/>
+                </div>
+                :
+                (
+                  !linkExists ? 
+                  <Button
+                    variant="secondary"
+                    style={{ backgroundColor: "#9d6b6c" }}
+                    size="lg"
+                    onClick={handleSetModal}
+                  >
+                    Inscribite
+                  </Button>
+                  :
+                  <div className="w-full text-center">
+                    <Link to={linkExists}>
+                      Ir al recurso
+                    </Link>
+                  </div>
+                )
+            }
+          
           <br />
         </Stack>
-              
-                      {/* Arranca el modal */}
-            <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Inscripción</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
-              {/* <Form> */}
-              <Row>
-                <Col>
-                  <Form.Group className="mb-3" controlId="name">
-                    <Form.Label>Nombre</Form.Label>
-                    <Form.Control required type="firstName" autoFocus />
-                    <Form.Control.Feedback>Correcto!</Form.Control.Feedback>
-                  </Form.Group>
-                </Col>
-
-                <Col>
-                  <Form.Group className="mb-3" controlId="lastName">
-                    <Form.Label>Apellido</Form.Label>
-                    <Form.Control type="lastName" required />
-                    <Form.Control.Feedback>Correcto!</Form.Control.Feedback>
-                  </Form.Group>
-                </Col>
-              </Row>
-              {/* </Form> */}
-              {/* <Form> */}
-              <Row>
-                <Col>
-                  <Form.Group className="mb-3" controlId="country">
-                    <Form.Label>País</Form.Label>
-                    <Form.Control type="country" required />
-                    <Form.Control.Feedback>Correcto!</Form.Control.Feedback>
-                  </Form.Group>
-                </Col>
-
-                <Col>
-                  <Form.Group className="mb-3" controlId="birthday">
-                    <Form.Label>Fecha de nacimiento</Form.Label>
-                    <Form.Control type="date" required />
-                    <Form.Control.Feedback>Correcto!</Form.Control.Feedback>
-                  </Form.Group>
-                </Col>
-              </Row>
-              {/* </Form> */}
-
-              {/* <Form> */}
-              <Form.Group className="mb-3" controlId="email">
-                <Form.Label>Correo</Form.Label>
-                <Form.Control type="email" required />
-                <Form.Control.Feedback>Correcto!</Form.Control.Feedback>
-              </Form.Group>
-              {/* </Form> */}
-
-              {/* <Form> */}
-              <Form.Group className="mb-3" controlId="phone">
-                <Form.Label> Teléfono </Form.Label>
-                <Form.Control type="phone" required></Form.Control>
-                <Form.Control.Feedback>Correcto!</Form.Control.Feedback>
-              </Form.Group>
-
-              <Form.Group className="mb-3">
-                <Form.Check
-                  required
-                  label="Acepto los términos y condiciones"
-                  feedback="Para continuar debe aceptar los términos y condiciones."
-                  feedbackType="invalid"
-                />
-              </Form.Group>
-
-              <Button variant="secondary" onClick={handleClose} style={{ marginRight: "10px", position: "end" }}>
-                Cerrar
-              </Button>
-              <Button variant="primary" type="submit">
-                Enviar
-              </Button>
-              {/* </Form> */}
-            </Form>
-          </Modal.Body>
-        </Modal>
+          <ModalWorkshop 
+            handleSetModal={handleSetModal}
+            show={show}
+            workshop={activity}
+            type={TYPE_PURCHASE.ACTIVITY}
+          />
         </Container>
         
         </>

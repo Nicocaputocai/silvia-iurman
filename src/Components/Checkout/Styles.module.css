@@ -1,0 +1,47 @@
+.mp {
+    padding: 10px 20px;
+    border: 2px solid #00dfff;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .mp img {
+    width: 100px;
+  }
+
+  .mp:hover {
+    border-color: #00b1ea;
+  }
+
+  .pp {
+    padding: 10px 20px;
+    background-color: #fff;
+    border: 2px solid #003087;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .pp img {
+    width: 100px;
+  }
+
+  .pp:hover {
+    border-color: #009cde;
+  }
+  
+  .bg {
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  
+  
