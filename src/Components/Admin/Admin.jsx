@@ -6,11 +6,15 @@ import AdminArticle from "./AdminArticle";
 import AdminCourse from "./AdminCourse";
 import AdminPurchases from "./AdminPurchases";
 import { HelmetPage } from "../components";
+import { AdminModules } from "./AdminModules/AdminModules";
 
 const Admin = () => {
   return (
     <>
-      <HelmetPage section='Administrador' content='Administrador de la página de Silvia Iurman - Nuevas Constelaciones Familiares Argentina'/>
+      <HelmetPage
+        section="Administrador"
+        content="Administrador de la página de Silvia Iurman - Nuevas Constelaciones Familiares Argentina"
+      />
       <Container>
         <h1>Panel de administración</h1>
       </Container>
@@ -21,8 +25,7 @@ const Admin = () => {
             <Col sm={3}>
               <Nav variant="pills" className="flex-column">
                 <Nav.Item>
-                  <Nav.Link eventKey
-                  ="addActivity">Agregar actividad</Nav.Link>
+                  <Nav.Link eventKey="addActivity">Agregar actividad</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link eventKey="AdminActivity">
@@ -42,6 +45,11 @@ const Admin = () => {
         </Nav.Item> */}
                 <Nav.Item>
                   <Nav.Link eventKey="AdminCourse">Administrar cursos</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="AdminModule">
+                    Administrar Módulos
+                  </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link eventKey="AdminPurchases">
@@ -64,9 +72,9 @@ const Admin = () => {
                 <Tab.Pane eventKey="AdminArticle">
                   <AdminArticle />
                 </Tab.Pane>
-                {/*  <Tab.Pane eventKey="addCourse">
-          <AddCourse/>
-        </Tab.Pane> */}
+                <Tab.Pane eventKey="AdminModule">
+                  <AdminModules />
+                </Tab.Pane>
                 <Tab.Pane eventKey="AdminCourse">
                   <AdminCourse />
                 </Tab.Pane>

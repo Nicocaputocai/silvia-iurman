@@ -6,6 +6,8 @@ import { CheckoutProvider } from './checkout/CheckoutProvider'
 import { ActivityProvider } from './activity/ActivityProvider'
 import { CourseProvider } from './courses/CourseProvider'
 import {PurchaseProvider} from './purchase/PurchaseProvider'
+import { ModulesProvider } from './modules/ModuleProvider'
+
 
 export const GlobalProvider = ({children}) => {
   return (
@@ -16,7 +18,11 @@ export const GlobalProvider = ({children}) => {
             <CourseProvider>
               <CheckoutProvider>
                 <PurchaseProvider>
+                  <ModulesProvider>
+
                     {children}
+                    
+                    </ModulesProvider>
                 </PurchaseProvider>
               </CheckoutProvider>
             </CourseProvider>

@@ -27,7 +27,7 @@ export const Login = () => {
       authDispatch({type:TYPES.LOGIN, payload:response.data.user});
       localStorage.setItem('token', response.data.token);
       sucessAlert('Bienvenido');
-      navigate('/');
+      navigate(-1);
 
     } catch (error) {
       console.error(error);
@@ -41,7 +41,7 @@ export const Login = () => {
 
   useEffect(() => {
     if(auth.isLogged){
-      navigate('/');
+      navigate(-1);
     }
   }, [auth.isLogged])
 

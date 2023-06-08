@@ -38,6 +38,9 @@ export const AdminPurchases = () => {
     });
     setPurchasesResult(searchResult);
   };
+
+
+
   return (
     <>
       <Container id="purchasesFilter">
@@ -143,6 +146,20 @@ export const AdminPurchases = () => {
                         return <FilterView key={index} {...purchase} />;
                     })} */}
                   </Tab.Pane>
+
+                  <Tab.Pane eventKey="completedFormation">
+                  {search.length === 0 
+                        ? purchases.data.map((purchase, index) => {
+                          if (purchase.inscription?.typeModule === "asincronico" || purchase.inscription?.typeModule === "sincronico")
+                            return <FilterView key={index} {...purchase} />;
+                          })
+                        : purchasesResult.map((purchase, index) => {
+                          if (purchase.inscription?.typeModule === "asincronico")
+                            return <FilterView key={index} {...purchase} />;
+                          })
+                          }
+                  </Tab.Pane>
+                  
                 </Tab.Content>
               </Tab.Container>
             </>

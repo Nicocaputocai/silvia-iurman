@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Image, Card, Nav } from "react-bootstrap";
 import BlogDataServices from '../../Services/BlogServices';
-import moment from "moment";
 import './ArticleDetail.css'
 import { HelmetPage } from "../components";
 
