@@ -22,6 +22,7 @@ export const Login = () => {
   const onSubmit= async (data) =>{
     
     try {
+      localStorage.removeItem('token');
       setLoading(true);
       const response = await UserDataServices.login(data);
       authDispatch({type:TYPES.LOGIN, payload:response.data.user});
