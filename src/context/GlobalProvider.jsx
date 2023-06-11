@@ -1,15 +1,15 @@
-import React from 'react'
-import { AdminProvider } from './admin/AdminProvider'
-import { AuthProvider } from './auth/AuthProvider'
-import {HelmetProvider} from 'react-helmet-async'
-import { CheckoutProvider } from './checkout/CheckoutProvider'
-import { ActivityProvider } from './activity/ActivityProvider'
-import { CourseProvider } from './courses/CourseProvider'
-import {PurchaseProvider} from './purchase/PurchaseProvider'
-import { ModulesProvider } from './modules/ModuleProvider'
+import React from "react";
+import { AdminProvider } from "./admin/AdminProvider";
+import { AuthProvider } from "./auth/AuthProvider";
+import { HelmetProvider } from "react-helmet-async";
+import { CheckoutProvider } from "./checkout/CheckoutProvider";
+import { ActivityProvider } from "./activity/ActivityProvider";
+import { CourseProvider } from "./courses/CourseProvider";
+import { PurchaseProvider } from "./purchase/PurchaseProvider";
+import { ModulesProvider } from "./modules/ModuleProvider";
+import { UserProvider } from "./user/UserProvider";
 
-
-export const GlobalProvider = ({children}) => {
+export const GlobalProvider = ({ children }) => {
   return (
     <HelmetProvider>
       <AuthProvider>
@@ -19,10 +19,10 @@ export const GlobalProvider = ({children}) => {
               <CheckoutProvider>
                 <PurchaseProvider>
                   <ModulesProvider>
-
-                    {children}
-                    
-                    </ModulesProvider>
+                    <UserProvider>
+                      {children}
+                      </UserProvider>
+                  </ModulesProvider>
                 </PurchaseProvider>
               </CheckoutProvider>
             </CourseProvider>
@@ -30,6 +30,5 @@ export const GlobalProvider = ({children}) => {
         </AdminProvider>
       </AuthProvider>
     </HelmetProvider>
-
-  )
-}
+  );
+};

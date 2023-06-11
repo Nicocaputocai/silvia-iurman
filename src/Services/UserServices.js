@@ -19,6 +19,7 @@ const UserDataServices ={
     recovery:  async (email) => await service.post('/user/recovery', email),
     recoveryPassword: async (data) => await service.post('/user/recovery-password', data),
     googleLogin: async (data) => await service.post('/user/google-login', data),
+    getConstellators: async () => await service.get('/user/constellators')
 }
 
 
