@@ -12,7 +12,7 @@ const service = http;
 
 const CheckoutServices = {
     mp: (data) => service.post('/checkout/mp', data, auth),
-    pp: (data) => service.post('/checkout/pp', data),
+    pp: (data) => service.post('/checkout/pp', data, auth),
     getStatusMP: (data) => service.post('/checkout/mp/status', data, auth),
     getStatusPP: (data) => service.post('/checkout/pp/status', data, auth),
 }

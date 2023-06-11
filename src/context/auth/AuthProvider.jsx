@@ -23,12 +23,21 @@ const AuthProvider = ({children}) => {
         };
 
         try {
-            const {data} = await UserDataServices.relogin();
+            const {data, status} = await UserDataServices.relogin();
+
+            if(status !== 200){
+                authDispatch({
+                    type : TYPES.LOGOUT
+                })
+                localStorage.removeItem('token');
+                setAuthLoading(false);
+                return null;
+            }
             authDispatch({
                 type : TYPES.LOGIN,
                 payload : data.user
             })
-
+            localStorage.setItem('token', data.token);
         } catch (error) {
             console.error(error);
             localStorage.removeItem('token')

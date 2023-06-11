@@ -34,10 +34,18 @@ export const Checkout = () => {
 
     const handleCheckoutPP = async (product) => {
       setIsLoading(true)
+      const purchase = JSON.parse(localStorage.getItem('purchase'));
       try {
-        const response = await checkoutServices.pp(product);
+        const response = await checkoutServices.pp({
+          product,
+          idPurchase: purchase.id
+        });
         window.location.href = response.data.link;
       } catch (error) {
+        if(!error.response?.data.ok){
+          errorAlert(error.response?.data.msg)
+        }
+        closeModal()
         console.log(error)
       } finally {
         setIsLoading(false)
