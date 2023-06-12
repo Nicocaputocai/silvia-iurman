@@ -150,13 +150,10 @@ export const AdminPurchases = () => {
                   </Tab.Pane>
 
                   <Tab.Pane eventKey="completedFormation">
-                  {search.length === 0
-                        ? users.data.map((user, index) => {
+                  {users.data.map((user, index) => {
                             return <FilterView key={index} {...user} />;
                           })
-                        : purchasesResult.map((purchase, index) => {
-                            return <FilterView key={index} {...purchase} />;
-                          })}
+                        }
                   </Tab.Pane>
                   
                 </Tab.Content>
