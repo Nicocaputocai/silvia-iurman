@@ -40,20 +40,18 @@ const Admin = () => {
                     Administrar artículos
                   </Nav.Link>
                 </Nav.Item>
-                {/* <Nav.Item>
-          <Nav.Link eventKey="addCourse">Agregar curso</Nav.Link>
-        </Nav.Item> */}
                 <Nav.Item>
                   <Nav.Link eventKey="AdminCourse">Administrar cursos</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="AdminModule">
-                    Administrar Módulos
-                  </Nav.Link>
-                </Nav.Item>
+
                 <Nav.Item>
                   <Nav.Link eventKey="AdminPurchases">
                     Administrar inscriptos
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="AdminModule">
+                    Administrar módulos
                   </Nav.Link>
                 </Nav.Item>
               </Nav>

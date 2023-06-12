@@ -34,3 +34,7 @@ export const TYPE_PURCHASE = Object.freeze({
     ACTIVITY: 'Activity',
     MODULE: 'Module',
 });
+
+export const USER = Object.freeze({
+    GET_ALL: 'GET_ALL'
+})

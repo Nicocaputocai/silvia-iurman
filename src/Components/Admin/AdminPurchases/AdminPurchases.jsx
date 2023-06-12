@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Col, Container, Form, Nav, Row, Tab } from "react-bootstrap";
 import { usePurchases } from "../../../hooks/usePurchase";
+import { useUsers} from "../../../hooks/useUsers";
 import { FilterView } from "./FilterView/FilterView";
 
 export const AdminPurchases = () => {
-  const { purchases, setPurchases } = usePurchases();
+  const { purchases} = usePurchases();
+  const { users } = useUsers();
   const [search, setSearch] = useState([]);
   const [purchasesResult, setPurchasesResult] = useState([]);
 
@@ -13,7 +15,7 @@ export const AdminPurchases = () => {
     setSearch(e.target.value);
     filter(e.target.value);
   };
-
+  console.log(users);
   const filter = (wanted) => {
     let searchResult = purchases.data.filter((element) => {
       let name = element.user_id.firstName;
@@ -148,16 +150,10 @@ export const AdminPurchases = () => {
                   </Tab.Pane>
 
                   <Tab.Pane eventKey="completedFormation">
-                  {search.length === 0 
-                        ? purchases.data.map((purchase, index) => {
-                          if (purchase.inscription?.typeModule === "asincronico" || purchase.inscription?.typeModule === "sincronico")
-                            return <FilterView key={index} {...purchase} />;
+                  {users.data.map((user, index) => {
+                            return <FilterView key={index} {...user} />;
                           })
-                        : purchasesResult.map((purchase, index) => {
-                          if (purchase.inscription?.typeModule === "asincronico")
-                            return <FilterView key={index} {...purchase} />;
-                          })
-                          }
+                        }
                   </Tab.Pane>
                   
                 </Tab.Content>
