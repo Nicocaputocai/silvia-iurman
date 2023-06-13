@@ -1,13 +1,13 @@
 import httpLocal from '../http-local-common';
 import http from '../http-common'
+import { cookies } from '../config/cookies';
 
 const auth = {
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('token')
+        'Authorization': cookies.get('token')
     }
 }
-
 const service = http;
 
 const UserDataServices ={
