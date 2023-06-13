@@ -36,7 +36,8 @@ export const TYPE_PURCHASE = Object.freeze({
 });
 
 export const USER = Object.freeze({
-    GET_ALL: 'GET_ALL'
+    GET_ALL: 'GET_ALL',
+    EDIT: 'EDIT'
 })
 
 export const PAY = Object.freeze({

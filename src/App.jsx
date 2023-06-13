@@ -26,6 +26,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserNotLoggedLayout } from "./layouts/userNotLoggedLayout";
 import { Confirm } from "./Components/auth/confirm/Confirm";
 import { RecoveryPassword } from "./Components/auth/recover/RecoveryPassword";
+import UserProfile from "./Components/UserProfile";
 
 function App() {
 
@@ -59,6 +60,11 @@ function App() {
               <Route path='dashboard' element={
                 <UserNotLoggedLayout>
                   <Dashboard />
+                </UserNotLoggedLayout>
+              } />
+              <Route path='profile' element={
+                <UserNotLoggedLayout>
+                  <UserProfile />
                 </UserNotLoggedLayout>
               } />
             </Route>

@@ -37,7 +37,6 @@ export const EditPurchase = () => {
   };
 
   const save = async(data) =>{
-
     setLoading(true)
     Swal.fire({
       title: 'Quieres editar?',
@@ -78,12 +77,13 @@ export const EditPurchase = () => {
     <>
             <Container>
         <Form onSubmit={handleSubmit(save)}>
-          <h3>Nombre: {editPurchase.data.user_id.firstName || editPurchase.data.user_id._id.firstName } { editPurchase.data.user_id.lastName || editPurchase.data.user_id._id.lastName}</h3>
-          <h3>Inscripto a : {editPurchase.data.inscription.title || editPurchase.data.inscription.name}</h3>
-          <Form.Group>
+          <p> <b>Nombre: </b> {editPurchase.data.user_id.firstName || editPurchase.data.user_id._id.firstName } { editPurchase.data.user_id.lastName || editPurchase.data.user_id._id.lastName}</p>
+          <p> <b>Inscripto a :</b> {editPurchase.data.inscription.title || editPurchase.data.inscription.name}</p>
+          {/* <Form.Group>
             <Form.Label> Forma de Pago </Form.Label>
             <Form.Select
             defaultValue={editPurchase.data.wayToPay}
+            
               type="select"
               {...register("wayToPay", 
               {
@@ -108,11 +108,12 @@ export const EditPurchase = () => {
                                   {errors.modality.message}
                               </Alert>
             }
-          </Form.Group>
-
+          </Form.Group> */}
+          <p> <b> Forma de pago: </b> {editPurchase.data.wayToPay}</p>
           <Form.Group>
             <Form.Label> ¿Pagó? </Form.Label>
             <Form.Select
+            disabled = {editPurchase.data.wayToPay === PAY.TRANS ? false : true}
             defaultValue={editPurchase.data.pay}
               type="select"
               {...register("pay", 
@@ -127,8 +128,8 @@ export const EditPurchase = () => {
               <option value="#" disabled hidden>
                 Seleccione la modalidad.....
               </option>
-              <option value={true}>Si</option>
               <option value={false}>No</option>
+              <option value={true}>Si</option>
             </Form.Select>
             {
               errors.modality && <Alert 
@@ -140,11 +141,11 @@ export const EditPurchase = () => {
           </Form.Group>
 
           <Form.Group>
-            <Form.Label> ¿Finalizó? </Form.Label>
+            <Form.Label> ¿Finalizó?</Form.Label>
             <Form.Select
             defaultValue={editPurchase.data.finish}
               type="select"
-              {...register("pay", 
+              {...register("finish", 
               {
                 required: {
                   value: true,
@@ -156,8 +157,8 @@ export const EditPurchase = () => {
               <option value="#" disabled hidden>
                 Seleccione la modalidad.....
               </option>
-              <option value={true}>Si</option>
               <option value={false}>No</option>
+              <option value={true}>Si</option>
             </Form.Select>
             {
               errors.modality && <Alert 
@@ -192,7 +193,7 @@ export const EditPurchase = () => {
                         size="sm"
                         role="status"
                         aria-hidden="true"
-                          /> : "Editar actividad"}
+                          /> : "Editar inscripción"}
           </Button>
         </Form>
         </Container>
