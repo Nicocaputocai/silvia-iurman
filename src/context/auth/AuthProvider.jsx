@@ -4,6 +4,7 @@ import AdminUserDataServices from "../../Services/AdminUserServices";
 import AuthContext from "./AuthContext";
 import {AuthReducer, TYPES, initialState} from './AuthReducer'
 import UserDataServices from "../../Services/UserServices";
+import { cookies } from "../../config/cookies";
 
 
 const AuthProvider = ({children}) => {
@@ -48,7 +49,13 @@ const AuthProvider = ({children}) => {
     }
 
    useEffect(() => {
-         reloggedUser()
+         /* reloggedUser() */
+         if(localStorage.getItem('user')){
+            authDispatch({
+                type : TYPES.LOGIN,
+                payload : {user:JSON.parse(localStorage.getItem('user')), token:cookies.get('token')}
+            })
+         }
     }, [])
     return (
         <AuthContext.Provider
