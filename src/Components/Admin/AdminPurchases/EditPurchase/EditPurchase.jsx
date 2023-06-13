@@ -1,234 +1,203 @@
 import { useState, useEffect } from "react";
-import {Link, useParams} from 'react-router-dom'
-import {Button,Form,Container, Modal, NavItem} from 'react-bootstrap'
+import {Link, useParams, useNavigate} from 'react-router-dom'
+import {Button,Form,Container,Image, NavItem, Alert, Spinner} from 'react-bootstrap'
 import PurchasesDataServices from "../../../../Services/PurchasesServices";
-
+import {useForm} from 'react-hook-form'
+import { PageLoader } from '../../../components/PageLoader';
+import { createFormData } from '../../../../helpers';
+import {usePurchases} from '../../../../hooks/usePurchase';
+import { PURCHASE, PAY } from '../../../../types/TYPES';
+import Swal from 'sweetalert2';
+import { errorAlert, sucessAlert } from '../../../SweetAlert/Alerts';
 
 export const EditPurchase = () => {
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
+  const {purchasesDispatch} = usePurchases();
+  const [editPurchase, setEditPurchase] = useState({
+    data: {},
+    isLoading: true
+  });
+  const {register, formState:{errors, defaultValues}, handleSubmit, reset} = useForm();
+  const navigate = useNavigate();
 
-  const initialFormPurchase = {
-    firstName: "",
-    lastName: "",
-    country: "",
-    dateOfBirth: "",
-    email: "",
-    phone: "",
-    inscription: "",
-    wayToPay: "",
-    pay: "",
-    finish: ""
+  const retrievePurchase = async() =>{
+    setEditPurchase({ ...editPurchase, isLoading: true});
+    try {
+      const {data} = await PurchasesDataServices.getById(id)
+      setEditPurchase({
+        data: data.purchase,
+        isLoading: false
+      });
+
+      reset({...data.purchase})
+    } catch (error) {
+      console.log(error)
+    }
   };
 
-  const createFormData = (data) => {
-    const formData = new FormData();
-    Object.keys(data).forEach((key) => {
-      formData.append(key, data[key]);
-    });
-    return formData;
-  };
-  
-  const [editPurchase, setEditPurchase] = useState(initialFormPurchase);
-  const [submitted, setSubmitted] = useState();
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false); //Modal de confirmación
-  const handleShow = () => setShow(true); //Modal de confirmación
+  const save = async(data) =>{
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setEditPurchase({ ...editPurchase, [name]: value });
-  };
+    setLoading(true)
+    Swal.fire({
+      title: 'Quieres editar?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Editar!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
 
-  useEffect(() => {
-    const retrievePurchase = () => {
-      PurchasesDataServices.getById(id)
-        .then((response) => {
-          setEditPurchase(response.data.purchase);
-        })
-        .catch((error) => {
+        try {
+          const updateData = {
+            ...data,
+          }
+          const response = await PurchasesDataServices.editPurchase(id, createFormData(updateData))
+          purchasesDispatch({type: PURCHASE.EDIT , payload: response.data.purchase})
+          sucessAlert('Inscripción actualizada con éxito')
+          navigate('/admin')
+        } catch (error) {
           console.log(error);
-        });
-    };
+          errorAlert('No se pudo actualizar la inscripción')
+        }
+        finally{
+          setLoading(false)
+        }
+      }
+    })
+  }
+  useEffect(() =>{
     retrievePurchase();
-    }, []);
+  },[id]);
 
-    const save = () => {
-      let data = {
-        firstName: editPurchase.firstName,
-        lastName: editPurchase.lastName,
-        country: editPurchase.country,
-        dateOfBirth: editPurchase.dateOfBirth,
-        email: editPurchase.email,
-        phone: editPurchase.phone,
-        wayToPay: editPurchase.wayToPay,
-        pay: editPurchase.pay,
-        finish: editPurchase.finish,
-        inscription: editPurchase.inscription,
-      };
-      console.log({data});
-
-      PurchasesDataServices.editPurchase(id, createFormData(data))
-      .then((response) =>{
-        setEditPurchase({
-          firstName: response.data.firstName,
-          lastName: response.data.lastName,
-          country: response.data.country,
-          dateOfBirth: response.data.dateOfBirth,
-          email: response.data.email,
-          phone: response.data.phone,
-          wayToPay: response.data.wayToPay,
-          pay: response.data.pay,
-          finish: response.data.finish,
-          inscription: response.data.inscription
-        });
-        setSubmitted(true);
-        handleShow(true);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  // console.log(save);
-
+  if(editPurchase.isLoading){
+    return <PageLoader/>;
+  }
   return (
     <>
-    {submitted ? (
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Edición realizada</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Inscripción modificada correctamente</Modal.Body>
-          <Modal.Footer>
-            <Button variant="info" href="/">
-              Home
-            </Button>
-            <Button variant="success" href="/admin">
-              Volver al administrador
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      ) : (
-        <Container>
-        <Form>
+            <Container>
+        <Form onSubmit={handleSubmit(save)}>
+          <h3>Nombre: {editPurchase.data.user_id.firstName || editPurchase.data.user_id._id.firstName } { editPurchase.data.user_id.lastName || editPurchase.data.user_id._id.lastName}</h3>
+          <h3>Inscripto a : {editPurchase.data.inscription.title || editPurchase.data.inscription.name}</h3>
           <Form.Group>
-          <Form.Label>Nombre</Form.Label>
-            <Form.Control
-            defaultValue={editPurchase.firstName}
-              name="firstName"
-              type="text"
-              onChange={handleInputChange}
-            />
-            <Form.Label>Apellido</Form.Label>
-            <Form.Control
-            defaultValue={editPurchase.lastName}
-              name="lastName"
-              type="text"
-              onChange={handleInputChange}
-            />
-            <Form.Label>País de residencia</Form.Label>
-            <Form.Control
-            defaultValue={editPurchase.country}
-              name="country"
-              type="text"
-              onChange={handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Fecha de nacimiento</Form.Label>
-            <Form.Control
-              defaultValue={editPurchase.dateOfBirth}
-              type="text"
-              name="dateOfBirth"
-              onChange={handleInputChange}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>email</Form.Label>
-            <Form.Control
-              defaultValue={editPurchase.email}
-              name="email"
-              rows={10}
-              onChange={handleInputChange}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Teléfono</Form.Label>
-            <Form.Text></Form.Text>
-            <Form.Control
-              defaultValue={editPurchase.phone}
-              name="phone"
-              type="text"
-              onChange={handleInputChange}
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Se inscribió en</Form.Label>
-            <Form.Text></Form.Text>
-            <Form.Control
-              defaultValue={editPurchase.inscription}
-              name="inscription"
-              type="text"
-              onChange={handleInputChange}
-            ></Form.Control>
-            </Form.Group>
-          <Form.Group>
-            <Form.Label>Forma de pago</Form.Label>
-            <Form.Control
-            defaultValue={editPurchase.wayToPay}
-              name="wayToPay"
-              type="text"
-              onChange={handleInputChange}
-            ></Form.Control>
+            <Form.Label> Forma de Pago </Form.Label>
+            <Form.Select
+            defaultValue={editPurchase.data.wayToPay}
+              type="select"
+              {...register("wayToPay", 
+              {
+                required: {
+                  value: true,
+                  message: "La modalidad es requerida",
+                }
+              })
+              }
+            >
+              <option value="#" disabled hidden>
+                Seleccione la modalidad.....
+              </option>
+              <option value={PAY.MP}>Mercado Pago</option>
+              <option value={PAY.PP}>Paypal</option>
+              <option value={PAY.TRANS}>Transferencia/efectivo</option>
+            </Form.Select>
+            {
+              errors.modality && <Alert 
+                                  variant='danger'
+                                  className='p-2 mt-2'>
+                                  {errors.modality.message}
+                              </Alert>
+            }
           </Form.Group>
 
           <Form.Group>
-            <Form.Label> ¿Pagó?</Form.Label>
+            <Form.Label> ¿Pagó? </Form.Label>
             <Form.Select
-              name="pay"
-              onChange={handleInputChange}
+            defaultValue={editPurchase.data.pay}
               type="select"
-              defaultValue={editPurchase.pay}
+              {...register("pay", 
+              {
+                required: {
+                  value: true,
+                  message: "La modalidad es requerida",
+                }
+              })
+              }
             >
-              <option value="#" disabled>
-                Seleccionar si es importante...
+              <option value="#" disabled hidden>
+                Seleccione la modalidad.....
               </option>
-              <option value="0">No</option>
-              <option value="1">Si</option>
+              <option value={true}>Si</option>
+              <option value={false}>No</option>
             </Form.Select>
+            {
+              errors.modality && <Alert 
+                                  variant='danger'
+                                  className='p-2 mt-2'>
+                                  {errors.modality.message}
+                              </Alert>
+            }
           </Form.Group>
 
           <Form.Group>
-            <Form.Label> ¿Finalizó?</Form.Label>
+            <Form.Label> ¿Finalizó? </Form.Label>
             <Form.Select
-              name="pay"
-              onChange={handleInputChange}
+            defaultValue={editPurchase.data.finish}
               type="select"
-              defaultValue={editPurchase.finish}
+              {...register("pay", 
+              {
+                required: {
+                  value: true,
+                  message: "La modalidad es requerida",
+                }
+              })
+              }
             >
-              <option value="#" disabled>
-                Seleccionar si es importante...
+              <option value="#" disabled hidden>
+                Seleccione la modalidad.....
               </option>
-              <option value="0">No</option>
-              <option value="1">Si</option>
+              <option value={true}>Si</option>
+              <option value={false}>No</option>
             </Form.Select>
+            {
+              errors.modality && <Alert 
+                                  variant='danger'
+                                  className='p-2 mt-2'>
+                                  {errors.modality.message}
+                              </Alert>
+            }
           </Form.Group>
+         
           <br />
           <NavItem as={Link} to={`/admin`}>
-          <Button className="mb-3" type={Link} size="lg" variant="danger">
-            
-            Cancelar
-          </Button>
+            <Button 
+            className="mb-3" 
+            type={Link} size="lg" v
+            ariant="danger"
+            disabled={loading}
+            >
+              Cancelar
+            </Button>
           </NavItem>
           <Button
             className="mb-3 float-end"
             size="lg"
             variant="primary"
-            onClick={save}
+            type="submit"
+            disabled={loading}
           >
-            Editar inscripción
+            {loading ? <Spinner 
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                          /> : "Editar actividad"}
           </Button>
         </Form>
         </Container>
-      )}
+      
+
     </>
   )
 }

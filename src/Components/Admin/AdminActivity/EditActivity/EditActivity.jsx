@@ -12,8 +12,8 @@ import Swal from 'sweetalert2';
 import { errorAlert, sucessAlert } from '../../../SweetAlert/Alerts';
 
 export const EditActivity = () => {
-  const {activitiesDispatch} = useActivities()
-  const [loading, setLoading] = useState(false)
+  const {activitiesDispatch} = useActivities();
+  const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const [editActivity, setEditActivity] = useState({
     data: {},
@@ -22,7 +22,7 @@ export const EditActivity = () => {
   const {register, formState:{errors, defaultValues}, handleSubmit, reset} = useForm();
 
   const [selectedImage, setSelectedImage] = useState(null); // Vista previa de la imagen
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleInputFileChange = (e) => {
     //Vista previa de la foto
     if (e.target.files && e.target.files.length > 0) {

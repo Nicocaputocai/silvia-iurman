@@ -38,3 +38,14 @@ export const TYPE_PURCHASE = Object.freeze({
 export const USER = Object.freeze({
     GET_ALL: 'GET_ALL'
 })
+
+export const PAY = Object.freeze({
+    MP: 'mercado-pago',
+    PP: 'paypal',
+    TRANS: 'transferencia',
+})
+
+export const TF = Object.freeze({
+    TRUE: true,
+    FALSE: false
+})

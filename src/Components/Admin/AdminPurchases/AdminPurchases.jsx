@@ -15,7 +15,6 @@ export const AdminPurchases = () => {
     setSearch(e.target.value);
     filter(e.target.value);
   };
-  console.log(users);
   const filter = (wanted) => {
     let searchResult = purchases.data.filter((element) => {
       let name = element.user_id.firstName;
