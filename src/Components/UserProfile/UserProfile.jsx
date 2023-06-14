@@ -10,6 +10,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from 'sweetalert2';
 import { errorAlert, sucessAlert } from '../SweetAlert/Alerts';
 import { USER } from "../../types/TYPES";
+import { TYPES } from "../../context/auth/AuthReducer";
 
 export const UserProfile = () => {
     const {auth, authDispatch} = useAuth()
@@ -19,7 +20,7 @@ export const UserProfile = () => {
         data: {},
         isLoading: true,
       });
-      const {register, formState:{errors, defaultValues}, handleSubmit, reset} = useForm();
+      const {register, formState:{errors, defaultValues}, handleSubmit, reset} = useForm({defaultValues:{...auth.user, birthday: auth.user.dateOfBirth}});
       const [selectedImage, setSelectedImage] = useState(null); // Vista previa de la imagen
       const navigate = useNavigate();
       const handleInputFileChange = (e) => {
@@ -31,21 +32,22 @@ export const UserProfile = () => {
         setEditUser({ ...editUser, [name]: files[0] });
       };
 
-      const retrieveUser = async () => {
-        setEditUser({ ...editUser, isLoading: true });
-        try {
-          const {data} = await UserDataServices.getConstellators()
-          setEditUser({
-            data: data.user,
-            isLoading: false,
-          });
-          reset({
-            ...data.user,
-          });
-        } catch (error) {
-          console.log(error);
-        } 
-      };
+      // const retrieveUser = async () => {
+      //   setEditUser({ ...editUser, isLoading: true });
+      //   try {
+      //     const {data} = await UserDataServices.getConstellators()
+      //     setEditUser({
+      //       data: data.user,
+      //       isLoading: false,
+      //     });
+      //     reset({
+      //       ...data.user,
+      //     });
+      //   } catch (error) {
+      //     console.log(error);
+      //   } 
+      // };
+
     const save = async (data) => {
         setLoading(true)
         Swal.fire({
@@ -63,10 +65,16 @@ export const UserProfile = () => {
                 ...data,
                 avatar: selectedImage ? selectedImage : editUser.data.avatar,
               }
-              const response = await UserDataServices.editUser(id, createFormData(updateData))
-              authDispatch({type: USER.EDIT , payload: response.data.user})
+              console.log(updateData);
+              const response = await UserDataServices.updateUser(createFormData(updateData))
+              // const responseUser = await UserDataServices.relogin();
+              authDispatch({type: TYPES.UPDATE , payload: response.data.user})
+              localStorage.setItem("user",JSON.stringify(response.data.user))
+              // console.log(responseUser.data.user);
+              // console.log(auth.user);
               sucessAlert('Usuario actualizado con éxito')
-              navigate('/profile')
+              reset()
+              navigate('/', {replace:true}) //Evita que se vuelva al login
             } catch (error) {
               console.log(error);
               errorAlert('No se pudo actualizar el usuario')
@@ -77,27 +85,29 @@ export const UserProfile = () => {
             
           }
         })
-  
-        
+  // console.log(data);
+      
     };
 
-    useEffect(() => {
-        retrieveUser();
-      }, [auth]);
+    // useEffect(() => {
+    //   defaultValues({...auth.user, birthday: auth.user.dateOfBirth})
+    //   }, []);
     
-      if (editUser.isLoading) {
-        return <PageLoader/>;
-      }
+      // if (editUser.isLoading) {
+      //   return <PageLoader/>;
+      // }
 
   return (
   <>
   <Container>
     <h2>Editar perfil de usuario</h2>
+    {/* <span>{auth.user.firstName}</span> */}
     <Form onSubmit={handleSubmit(save)}>
           <Form.Group>
             <Form.Label>Nombre</Form.Label>
             <Form.Control
               type="text"
+              // defaultValue={auth.user.firstName}
               {...register("firstName", {
                 required: {
                   value: true,
@@ -117,6 +127,7 @@ export const UserProfile = () => {
             <Form.Label>Apellido</Form.Label>
             <Form.Control
               type="text"
+              // defaultValue={auth.user.lastName}
               {...register("lastName", {
                 required: {
                   value: true,
@@ -145,7 +156,7 @@ export const UserProfile = () => {
               <div
               >
                 <Image
-                  className={styles}
+                  style={{ maxWidth: "100%", maxHeight: 320 }}
                   src={URL.createObjectURL(selectedImage)}
                   alt="Thumb"
                   fluid= "true"
@@ -153,7 +164,8 @@ export const UserProfile = () => {
               </div>
             ): 
             <Image
-              src={`https://api-silvia.divisioncode.net.ar/img/${editUser.data?.avatar}`}
+              // src={`https://api-silvia.divisioncode.net.ar/img/${editUser.data?.avatar}`}
+              src={`http://localhost:4000/img/${editUser.data.avatar}`}
               fluid= "true"
             ></Image>
             }
@@ -162,8 +174,9 @@ export const UserProfile = () => {
             <Form.Label>Fecha de nacimiento</Form.Label>
             <Form.Control
               type="date"
-              name="dateOfBirth"
-              {...register("dateOfBirth", {
+              // defaultValue={auth.user.dateOfBirth}
+              name="birthday"
+              {...register("birthday", {
                 required: {
                   value: true,
                   message: "La fecha de nacimiento es requerida",
@@ -183,9 +196,10 @@ export const UserProfile = () => {
             
           </Form.Group>
           <Form.Group>
-            <Form.Label>phone</Form.Label>
+            <Form.Label>Teléfono</Form.Label>
             <Form.Control
               type="text"
+              // defaultValue={auth.user.phone}
               {...register("phone", {
                 required: {
                   value: true,
@@ -199,6 +213,27 @@ export const UserProfile = () => {
                                       variant='danger'
                                       className='p-2 mt-2'>
                                       {errors.phone.message}
+                                    </Alert>
+            }
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>País</Form.Label>
+            <Form.Control
+              type="text"
+              // defaultValue={auth.user.country}
+              {...register("country", {
+                required: {
+                  value: true,
+                  message: "El país es requerido",
+                }
+                })
+              }
+            ></Form.Control>
+            {
+              errors.country && <Alert 
+                                      variant='danger'
+                                      className='p-2 mt-2'>
+                                      {errors.country.message}
                                     </Alert>
             }
           </Form.Group>

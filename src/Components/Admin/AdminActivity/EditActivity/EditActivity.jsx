@@ -126,7 +126,7 @@ export const EditActivity = () => {
               <div
               >
                 <Image
-                  className={styles}
+                  style={{ maxWidth: "100%", maxHeight: 320 }}
                   src={URL.createObjectURL(selectedImage)}
                   alt="Thumb"
                   fluid= "true"

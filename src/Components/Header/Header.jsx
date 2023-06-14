@@ -15,6 +15,7 @@ export const Header = () => {
     localStorage.removeItem('user')
     cookies.remove('token')
   }
+  console.log(auth);
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand as={Link} to="/">
