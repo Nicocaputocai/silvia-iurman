@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import {Link, useParams, useNavigate} from 'react-router-dom'
-import {Button,Form,Container,Image, NavItem, Alert, Spinner} from 'react-bootstrap'
+import {Button,Form,Container,Image, NavItem, Alert, Spinner, Badge} from 'react-bootstrap'
 import PurchasesDataServices from "../../../../Services/PurchasesServices";
 import {useForm} from 'react-hook-form'
 import { PageLoader } from '../../../components/PageLoader';
@@ -9,11 +9,13 @@ import {usePurchases} from '../../../../hooks/usePurchase';
 import { PURCHASE, PAY } from '../../../../types/TYPES';
 import Swal from 'sweetalert2';
 import { errorAlert, sucessAlert } from '../../../SweetAlert/Alerts';
+import CheckoutServices from "../../../../Services/CheckoutServices";
 
 export const EditPurchase = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const {purchasesDispatch} = usePurchases();
+  const [payLoading, setPayLoading] = useState(false)
   const [editPurchase, setEditPurchase] = useState({
     data: {},
     isLoading: true
@@ -35,6 +37,30 @@ export const EditPurchase = () => {
       console.log(error)
     }
   };
+
+  const confirmPay = async (data) => {
+    setPayLoading(true)
+    try{
+      const response = await CheckoutServices.confirmTransfer({id:data})
+      if(response.status !== 200){
+        errorAlert(response.data.msg)
+      }
+      setEditPurchase({
+          ...editPurchase,
+          data: response.data.purchase,
+        })
+        sucessAlert(response.data.msg)
+    }catch(error){
+      console.log(error)
+      errorAlert(error.response.data.msg)
+    }finally {
+      setEditPurchase({
+        ...editPurchase,
+        isLoading: false
+      })
+      setPayLoading(false)
+    }
+  }
 
   const save = async(data) =>{
     setLoading(true)
@@ -110,7 +136,7 @@ export const EditPurchase = () => {
             }
           </Form.Group> */}
           <p> <b> Forma de pago: </b> {editPurchase.data.wayToPay}</p>
-          <Form.Group>
+          {/* <Form.Group>
             <Form.Label> ¿Pagó? </Form.Label>
             <Form.Select
             disabled = {editPurchase.data.wayToPay === PAY.TRANS ? false : true}
@@ -132,13 +158,36 @@ export const EditPurchase = () => {
               <option value={true}>Si</option>
             </Form.Select>
             {
-              errors.modality && <Alert 
+              errors.pay && <Alert 
                                   variant='danger'
                                   className='p-2 mt-2'>
-                                  {errors.modality.message}
+                                  {errors.pay.message}
                               </Alert>
             }
-          </Form.Group>
+          </Form.Group> */}
+         <div className="d-flex justify-content-start align-items-center gap-2">
+          <p className="m-0"> <b> Pago: </b> </p>
+            <Badge 
+            className="d-flex align-items-center"
+            pill 
+            bg={editPurchase.data.pay ? "success" : "warning"}
+            text={editPurchase.data.pay ? "light" : "dark"}>
+            {editPurchase.data.pay ? "Confirmado" : "Pendiente..."}
+            </Badge>
+            <Button 
+            variant="primary" 
+            disabled={editPurchase.data.pay}
+            onClick={() => confirmPay(editPurchase.data._id)}
+            >{payLoading ? <Spinner 
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                          /> :
+                          'Confirmar pago'
+            }</Button>
+         </div>
 
           <Form.Group>
             <Form.Label> ¿Finalizó?</Form.Label>

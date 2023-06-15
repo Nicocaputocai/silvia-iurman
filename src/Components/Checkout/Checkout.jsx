@@ -4,12 +4,14 @@ import { Button, Modal, Spinner } from 'react-bootstrap';
 import checkoutServices from '../../Services/CheckoutServices'
 import {mp, pp} from '../../assets/images'
 import Styles from './Styles.module.css'
-import { errorAlert } from '../SweetAlert/Alerts';
+import { errorAlert, sucessAlert } from '../SweetAlert/Alerts';
 import useAuth from '../../hooks/useAuth';
+import CheckoutServices from '../../Services/CheckoutServices';
 
 export const Checkout = () => {
     const {checkout, addToCheckout, closeModal} = useCheckout();
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
+    const [transferLoading, setTransferLoading] = useState(false);
     const {auth} = useAuth()
 
     const handleCheckoutMP = async (product) => {
@@ -50,6 +52,29 @@ export const Checkout = () => {
       } finally {
         setIsLoading(false)
       }
+    }
+
+    const handleCheckoutTransfer = async (product) => {
+      setTransferLoading(true)
+      const purchase = JSON.parse(localStorage.getItem('purchase'));
+      const data = {
+        idPurchase: purchase.id,
+        type: purchase.type,
+        pricePurchase: product.pricePesos,
+      }
+      try {
+        const response = await CheckoutServices.transfer(data)
+        if(!response.data.ok){
+          errorAlert(response.data.msg)
+        }
+        sucessAlert(response.data.msg)
+        closeModal()
+      } catch (error) {
+        errorAlert(error.response.data.msg)
+      } finally {
+        setTransferLoading(false)
+      }
+
     }
   return (
       <Modal show={checkout.modal} onHide={closeModal}>
@@ -92,7 +117,11 @@ export const Checkout = () => {
                   : <img src={pp} alt="" />}
                 </button>
             }
-
+              <p className='text-center m-0'>- o -</p>
+              <p className='text-center m-0'>Abonar por transferencia</p>
+            <Button variant="primary" onClick={() => handleCheckoutTransfer(checkout.product)}>
+              {transferLoading ? <Spinner animation="border" variant="light" size="sm" /> : 'Enviar datos al correo'}
+            </Button>
             </div>
         </Modal.Body>
         <Modal.Footer>
