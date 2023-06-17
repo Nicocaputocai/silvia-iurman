@@ -31,7 +31,6 @@ export const EditPurchase = () => {
         data: data.purchase,
         isLoading: false
       });
-
       reset({...data.purchase})
     } catch (error) {
       console.log(error)
@@ -62,7 +61,7 @@ export const EditPurchase = () => {
     }
   }
 
-  const save = async(data) =>{
+  const save = async (dataForm) => {
     setLoading(true)
     Swal.fire({
       title: 'Quieres editar?',
@@ -73,14 +72,16 @@ export const EditPurchase = () => {
       confirmButtonText: 'Si, Editar!'
     }).then(async (result) => {
       if (result.isConfirmed) {
-
         try {
-          const updateData = {
-            ...data,
-          }
-          const response = await PurchasesDataServices.editPurchase(id, createFormData(updateData))
-          purchasesDispatch({type: PURCHASE.EDIT , payload: response.data.purchase})
-          sucessAlert('Inscripción actualizada con éxito')
+          const {data} = await PurchasesDataServices.editPurchase(id, {
+            ...dataForm,
+          })
+          purchasesDispatch({
+            type: PURCHASE.EDIT,
+            payload: data.purchaseUpdated
+          })
+          sucessAlert('Módulo editado correctamente')
+      
           navigate('/admin')
         } catch (error) {
           console.log(error);
@@ -103,7 +104,7 @@ export const EditPurchase = () => {
     <>
             <Container>
         <Form onSubmit={handleSubmit(save)}>
-          <p> <b>Nombre: </b> {editPurchase.data.user_id.firstName || editPurchase.data.user_id._id.firstName } { editPurchase.data.user_id.lastName || editPurchase.data.user_id._id.lastName}</p>
+          <p> <b>Nombre: </b> {editPurchase.data.user_id?.firstName || editPurchase.data.user_id._id?.firstName } { editPurchase.data.user_id?.lastName || editPurchase.data.user_id._id?.lastName}</p>
           <p> <b>Inscripto a :</b> {editPurchase.data.inscription.title || editPurchase.data.inscription.name}</p>
           {/* <Form.Group>
             <Form.Label> Forma de Pago </Form.Label>
@@ -193,6 +194,7 @@ export const EditPurchase = () => {
             <Form.Label> ¿Finalizó?</Form.Label>
             <Form.Select
             defaultValue={editPurchase.data.finish}
+            name="finish"
               type="select"
               {...register("finish", 
               {
