@@ -32,22 +32,6 @@ export const UserProfile = () => {
         setEditUser({ ...editUser, [name]: files[0] });
       };
 
-      // const retrieveUser = async () => {
-      //   setEditUser({ ...editUser, isLoading: true });
-      //   try {
-      //     const {data} = await UserDataServices.getConstellators()
-      //     setEditUser({
-      //       data: data.user,
-      //       isLoading: false,
-      //     });
-      //     reset({
-      //       ...data.user,
-      //     });
-      //   } catch (error) {
-      //     console.log(error);
-      //   } 
-      // };
-
     const save = async (data) => {
         setLoading(true)
         Swal.fire({
