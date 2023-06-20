@@ -15,7 +15,7 @@ const authFormData = {
         'Authorization': cookies.get('token')
     }
 }
-const service = http;
+const service = httpLocal;
 
 const UserDataServices ={
     register: async (data) => await service.post('/user/register', data),

@@ -20,7 +20,8 @@ export const Checkout = () => {
       try {
         const response = await checkoutServices.mp({
           product,
-          idPurchase: purchase.id
+          idPurchase: purchase.id,
+          type: purchase.type,
         });
         window.location.href = response.data.init_url;
       } catch (error) {
@@ -40,7 +41,9 @@ export const Checkout = () => {
       try {
         const response = await checkoutServices.pp({
           product,
-          idPurchase: purchase.id
+          idPurchase: purchase.id,
+          type: purchase.type,
+
         });
         window.location.href = response.data.link;
       } catch (error) {
