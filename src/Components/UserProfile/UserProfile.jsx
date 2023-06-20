@@ -45,41 +45,30 @@ export const UserProfile = () => {
           if (result.isConfirmed) {
   
             try {
-              const updateData = {
-                ...data,
-                avatar: selectedImage ? selectedImage : editUser.data.avatar,
+              const response = await UserDataServices.updateUser(data)
+              if(selectedImage){
+                const formData = new FormData();
+                formData.append('avatar', selectedImage)
+                const responseAvatar = await UserDataServices.updateAvatarUser(formData)
+                response.data.user.avatar = responseAvatar.data.avatar
               }
-              console.log(updateData);
-              const response = await UserDataServices.updateUser(createFormData(updateData))
-              // const responseUser = await UserDataServices.relogin();
               authDispatch({type: TYPES.UPDATE , payload: response.data.user})
               localStorage.setItem("user",JSON.stringify(response.data.user))
-              // console.log(responseUser.data.user);
-              // console.log(auth.user);
               sucessAlert('Usuario actualizado con éxito')
               reset()
-              navigate('/', {replace:true}) //Evita que se vuelva al login
+              /* navigate('/', {replace:true}) */ //Evita que se vuelva al login * */
             } catch (error) {
               console.log(error);
               errorAlert('No se pudo actualizar el usuario')
             }
             finally{
               setLoading(false)
-            }
+            } 
             
           }
         })
-  // console.log(data);
-      
-    };
+      }
 
-    // useEffect(() => {
-    //   defaultValues({...auth.user, birthday: auth.user.dateOfBirth})
-    //   }, []);
-    
-      // if (editUser.isLoading) {
-      //   return <PageLoader/>;
-      // }
 
   return (
   <>
