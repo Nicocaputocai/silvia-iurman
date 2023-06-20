@@ -69,7 +69,7 @@ export const UserProfile = () => {
         })
       }
 
-
+      console.log(editUser)
   return (
   <>
   <Container>
@@ -137,7 +137,7 @@ export const UserProfile = () => {
               </div>
             ): 
             <Image
-              src={`https://api-silvia.divisioncode.net.ar/img/${editUser.data?.avatar}`}
+              src={`https://api-silvia.divisioncode.net.ar/img/${auth.user.avatar}`}
               //src={`http://localhost:4000/img/${editUser.data?.avatar}`}
               fluid= "true"
             ></Image>
