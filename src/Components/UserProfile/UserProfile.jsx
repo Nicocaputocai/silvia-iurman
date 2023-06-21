@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import { errorAlert, sucessAlert } from '../SweetAlert/Alerts';
 import { USER } from "../../types/TYPES";
 import { TYPES } from "../../context/auth/AuthReducer";
+import {paises} from '../../assets/paises'
 
 export const UserProfile = () => {
     const {auth, authDispatch} = useAuth()
@@ -189,25 +190,29 @@ export const UserProfile = () => {
                                     </Alert>
             }
           </Form.Group>
-          <Form.Group>
+          <Form.Group className="mb-3" controlId="country">
             <Form.Label>País</Form.Label>
-            <Form.Control
-              type="text"
-              // defaultValue={auth.user.country}
-              {...register("country", {
+            <Form.Select
+              //defaultValue={auth.user?.country}
+              {...register('country', {
                 required: {
                   value: true,
-                  message: "El país es requerido",
+                  message: 'Campo requerido'
                 }
-                })
+              })}>
+              <option value='#' hidden>Selecciona tu país</option>
+              {
+                paises.map((pais, index) => <option value={pais} key={index}>{pais}</option>)
               }
-            ></Form.Control>
+            </Form.Select>
             {
-              errors.country && <Alert 
-                                      variant='danger'
-                                      className='p-2 mt-2'>
-                                      {errors.country.message}
-                                    </Alert>
+              errors.country && (
+                (<Alert
+                  variant='danger'
+                  className='p-2 mt-2'>
+                  Selecciona tu pais
+                </Alert>)
+              )
             }
           </Form.Group>
           <br />

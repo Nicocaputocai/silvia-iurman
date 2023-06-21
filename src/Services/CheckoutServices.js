@@ -8,7 +8,7 @@ const auth = {
         'Authorization': cookies.get('token')
     }
 }
-const service = http;
+const service = httpLocal;
 
 const CheckoutServices = {
     mp: async (data) => await service.post('/checkout/mp', data, auth),

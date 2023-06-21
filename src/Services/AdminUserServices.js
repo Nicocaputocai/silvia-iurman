@@ -1,7 +1,7 @@
 import httpLocal from '../http-local-common';
 import http from '../http-common'
 
-const service = http;
+const service = httpLocal;
 
 const AdminUserDataServices ={
     getAllAdminUsers: () => service.get('/auth/admin/profile'),

@@ -185,24 +185,46 @@ export const EditActivity = () => {
             }
           </Form.Group>
           <Form.Group>
-            <Form.Label>Precio</Form.Label>
+            <Form.Label>Precio en Pesos</Form.Label>
             <Form.Text></Form.Text>
             <Form.Control
               type="text"
-              {...register("price", {
+              {...register("pricePesos", {
                 required: {
                   value: true,
-                  message: "El precio es requerido",
+                  message: "El precio en pesos es requerido",
                 }
                 
                 })
               }
             ></Form.Control>
             {
-              errors.price && <Alert 
+              errors.pricePesos && <Alert 
                                   variant='danger'
                                   className='p-2 mt-2'>
-                                  {errors.price.message}
+                                  {errors.pricePesos.message}
+                              </Alert>
+            }
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Precio en Dolares</Form.Label>
+            <Form.Text></Form.Text>
+            <Form.Control
+              type="text"
+              {...register("priceDolar", {
+                required: {
+                  value: true,
+                  message: "El precio en dolares es requerido",
+                }
+                
+                })
+              }
+            ></Form.Control>
+            {
+              errors.priceDolar && <Alert 
+                                  variant='danger'
+                                  className='p-2 mt-2'>
+                                  {errors.priceDolar.message}
                               </Alert>
             }
           </Form.Group>
