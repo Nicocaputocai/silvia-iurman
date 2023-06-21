@@ -30,7 +30,7 @@ export const Login = () => {
       localStorage.setItem('user', JSON.stringify(response.data.user));
       authDispatch({type:TYPES.LOGIN, payload:{user:response.data.user, token:response.data.token}});
       sucessAlert('Bienvenido');
-      navigate(-1);
+      window.location.reload();
 
     } catch (error) {
       console.error(error);
