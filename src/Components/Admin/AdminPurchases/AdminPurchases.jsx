@@ -1,14 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Container, Form, Nav, Row, Tab } from "react-bootstrap";
 import { usePurchases } from "../../../hooks/usePurchase";
 import { useUsers} from "../../../hooks/useUsers";
 import { FilterView } from "./FilterView/FilterView";
+import { useActivities } from "../../../hooks/useActivities";
+
+
 
 export const AdminPurchases = () => {
   const { purchases} = usePurchases();
+  const {activities} = useActivities()
   const { users } = useUsers();
   const [search, setSearch] = useState([]);
   const [purchasesResult, setPurchasesResult] = useState([]);
+  const [keysActivitiesGroup,setKeysActivitiesGroup] = useState([]);
+  const [objActivitiesGroup,setObjActivitiesGroup] = useState([]);
 
   const handleInputChange = (e) => {
     e.preventDefault();
@@ -17,16 +23,16 @@ export const AdminPurchases = () => {
   };
   const filter = (wanted) => {
     let searchResult = purchases.data.filter((element) => {
-      let name = element.user_id.firstName;
-      let lastName = element.user_id.lastName;
-      let fullname = element.user_id.firstName + " " + element.user_id.lastName;
-      let nameFull = element.user_id.lastName + " " + element.user_id.firstName;
-      let country = element.user_id.country !== undefined && element.user_id.country;
-      let phone = element.user_id.phone !== undefined && element.user_id.phone;
-      let email = element.user_id.email!== undefined && element.user_id.email;
+      let firstName = element.user_id?.firstName || "";
+      let lastName = element.user_id?.lastName || "";
+      let fullname = element.user_id?.firstName && element.user_id.lastName || "";
+      let nameFull = element.user_id?.firstName && element.user_id.lastName || "";
+      let country = element.user_id?.country || "";
+      let phone = element.user_id?.phone || "";
+      let email = element.user_id?.email || "";
 
       if (
-        name.toString().toLowerCase().includes(wanted.toLowerCase()) ||
+        firstName.toString().toLowerCase().includes(wanted.toLowerCase()) ||
         lastName.toString().toLowerCase().includes(wanted.toLowerCase()) ||
         country.toString().toLowerCase().includes(wanted.toLowerCase()) ||
         phone.toString().toLowerCase().includes(wanted.toLowerCase()) ||
@@ -40,7 +46,30 @@ export const AdminPurchases = () => {
     setPurchasesResult(searchResult);
   };
 
+const gruopingActivities = () =>{
+  const objActivitiesGroup = {};
+  console.log(purchases.data[0]?.inscription);
+  activities.data.forEach(({ title, _id:_idActivity }) => {
+    const purchasesFilter = purchases.data.filter((e)=>e.inscription).filter(({ inscription: { _id:_idInscription } }) =>
+      _idInscription === _idActivity
+    );
+    if(purchasesFilter.length)
+    objActivitiesGroup[title] = purchasesFilter;
+  });
+  return objActivitiesGroup
+};
 
+// console.log(gruopingActivities());
+
+const mappingActivitiesGroup = async() =>{
+  const objectActivitiesGroup = await gruopingActivities();
+  const keysActivitiesGroup = Object.keys(objectActivitiesGroup)
+  setKeysActivitiesGroup(keysActivitiesGroup)
+  setObjActivitiesGroup(objectActivitiesGroup)
+}
+useEffect(() =>{
+  mappingActivitiesGroup()
+},[activities])
 
   return (
     <>
@@ -103,19 +132,23 @@ export const AdminPurchases = () => {
                     </Row>
                   </Tab.Pane>
                   <Tab.Pane eventKey="activities">
-                  {search.length === 0 
-                        ? purchases.data.map((purchase, index) => {
-                          if (purchase?.inscriptionModel === "Activity")
-                            return <FilterView key={index} {...purchase} />;
-                          })
+                  {search.length === 0 ?
+                          keysActivitiesGroup.map((key) => (
+                            <div key={key}>
+                            <h2>Titulo actividad: {key}</h2>
+                            <ul>
+                            {objActivitiesGroup[key].map((purchase, index) => 
+                               <FilterView key={index} {...purchase} />
+                              )}
+                            </ul>
+                            </div>
+                          ))
+
                         : purchasesResult.map((purchase, index) => {
                           if (purchase?.inscriptionModel === "Activity")
                             return <FilterView key={index} {...purchase} />;
-                          })}
-                    {/* {purchases.data.map((purchase, index) => {
-                      if (purchase.inscriptionModel === "Activity")
-                        return <FilterView key={index} {...purchase} />;
-                    })} */}
+                          })
+                          }
                   </Tab.Pane>
                   <Tab.Pane eventKey="liveModules">
                   {search.length === 0 
@@ -127,10 +160,7 @@ export const AdminPurchases = () => {
                           if (purchase.inscription?.typeModule === "sincronico")
                             return <FilterView key={index} {...purchase} />;
                           })}
-                    {/* {purchases.data.map((purchase, index) => {
-                      if (purchase.inscription?.typeModule === "sincronico")
-                        return <FilterView key={index} {...purchase} />;
-                    })} */}
+
                   </Tab.Pane>
                   <Tab.Pane eventKey="recordedModules">
                   {search.length === 0 
@@ -142,10 +172,7 @@ export const AdminPurchases = () => {
                           if (purchase.inscription?.typeModule === "asincronico")
                             return <FilterView key={index} {...purchase} />;
                           })}
-                    {/* {purchases.data.map((purchase, index) => {
-                      if (purchase.inscription?.typeModule === "asincronico")
-                        return <FilterView key={index} {...purchase} />;
-                    })} */}
+
                   </Tab.Pane>
 
                   <Tab.Pane eventKey="completedFormation">
