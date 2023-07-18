@@ -191,7 +191,7 @@ export const Register = () => {
                                 }
                             </Button>
 
-                            <Form.Text className="text-muted text-center">
+                            <Form.Text className="text-muted text-center fs-6">
                                 ¿Ya tienes una cuenta? <Link to="/login">Accedé</Link>
                             </Form.Text>
                         </Form>
