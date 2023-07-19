@@ -1,27 +1,33 @@
 import { useEffect, useRef, useState } from "react";
-import { Button, Col, Container, Form, Nav, Row, Tab } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  Nav,
+  Row,
+  Tab,
+  Accordion,
+} from "react-bootstrap";
 import { usePurchases } from "../../../hooks/usePurchase";
 import { useActivities } from "../../../hooks/useActivities";
 import { useModules } from "../../../hooks/useModules";
-import { useUsers} from "../../../hooks/useUsers";
+import { useUsers } from "../../../hooks/useUsers";
 import { FilterView } from "./FilterView/FilterView";
 import { useReactToPrint } from "react-to-print";
 
-
-
-
-
 export const AdminPurchases = () => {
-  const { purchases} = usePurchases();
-  const {activities} = useActivities();
-  const {modules} = useModules();
+  const { purchases } = usePurchases();
+  const { activities } = useActivities();
+  const { modules } = useModules();
   const { users } = useUsers();
   const [search, setSearch] = useState([]);
   const [purchasesResult, setPurchasesResult] = useState([]);
-  const [keysActivitiesGroup,setKeysActivitiesGroup] = useState([]);
-  const [objActivitiesGroup,setObjActivitiesGroup] = useState([]);
-  const [keysModulesGroup,setKeysModulesGroup] = useState([]);
-  const [objModulesGroup,setObjModulesGroup] = useState([]);
+  const [keysActivitiesGroup, setKeysActivitiesGroup] = useState([]);
+  const [objActivitiesGroup, setObjActivitiesGroup] = useState([]);
+  const [keysModulesGroup, setKeysModulesGroup] = useState([]);
+  const [objModulesGroup, setObjModulesGroup] = useState([]);
+
   const componentPDF = useRef();
 
   const handleInputChange = (e) => {
@@ -33,8 +39,10 @@ export const AdminPurchases = () => {
     let searchResult = purchases.data.filter((element) => {
       let firstName = element.user_id?.firstName || "";
       let lastName = element.user_id?.lastName || "";
-      let fullname = element.user_id?.firstName && element.user_id.lastName || "";
-      let nameFull = element.user_id?.firstName && element.user_id.lastName || "";
+      let fullname =
+        (element.user_id?.firstName && element.user_id.lastName) || "";
+      let nameFull =
+        (element.user_id?.firstName && element.user_id.lastName) || "";
       let country = element.user_id?.country || "";
       let phone = element.user_id?.phone || "";
       let email = element.user_id?.email || "";
@@ -54,57 +62,53 @@ export const AdminPurchases = () => {
     setPurchasesResult(searchResult);
   };
 
-const gruopingActivities = () =>{
-  const objActivitiesGroup = {};
-  activities.data.forEach(({ title, _id:_idActivity }) => {
-    const purchasesFilter = purchases.data.filter((e)=>e.inscription).filter(({ inscription: { _id:_idInscription } }) =>
-      _idInscription === _idActivity
-    );
-    if(purchasesFilter.length)
-    objActivitiesGroup[title] = purchasesFilter;
+  const gruopingActivities = () => {
+    const objActivitiesGroup = {};
+    activities.data.forEach(({ title, _id: _idActivity }) => {
+      const purchasesFilter = purchases.data
+        .filter((e) => e.inscription)
+        .filter(
+          ({ inscription: { _id: _idInscription } }) =>
+            _idInscription === _idActivity
+        );
+      if (purchasesFilter.length) objActivitiesGroup[title] = purchasesFilter;
+    });
+    return objActivitiesGroup;
+  };
+
+  const mappingActivitiesGroup = async () => {
+    const objectActivitiesGroup = await gruopingActivities();
+    const keysActivitiesGroup = Object.keys(objectActivitiesGroup);
+    setKeysActivitiesGroup(keysActivitiesGroup);
+    setObjActivitiesGroup(objectActivitiesGroup);
+  };
+
+  const gruopingModules = () => {
+    const objModulesGroup = {};
+    modules.data.forEach(({ title, _id: _idModules }) => {
+      const purchasesFilter = purchases.data
+        .filter((e) => e.modules)
+        .filter(({ modules }) => _idInscription === modules);
+      if (purchasesFilter.length) objModulesGroup[title] = purchasesFilter;
+    });
+    return objModulesGroup;
+  };
+
+  const mappingModulesGroup = async () => {
+    const objectModulesGroup = await gruopingModules();
+    const keysModulesGroup = Object.keys(objectModulesGroup);
+    setKeysModulesGroup(keysModulesGroup);
+    setObjModulesGroup(objectModulesGroup);
+  };
+
+  useEffect(() => {
+    mappingActivitiesGroup(), mappingModulesGroup();
+  }, [activities, modules]);
+
+  const generatePDF = useReactToPrint({
+    content: () => componentPDF.current,
+    documentTitle: "listado",
   });
-  return objActivitiesGroup
-};
-
-const mappingActivitiesGroup = async() =>{
-  const objectActivitiesGroup = await gruopingActivities();
-  const keysActivitiesGroup = Object.keys(objectActivitiesGroup)
-  setKeysActivitiesGroup(keysActivitiesGroup)
-  setObjActivitiesGroup(objectActivitiesGroup)
-}
-
-const gruopingModules = () =>{
-  const objModulesGroup = {};
-  modules.data.forEach(({ title, _id:_idModules }) => {
-    
-    const purchasesFilter = purchases.data.filter((e)=>e.modules).filter(({ modules}) =>
-      _idInscription === modules
-    );
-    if(purchasesFilter.length)
-    objModulesGroup[title] = purchasesFilter;
-  });
-  return objModulesGroup
-};
-
-const mappingModulesGroup = async() =>{
-  const objectModulesGroup = await gruopingModules();
-  const keysModulesGroup = Object.keys(objectModulesGroup)
-  setKeysModulesGroup(keysModulesGroup)
-  setObjModulesGroup(objectModulesGroup)
-}
-
-
-useEffect(() =>{
-  mappingActivitiesGroup()
-  ,mappingModulesGroup()
-},[activities, modules])
-
-const generatePDF = useReactToPrint({
-  content:() => componentPDF.current,
-  documentTitle:"Listado de inscriptos",
-  onAfterPrint: () =>alert("PDF generado")
-});
-
   return (
     <>
       <Container id="purchasesFilter">
@@ -166,70 +170,81 @@ const generatePDF = useReactToPrint({
                     </Row>
                   </Tab.Pane>
                   <Tab.Pane eventKey="activities">
-                  {search.length === 0 ?
-                          keysActivitiesGroup.map((key) => (
-                            <div key={key} ref={componentPDF}>
-                            <h2>Titulo de la actividad: {key}</h2>
-
-                            <ul>
-                            {objActivitiesGroup[key].map((purchase, index) => 
-                               <FilterView key={index} {...purchase} />
-                              )}
-                            </ul>
-                            <Button onClick={generatePDF}>Descargar PDF</Button>
+                    <div ref={componentPDF}>
+                      {search.length === 0
+                        ? keysActivitiesGroup.map((key) => (
+                            <div key={key}>
+                              <Accordion defaultActiveKey={key}>
+                                <Accordion.Item eventKey={key}>
+                                  <Accordion.Header>
+                                    Titulo de la actividad: {key}
+                                  </Accordion.Header>
+                                  <Accordion.Body>
+                                    <ul>
+                                      {objActivitiesGroup[key].map(
+                                        (purchase, index) => (
+                                          <FilterView
+                                            key={index}
+                                            {...purchase}
+                                          />
+                                        )
+                                      )}
+                                    </ul>
+                                  </Accordion.Body>
+                                </Accordion.Item>
+                              </Accordion>
                             </div>
-                            
                           ))
-
                         : purchasesResult.map((purchase, index) => {
-                          if (purchase?.inscriptionModel === "Activity")
-                            return <FilterView key={index} {...purchase} />;
-                          })
-                          }
+                            if (purchase?.inscriptionModel === "Activity")
+                              return <FilterView key={index} {...purchase} />;
+                          })}
+                    </div>
+                    <br />
+                    <Button onClick={generatePDF} className="float-end">Imprimir lista</Button>
                   </Tab.Pane>
-                  <Tab.Pane eventKey="liveModules"> 
-                  {search.length === 0 ?
-                  purchases.data.map((purchase, index) => {
-                    if (purchase.inscription?.typeModule === "sincronico")
-                      return <FilterView key={index} {...purchase} />;
-                    })
-                  
-                        //  keysModulesGroup.map((key) => (
+                  <Tab.Pane eventKey="liveModules">
+                    {search.length === 0
+                      ? purchases.data.map((purchase, index) => {
+                          if (purchase.inscription?.typeModule === "sincronico")
+                            return <FilterView key={index} {...purchase} />;
+                        })
+                      : //  keysModulesGroup.map((key) => (
                         //   <div key={key}>
                         //   <h2>Titulo del módulo: {key}</h2>
                         //   <ul>
-                        //   {objModulesGroup[key].map((purchase, index) => 
+                        //   {objModulesGroup[key].map((purchase, index) =>
                         //      <FilterView key={index} {...purchase} />
                         //     )}
                         //   </ul>
                         //   </div>
                         // ))
-                        : purchasesResult.map((purchase, index) => {
+                        purchasesResult.map((purchase, index) => {
                           if (purchase.inscription?.typeModule === "sincronico")
                             return <FilterView key={index} {...purchase} />;
-                          })}
-
+                        })}
                   </Tab.Pane>
                   <Tab.Pane eventKey="recordedModules">
-                  {search.length === 0 
-                        ? purchases.data.map((purchase, index) => {
-                          if (purchase.inscription?.typeModule === "asincronico")
+                    {search.length === 0
+                      ? purchases.data.map((purchase, index) => {
+                          if (
+                            purchase.inscription?.typeModule === "asincronico"
+                          )
                             return <FilterView key={index} {...purchase} />;
-                          })
-                        : purchasesResult.map((purchase, index) => {
-                          if (purchase.inscription?.typeModule === "asincronico")
+                        })
+                      : purchasesResult.map((purchase, index) => {
+                          if (
+                            purchase.inscription?.typeModule === "asincronico"
+                          )
                             return <FilterView key={index} {...purchase} />;
-                          })}
-
+                        })}
                   </Tab.Pane>
 
                   <Tab.Pane eventKey="completedFormation">
-                  {users.data.map((user, index) => {
-                            return <FilterView key={index} {...user} />;
-                          })
-                        }
+                    {users.data.map((user, index) => {
+                      return <FilterView key={index} {...user} />;
+                    })}
                   </Tab.Pane>
-                  
                 </Tab.Content>
               </Tab.Container>
             </>
