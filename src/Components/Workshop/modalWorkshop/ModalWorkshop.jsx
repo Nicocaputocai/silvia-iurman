@@ -110,7 +110,7 @@ export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
                     <Row>
                         <Col>
                             <Form.Group className="mb-3" controlId="country">
-                                <Form.Label>País</Form.Label>
+                                <Form.Label>País de residencia</Form.Label>
                                 <Form.Select 
                                 defaultValue={auth.user?.country}
                                 {...register('country',{
