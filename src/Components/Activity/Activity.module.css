@@ -1,0 +1,13 @@
+.imgActivity {
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+}
+
+.pActivity {
+    white-space: pre-wrap;
+}
+
+.btn_baseColor{
+    background-color: var(--baseColor);
+}

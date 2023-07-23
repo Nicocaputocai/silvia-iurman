@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Image, Stack, Form, Modal, Button, Spinner } from "react-bootstrap";
 import ActivitiesDataServices from '../../Services/ActivitiesServices';
-import './Activity.css'
+import styles from './Activity.module.css'
 import { HelmetPage } from "../components";
 import { ModalWorkshop } from "../Workshop/modalWorkshop/ModalWorkshop";
 import useAuth from "../../hooks/useAuth";
@@ -77,7 +77,7 @@ export const Activity = () => {
         <Container>
             <Row>
                 <Col className="justify-content-md-center">
-                    <Image  className="mx-auto d-block" fluid="true"  style={{ height: "500px", width: "1300px" }} src={`https://api-silvia.divisioncode.net.ar/img/${activity.img}`} />
+                    <Image  className={`mx-auto d-block ${styles.imgActivity}`} fluid="true" src={`https://api-silvia.divisioncode.net.ar/img/${activity.img}`} />
                 </Col>
             </Row>
             <Row >
@@ -87,7 +87,7 @@ export const Activity = () => {
             </Row>
             <Row>
                 <Col>
-                    <p className="m-3" style={{ whiteSpace: "pre-wrap" }}>{activity.description}</p>
+                    <p className={`m-3 ${styles.pActivity}`} >{activity.description}</p>
                 </Col>
             </Row>
             <br />
@@ -101,19 +101,22 @@ export const Activity = () => {
                 (
                   !linkExists ? 
                   <Button
+                    className={styles.btn_baseColor}
                     variant="secondary"
-                    style={{ backgroundColor: "#9d6b6c" }}
                     size="lg"
                     onClick={handleSetModal}
                   >
                     Inscribite
                   </Button>
                   :
-                  <div className="w-full text-center">
-                    <Link to={linkExists}>
-                      Ir al recurso
+                  <Button
+                    className={styles.btn_baseColor}
+                    variant="secondary"
+                    size="lg">
+                    <Link to={linkExists} className="text-decoration-none text-white">
+                      Inscribite
                     </Link>
-                  </div>
+                  </Button>
                 )
             }
           

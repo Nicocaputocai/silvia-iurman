@@ -36,12 +36,9 @@ export const Header = () => {
             <NavDropdown.Item as={Link} to='/talleres-presenciales'>Talleres presenciales</NavDropdown.Item>
             <NavDropdown.Item as={Link} to='/talleres-virtuales'>Talleres virtuales</NavDropdown.Item>
           </NavDropdown>
-          <NavDropdown title="Formación en Eneagrama y Nuevas Constelaciones Familiares" id="basic-nav-dropdown">
-            <NavDropdown.Item as={Link} to='/NCFA'>Presentación</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item as={Link} to='/NCFA/modulos-grabados'>Módulos grabados</NavDropdown.Item>
-            <NavDropdown.Item as={Link} to='/NCFA/modulos-en-directo'>Módulos en directo</NavDropdown.Item>
-          </NavDropdown>
+          <Nav.Link as={Link} to="/NCFA" className="w-100">
+            Formación en Eneagrama y Nuevas Constelaciones Familiares
+          </Nav.Link>
         </Nav>
         <Nav className="ml-auto">
           <Nav.Link as={Link} to="/calendario">Actividades</Nav.Link>
