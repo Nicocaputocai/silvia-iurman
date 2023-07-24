@@ -120,11 +120,16 @@ export const Checkout = () => {
                   : <img src={pp} alt="" />}
                 </button>
             }
-              <p className='text-center m-0'>- o -</p>
-              <p className='text-center m-0'>Abonar por transferencia</p>
-            <Button variant="primary" onClick={() => handleCheckoutTransfer(checkout.product)}>
-              {transferLoading ? <Spinner animation="border" variant="light" size="sm" /> : 'Enviar datos al correo'}
-            </Button>
+            {
+              auth.user?.country === 'Argentina' && 
+              <>
+                <p className='text-center m-0'>- o -</p>
+                <p className='text-center m-0'>Abonar por transferencia</p>
+                <Button variant="primary" onClick={() => handleCheckoutTransfer(checkout.product)}>
+                  {transferLoading ? <Spinner animation="border" variant="light" size="sm" /> : 'Enviar datos al correo'}
+                </Button>
+              </>
+            }
             </div>
         </Modal.Body>
         <Modal.Footer>
