@@ -1,15 +1,12 @@
 import React from "react";
 import {Button,Form,Container,Image, NavItem, Alert, Spinner} from 'react-bootstrap'
-import { useState, useEffect } from "react";
-import {Link, useParams, useNavigate} from 'react-router-dom'
+import { useState } from "react";
+import {Link, useNavigate} from 'react-router-dom'
 import UserDataServices from "../../Services/UserServices";
 import {useForm} from 'react-hook-form'
-import { PageLoader } from '../components/PageLoader';
-import { createFormData } from '../../helpers';
-import useAuth from "../../hooks/useAuth";
+import { useAuth } from "../../hooks";
 import Swal from 'sweetalert2';
 import { errorAlert, sucessAlert } from '../SweetAlert/Alerts';
-import { USER } from "../../types/TYPES";
 import { TYPES } from "../../context/auth/AuthReducer";
 import {paises} from '../../assets/paises'
 
@@ -70,7 +67,6 @@ export const UserProfile = () => {
         })
       }
 
-      console.log(editUser)
   return (
   <>
   <Container>

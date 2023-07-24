@@ -6,7 +6,7 @@ import activitiesDataServices from "../../../../Services/ActivitiesServices";
 import {useForm} from 'react-hook-form'
 import { PageLoader } from '../../../components/PageLoader';
 import { createFormData } from '../../../../helpers';
-import { useActivities } from '../../../../hooks/useActivities';
+import { useActivities } from '../../../../hooks';
 import { ACTIVITY } from '../../../../types/TYPES';
 import Swal from 'sweetalert2';
 import { errorAlert, sucessAlert } from '../../../SweetAlert/Alerts';

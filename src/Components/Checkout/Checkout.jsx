@@ -5,7 +5,7 @@ import checkoutServices from '../../Services/CheckoutServices'
 import {mp, pp} from '../../assets/images'
 import Styles from './Styles.module.css'
 import { errorAlert, sucessAlert } from '../SweetAlert/Alerts';
-import useAuth from '../../hooks/useAuth';
+import {useAuth} from '../../hooks';
 import CheckoutServices from '../../Services/CheckoutServices';
 
 export const Checkout = () => {

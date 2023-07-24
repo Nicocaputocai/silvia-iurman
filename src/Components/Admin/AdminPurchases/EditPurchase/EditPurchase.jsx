@@ -4,8 +4,7 @@ import {Button,Form,Container,Image, NavItem, Alert, Spinner, Badge} from 'react
 import PurchasesDataServices from "../../../../Services/PurchasesServices";
 import {useForm} from 'react-hook-form'
 import { PageLoader } from '../../../components/PageLoader';
-import { createFormData } from '../../../../helpers';
-import {usePurchases} from '../../../../hooks/usePurchase';
+import {usePurchases} from '../../../../hooks';
 import { PURCHASE, PAY } from '../../../../types/TYPES';
 import Swal from 'sweetalert2';
 import { errorAlert, sucessAlert } from '../../../SweetAlert/Alerts';

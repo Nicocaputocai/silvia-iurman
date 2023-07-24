@@ -22,7 +22,6 @@ export const RecoveryPassword = () => {
             password: data.password,
             uuid
         })
-        console.log(response)
         sucessAlert(response.data.msg);
         reset();
         navigate('/login',{replace:true})

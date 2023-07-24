@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Col, Container, Form, Nav, Row, Tab } from "react-bootstrap";
-import { usePurchases } from "../../../hooks/usePurchase";
-import { useUsers} from "../../../hooks/useUsers";
+import { usePurchases, useUsers } from "../../../hooks";
 import { FilterView } from "./FilterView/FilterView";
 
 export const AdminPurchases = () => {

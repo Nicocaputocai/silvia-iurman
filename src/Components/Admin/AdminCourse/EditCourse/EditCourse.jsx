@@ -3,7 +3,7 @@ import {Link, useParams, useNavigate} from 'react-router-dom'
 import {Button,Form,Container, Modal, NavItem, Alert, Spinner} from 'react-bootstrap'
 import coursesDataServices from "../../../../Services/CoursesServices";
 import { useForm } from "react-hook-form";
-import { useCourses } from "../../../../hooks/useCourses";
+import { useCourses } from "../../../../hooks";
 import { COURSE } from "../../../../types/TYPES";
 import {errorAlert, sucessAlert} from '../../../SweetAlert/Alerts'
 import Swal from "sweetalert2";

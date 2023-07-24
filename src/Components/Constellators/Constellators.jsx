@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row } from 'react-bootstrap'
-import { Silvia, SilviaCuadrada } from '../../assets/images'
+import { SilviaCuadrada } from '../../assets/images'
 import { SimpleCard } from './SimpleCard'
 import { HelmetPage } from '../components'
 import AOS from 'aos'

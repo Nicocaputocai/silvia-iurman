@@ -1,18 +1,15 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Alert, Button, Col, Form, Modal, Row } from "react-bootstrap"
 import { useForm } from "react-hook-form"
-import useAuth from '../../../hooks/useAuth';
+import {useAuth, useCheckout} from '../../../hooks';
 import UserDataServices from "../../../Services/UserServices";
-import { TYPES } from "../../../context/auth/AuthReducer";
-import { useCheckout } from "../../../hooks/useCheckout";
-import { TYPE_PURCHASE } from "../../../types/TYPES";
+import { TYPES } from "../../../context/auth/AuthReducer"
 import { paises } from "../../../assets/paises";
 
 export const ModalWorkshop = ({show, handleSetModal, workshop, type}) => {
     const {formState:{errors}, register, reset, handleSubmit} = useForm();
     const {auth, authDispatch, authLoading} = useAuth();
-    const {checkout, addToCheckout} = useCheckout();
+    const { addToCheckout} = useCheckout();
     
     const onSubmit = async (data) => {
         try {

@@ -14,7 +14,6 @@ export const AddCourse = () => {
         priceAnticipedPesos: +data.priceAnticipedPesos,
         priceDolar: +data.priceDolar,
       });
-        console.log(response);
   };
 
 

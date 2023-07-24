@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { logo2 } from "../../assets/images"
 import { Nav, Navbar, NavDropdown } from "react-bootstrap"
-import useAuth from "../../hooks/useAuth";
+import { useAuth } from "../../hooks";
 import { ROLES } from "../../types/TYPES";
 import styles from './Header.module.css'
 import { MediaSocials } from "../components";
@@ -15,7 +15,6 @@ export const Header = () => {
     localStorage.removeItem('user')
     cookies.remove('token')
   }
-  console.log(auth);
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand as={Link} to="/">

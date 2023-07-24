@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Card, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { truncate } from '../../../helpers/truncate'
+import { truncate } from '../../../helpers'
 import moment from 'moment'
 import styles from './CardComponent.module.css'
 
@@ -14,7 +14,7 @@ export const CardComponent = ({activity, description='', button=false}) => {
 
           <Card.Body>
             <Card.Title>{activity.name}</Card.Title>
-            <Card.Text> <b>Fecha:</b> {moment(activity.day).zone("+00").format("DD/MM/YYYY [a las]  h:mm A [(hora Argentina (GTM -3))]")}</Card.Text>
+            <Card.Text> <b>Fecha:</b> {moment(activity.day).utcOffset("+00").format("DD/MM/YYYY [a las]  h:mm A [(hora Argentina (GTM -3))]")}</Card.Text>
             <Card.Text> {description ? truncate(activity.description) : ''}</Card.Text>
             {
               button && <Button variant="secondary" className="float-end mb-3 bgColor">Ver actividad</Button>

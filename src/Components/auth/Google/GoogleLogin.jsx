@@ -7,6 +7,7 @@ import useAuth from '../../../hooks/useAuth';
 import { errorAlert, sucessAlert } from '../../SweetAlert/Alerts';
 import { useNavigate } from 'react-router-dom';
 import googleIcon from '../../../assets/google.svg'
+import { cookies } from "../../../config/cookies";
 
 export const GoogleLogin = () => {
     const {authDispatch} = useAuth();
@@ -17,9 +18,10 @@ export const GoogleLogin = () => {
         setIsLoading(true)
         try {
             const result = await signInWithPopup(auth, provider)
-            const response = await UserDataServices.googleLogin(result.user)
-            authDispatch({type:TYPES.LOGIN, payload:response.data.user});
-            localStorage.setItem('token', response.data.token);
+            const response = await UserDataServices.googleLogin(result.user);
+            cookies.set('token', response.data.token, {path:'/'})
+            localStorage.setItem('user', JSON.stringify(response.data.user));
+            authDispatch({type:TYPES.LOGIN, payload:{user:response.data.user, token:response.data?.token}});
             sucessAlert('Bienvenido');
             navigate(-1);
         } catch (error) {

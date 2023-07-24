@@ -1,7 +1,7 @@
 import { Container, Row, Col, Button, Image, NavItem } from "react-bootstrap";
 import moment from "moment";
 import { Link } from "react-router-dom";
-import { useModules } from "../../../hooks/useModules";
+import { useModules } from "../../../hooks";
 
 export const AdminModules = () => {
   const { modules } = useModules();

@@ -62,7 +62,6 @@ export const EditArticle = () => {
         img:editArticle.img,
         paragraph:editArticle.paragraph
       };
-      console.log({data});
 
       blogDataServices.editArticle(id, createFormData(data))
       .then((response) =>{

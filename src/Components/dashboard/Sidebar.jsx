@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Card, ListGroup, Accordion } from 'react-bootstrap'
 import styles from './dashboard.module.css'
-import { useCheckout } from '../../hooks/useCheckout'
-import { useModules } from '../../hooks/useModules'
-import useAuth from '../../hooks/useAuth'
+import { useCheckout, useModules, useAuth } from '../../hooks'
 import { TYPE_PURCHASE } from '../../types/TYPES'
 
 
