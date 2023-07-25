@@ -110,7 +110,7 @@ export const Activity = () => {
                   </Button>
                   :
                   <Button
-                    className={styles.btn_baseColor}
+                    className='bgColor'
                     variant="secondary"
                     size="lg">
                     <Link to={linkExists} className="text-decoration-none text-white">
