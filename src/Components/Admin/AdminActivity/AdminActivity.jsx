@@ -10,7 +10,7 @@ import {
   } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import activitiesDataServices from "../../../Services/ActivitiesServices";
-import { useActivities } from "../../../hooks/useActivities";
+import { useActivities } from "../../../hooks";
 import { truncate } from "../../../helpers/truncate";
 import { PageLoader } from "../../components/PageLoader";
 import styles from './AdminActivity.module.css'

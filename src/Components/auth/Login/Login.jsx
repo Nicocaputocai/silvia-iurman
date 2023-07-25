@@ -126,10 +126,10 @@ export const Login = () => {
               {/* Auth with google */}
               <GoogleLogin/>
               <div className="d-flex justify-content-between align-items-center">
-                <Form.Text className="text-muted text-center mt-2">
-                  ¿No tienes cuenta? <Link to="/registro">Registrate</Link>
+                <Form.Text className="text-muted text-center mt-2 fs-6">
+                  ¿Es tu primera vez? <Link to="/registro">Registrate</Link>
                 </Form.Text>
-                <Form.Text className="text-muted text-center mt-2">
+                <Form.Text className="text-muted text-center mt-2 fs-6">
                   <Link as="Button" onClick={handleSetModal}>Olvide mi contraseña</Link>
                 </Form.Text>
               </div>

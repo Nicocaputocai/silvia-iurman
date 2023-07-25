@@ -6,7 +6,7 @@ import {
     Row,
   } from "react-bootstrap";
 import { PageLoader } from "../../../components/PageLoader";
-import { usePurchases } from "../../../../hooks/usePurchase";
+import { usePurchases } from "../../../../hooks";
 import { Link } from "react-router-dom";
 import moment from "moment/moment";
 export const FilterView = ({_id, user_id, wayToPay, pay, finish, inscription, firstName, lastName, country, dateOfBirth, email, phone}) => {

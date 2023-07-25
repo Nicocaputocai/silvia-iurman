@@ -1,5 +1,5 @@
-import { Badge, Button, Card, Container, ListGroup } from 'react-bootstrap';
-import useAuth from '../../hooks/useAuth';
+
+import {useAuth} from '../../hooks';
 import styles from './dashboard.module.css';
 import { Sidebar } from './Sidebar';
 import { Preview } from './Preview';

@@ -1,9 +1,10 @@
 import { useState,useEffect } from "react";
-import { Carousel, Container, Image } from "react-bootstrap" 
+import { Button, Carousel, Container, Image } from "react-bootstrap" 
 import CoursesDataServices from "../../Services/CoursesServices";
 import { NFCAimages } from '../../assets/images'
 import { HelmetPage } from "../components";
 import styles from './NCFA.module.css'
+import { Link } from "react-router-dom";
 
 
 const Constelaciones = ()=>{
@@ -83,7 +84,15 @@ const Constelaciones = ()=>{
 
           Al servicio de la vida y de la conciencia colectiva.<br />
         </p>
-                  
+        <Button
+          variant="secondary"
+          className="mt-3 bgColor"
+          size="lg">
+          <Link to="/dashboard" className="text-white text-decoration-none">
+              Inscribite
+          </Link>
+        </Button>
+     
 
 
       </Container>

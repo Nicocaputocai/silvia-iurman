@@ -2,12 +2,10 @@ import { useState } from "react";
 import activitiesDataServices from "../../../Services/ActivitiesServices";
 import { Alert, Button, Form, Image, Modal, Spinner } from "react-bootstrap";
 import { createFormData } from "../../../helpers";
-import { useActivities } from "../../../hooks/useActivities";
-import {set, useForm} from 'react-hook-form'
+import {useActivities, useCourses, useModules} from '../../../hooks'
+import { useForm } from 'react-hook-form'
 import { ACTIVITY, TYPE_PURCHASE } from "../../../types/TYPES";
 import { errorAlert, sucessAlert } from "../../SweetAlert/Alerts";
-import { useCourses } from "../../../hooks/useCourses";
-import { useModules } from "../../../hooks/useModules";
 
 const AddActivity = () => {
   const {activitiesDispatch} = useActivities()

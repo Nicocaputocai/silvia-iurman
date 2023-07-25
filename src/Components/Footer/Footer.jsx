@@ -4,7 +4,7 @@ import {
   Navbar,
 } from "react-bootstrap";
 import "./Footer.css";
-import {logo,logo2 } from "../../assets/images"
+import { logo2 } from "../../assets/images"
 
 const Footer = () => {
   return (

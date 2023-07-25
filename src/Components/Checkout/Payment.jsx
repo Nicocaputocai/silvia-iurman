@@ -5,7 +5,7 @@ import Styles from './Styles.module.css'
 import CheckoutServices from '../../Services/CheckoutServices'
 import { Spinner } from 'react-bootstrap'
 import UserDataServices from '../../Services/UserServices'
-import useAuth from '../../hooks/useAuth'
+import {useAuth} from '../../hooks'
 import { TYPES } from '../../context/auth/AuthReducer'
 
 export const Payment = () => {

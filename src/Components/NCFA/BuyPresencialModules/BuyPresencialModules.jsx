@@ -1,5 +1,5 @@
 import { Container, ListGroup } from 'react-bootstrap';
-import { useModules } from '../../../hooks/useModules';
+import { useModules } from '../../../hooks';
 import { PageLoader } from '../../components/PageLoader';
 
 export const BuyPresencialModules = () => {
@@ -12,7 +12,7 @@ export const BuyPresencialModules = () => {
   return (
     <>
     <Container className='text-center'>
-    <h1 className='mt-3 mb-3'style={{color:'#9d6b6c'}}>Comprar módulos en directo</h1>
+    <h1 className='mt-3 mb-3 textColor'>Comprar módulos en directo</h1>
     <ListGroup as="ol" >
 
           {

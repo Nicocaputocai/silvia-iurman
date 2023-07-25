@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row } from 'react-bootstrap';
 import { CardComponent } from '../components';
-import { useActivities } from '../../hooks/useActivities';
+import { useActivities } from '../../hooks';
 
 export const Activities = () => {
   const {activities} = useActivities()

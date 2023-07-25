@@ -5,7 +5,7 @@ import checkoutServices from '../../Services/CheckoutServices'
 import {mp, pp} from '../../assets/images'
 import Styles from './Styles.module.css'
 import { errorAlert, sucessAlert } from '../SweetAlert/Alerts';
-import useAuth from '../../hooks/useAuth';
+import {useAuth} from '../../hooks';
 import CheckoutServices from '../../Services/CheckoutServices';
 
 export const Checkout = () => {
@@ -120,11 +120,16 @@ export const Checkout = () => {
                   : <img src={pp} alt="" />}
                 </button>
             }
-              <p className='text-center m-0'>- o -</p>
-              <p className='text-center m-0'>Abonar por transferencia</p>
-            <Button variant="primary" onClick={() => handleCheckoutTransfer(checkout.product)}>
-              {transferLoading ? <Spinner animation="border" variant="light" size="sm" /> : 'Enviar datos al correo'}
-            </Button>
+            {
+              auth.user?.country === 'Argentina' && 
+              <>
+                <p className='text-center m-0'>- o -</p>
+                <p className='text-center m-0'>Abonar por transferencia</p>
+                <Button variant="primary" onClick={() => handleCheckoutTransfer(checkout.product)}>
+                  {transferLoading ? <Spinner animation="border" variant="light" size="sm" /> : 'Enviar datos al correo'}
+                </Button>
+              </>
+            }
             </div>
         </Modal.Body>
         <Modal.Footer>

@@ -8,7 +8,7 @@ import {
   } from "react-bootstrap";
   import moment from "moment";
 import { Link } from 'react-router-dom';
-import { useCourses } from '../../../hooks/useCourses';
+import { useCourses } from '../../../hooks';
 
 const AdminCourse = () =>{
     const {courses} = useCourses()

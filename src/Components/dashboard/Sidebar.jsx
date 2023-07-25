@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Card, ListGroup, Accordion } from 'react-bootstrap'
 import styles from './dashboard.module.css'
-import { useCheckout } from '../../hooks/useCheckout'
-import { useModules } from '../../hooks/useModules'
-import useAuth from '../../hooks/useAuth'
+import { useCheckout, useModules, useAuth } from '../../hooks'
 import { TYPE_PURCHASE } from '../../types/TYPES'
 
 
@@ -25,6 +23,29 @@ export const Sidebar = ({setContent}) => {
   return (
     <div className={`me-auto ${styles.sidebar_size}`}>
     <Accordion defaultActiveKey="0">
+    <Accordion.Item eventKey="1">
+        <Accordion.Header>Modulos En Directo</Accordion.Header>
+        <Accordion.Body>
+          <ListGroup defaultActiveKey="#link1">
+              
+              {
+                modules.data.map(module => (
+                module.typeModule === 'sincronico' &&
+                <ListGroup.Item key={module._id}>
+                    <Card>
+                        <Card.Header>{module.title}</Card.Header>
+                        <Card.Body className='d-flex justify-content-between'>
+                        <Button variant="warning" disabled={habilited.includes(module._id)} onClick={() => addToCheckout(module, TYPE_PURCHASE.MODULE)}>Comprar</Button>
+                        <Button variant="primary" disabled={!habilited.includes(module._id)} onClick={() => {setContent({module, link:true})}}>Continuar</Button>
+                        </Card.Body>
+                    </Card>
+                </ListGroup.Item>
+                ))
+              }
+          
+        </ListGroup>
+        </Accordion.Body>
+      </Accordion.Item>
       <Accordion.Item eventKey="0">
         <Accordion.Header>Modulos Grabados</Accordion.Header>
         <Accordion.Body>
@@ -68,29 +89,7 @@ export const Sidebar = ({setContent}) => {
         </ListGroup>
         </Accordion.Body>
       </Accordion.Item>
-      <Accordion.Item eventKey="1">
-        <Accordion.Header>Modulos En Directo</Accordion.Header>
-        <Accordion.Body>
-          <ListGroup defaultActiveKey="#link1">
-              
-              {
-                modules.data.map(module => (
-                module.typeModule === 'sincronico' &&
-                <ListGroup.Item key={module._id}>
-                    <Card>
-                        <Card.Header>{module.title}</Card.Header>
-                        <Card.Body className='d-flex justify-content-between'>
-                        <Button variant="warning" disabled={habilited.includes(module._id)} onClick={() => addToCheckout(module, TYPE_PURCHASE.MODULE)}>Comprar</Button>
-                        <Button variant="primary" disabled={!habilited.includes(module._id)}>Continuar</Button>
-                        </Card.Body>
-                    </Card>
-                </ListGroup.Item>
-                ))
-              }
-          
-        </ListGroup>
-        </Accordion.Body>
-      </Accordion.Item>
+      
     </Accordion>
           
       </div>

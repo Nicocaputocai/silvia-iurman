@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import { Button, Container, Form } from "react-bootstrap"
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Alerta } from '../../Alert';
 import AdminUserDataServices from '../../../Services/AdminUserServices';
-import useAdmin from '../../../hooks/useAdmin';
-import { useForm } from '../../../hooks/useForm';
+import {useAdmin, useForm} from '../../../hooks';
 
 export const Login = () => {
   const [alert,setAlert] = useState({});

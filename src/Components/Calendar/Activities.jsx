@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import activitiesDataServices from '../../Services/ActivitiesServices';
 import { CardComponent } from '../components';
 import { Row } from 'react-bootstrap';
-import { useActivities } from '../../hooks/useActivities';
+import { useActivities } from '../../hooks';
 import { PageLoader } from '../components/PageLoader';
 
 export const Activities = () => {
