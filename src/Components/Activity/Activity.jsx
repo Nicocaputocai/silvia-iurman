@@ -102,6 +102,7 @@ export const Activity = () => {
                   !linkExists ? 
                   <Button
                     className={styles.btn_baseColor}
+                    style={{backgroundColor: "#9d6b6c"}}
                     variant="secondary"
                     size="lg"
                     onClick={handleSetModal}

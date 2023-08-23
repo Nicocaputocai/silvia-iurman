@@ -38,22 +38,22 @@ const Footer = () => {
 
             <Nav className="justify-content-end">
               <Nav.Item>
-              <Nav.Link href="https://www.instagram.com/" target="_blank" className="img-fluid">
+              <Nav.Link href="https://www.instagram.com/silvia_cristine_/" target="_blank" className="img-fluid">
                 <i className="fab fa-instagram fa-2x"></i>
               </Nav.Link>
               </Nav.Item>
 
-              <Nav.Link href="https://www.facebook.com/" target="_blank" className="img-fluid">
+              <Nav.Link href="https://www.facebook.com/sisiiurman" target="_blank" className="img-fluid">
                 <i className="fab fa-facebook fa-2x"></i>
               </Nav.Link>
 
               <Nav.Item>
-              <Nav.Link href="https://www.youtube.com/" target="_blank" className="img-fluid">
+              <Nav.Link href="https://www.youtube.com/@silviaiurmannuevasconstela4168" target="_blank" className="img-fluid">
                 <i className="fab fa-youtube fa-2x"></i>
               </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-              <Nav.Link href="https://www.spotify.com/" target="_blank" className="img-fluid">
+              <Nav.Link href="https://open.spotify.com/show/0uSyK47kbFHRqBtnZoPfp3" target="_blank" className="img-fluid">
                 <i className="fab fa-spotify fa-2x"></i>
               </Nav.Link>
               </Nav.Item>

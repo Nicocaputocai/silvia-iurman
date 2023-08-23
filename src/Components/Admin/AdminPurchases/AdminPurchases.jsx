@@ -37,9 +37,9 @@ export const AdminPurchases = () => {
       let firstName = element.user_id?.firstName || "";
       let lastName = element.user_id?.lastName || "";
       let fullname =
-        (element.user_id?.firstName && element.user_id.lastName) || "";
+        (element.user_id?.firstName + " " + element.user_id.lastName) || "";
       let nameFull =
-        (element.user_id?.firstName && element.user_id.lastName) || "";
+        (element.user_id?.lastName + " " + element.user_id.firstName) || "";
       let country = element.user_id?.country || "";
       let phone = element.user_id?.phone || "";
       let email = element.user_id?.email || "";
