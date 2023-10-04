@@ -120,9 +120,8 @@ export const AdminPurchases = () => {
             ({ inscription: { _id: _idInscription } }) =>
               _idInscription === _idModules
           )
-          .filter((e) => e.finish)
           .filter(
-            ({finish}) => finish === true) 
+            ({finish}) => !finish) 
           // console.log(purchasesFinishFilter);
         objFinishModulesGroup[title] = purchasesFinishFilter;
       }
@@ -158,9 +157,8 @@ export const AdminPurchases = () => {
           .filter(
             ({ inscription: { _id: _idInscription } }) =>
               _idInscription === _idRecordModules)
-          .filter((e) => e.finish)
           .filter(
-            ({finish}) => finish === true);
+            ({finish}) => !finish);
             // console.log(purchasesFinishRecordFilter);
         objFinishRecordModulesGroup[title] = purchasesFinishRecordFilter;
       }
