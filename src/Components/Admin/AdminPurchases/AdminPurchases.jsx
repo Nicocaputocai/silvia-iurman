@@ -238,7 +238,7 @@ export const AdminPurchases = () => {
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link eventKey="liveFinishModules">
-                      Inscriptos finalizados módulos en directo
+                      Inscriptos no finalizados módulos en directo
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
@@ -248,7 +248,7 @@ export const AdminPurchases = () => {
                   </Nav.Item>
                   <Nav.Item>
                     <Nav.Link eventKey="recordedFinishModules">
-                    Inscriptos finalizados módulos grabados
+                    Inscriptos no finalizados módulos grabados
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
