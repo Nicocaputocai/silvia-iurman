@@ -1,6 +1,7 @@
 import { Container, Row, Image } from "react-bootstrap"
 import React from 'react';
 import { bannerPC} from "../../assets/images"
+import { bannerPC2} from "../../assets/images"
 import { HelmetPage } from "../components";
 import { Bio } from "./Bio";
 import { Activities } from "./Activities";
@@ -13,7 +14,7 @@ const Home = () => {
       <HelmetPage section='Inicio' content='Home de la página de Silvia Iurman - Nuevas Constelaciones Familiares Argentina'/>
       
         <Row className="align-items-center">
-          <Image fluid="true" src={bannerPC} alt="banner"/>
+          <Image fluid="true" src={bannerPC2} alt="banner"/>
           {/* <img className="smallscreen" src={bannerCEL} alt="banner" /> */}
         </Row>
         {/* <br /> */}
