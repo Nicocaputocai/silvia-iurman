@@ -6,6 +6,7 @@ import Silvia from './Silvia.jpg';
 import SilviaCuadrada from './articulos.jpg'
 import bannerPC from './B BANNER HORIZONTAL NUEVO.jpg';
 import bannerPC2 from './B BANNER HORIZONTAL NUEVO2.jpeg';
+import bannerPC3 from './B BANNER HORIZONTAL NUEVO3.jpeg';
 import bannerCEL from './banner2.jpg';
 
 //nfca images
@@ -176,6 +177,7 @@ export {
     Silvia,
     bannerPC,
     bannerPC2,
+    bannerPC3,
     bannerCEL,
     pp,
     mp,
