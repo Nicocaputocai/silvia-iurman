@@ -6,7 +6,7 @@ export const MediaSocials = () => {
   return (
     <Nav className={styles.media_socials}>
         <Nav.Link
-                href="https://www.instagram.com/"
+                href="https://instagram.com/silvia_cristine_?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr"
                 target="_blank"
               >
                 <i
@@ -16,7 +16,7 @@ export const MediaSocials = () => {
               </Nav.Link>
 
               <Nav.Link
-                href="https://www.facebook.com/"
+                href="https://www.facebook.com/sisiiurman"
                 target="_blank"
               >
                 <i
@@ -25,7 +25,7 @@ export const MediaSocials = () => {
                 ></i>
               </Nav.Link>
               <Nav.Link
-                href="https://www.youtube.com/"
+                href="https://www.youtube.com/@silviaiurmannuevasconstela4168"
                 target="_blank"
               >
                 <i
@@ -34,7 +34,7 @@ export const MediaSocials = () => {
                 ></i>
               </Nav.Link>
               <Nav.Link
-                href="https://www.spotify.com/"
+                href="https://open.spotify.com/episode/0BwLzWtNCHOMBg7JUywZK9?si=HB_CFYIPQzWxYlZAvLDhBA"
                 target="_blank"
               >
                 <i
