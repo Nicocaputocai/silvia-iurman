@@ -1,76 +1,133 @@
 import React from "react";
-import {Button,Form,Container,Image, NavItem, Alert, Spinner} from 'react-bootstrap'
+import {
+  Button,
+  Form,
+  Container,
+  Image,
+  NavItem,
+  Alert,
+  Spinner,
+  Nav,
+  Tab,
+  Col,
+  Row,
+  Table,
+} from "react-bootstrap";
 import { useState } from "react";
-import {Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
 import UserDataServices from "../../Services/UserServices";
-import {useForm} from 'react-hook-form'
+import { useForm } from "react-hook-form";
 import { useAuth } from "../../hooks";
-import Swal from 'sweetalert2';
-import { errorAlert, sucessAlert } from '../SweetAlert/Alerts';
+import Swal from "sweetalert2";
+import { errorAlert, sucessAlert } from "../SweetAlert/Alerts";
 import { TYPES } from "../../context/auth/AuthReducer";
-import {paises} from '../../assets/paises'
+import { paises } from "../../assets/paises";
 
 export const UserProfile = () => {
-    const {auth, authDispatch} = useAuth()
-    // console.log(auth);
-    const [loading, setLoading] = useState(false);
-    const [editUser, setEditUser] = useState({
-        data: {},
-        isLoading: true,
-      });
-      const {register, formState:{errors, defaultValues}, handleSubmit, reset} = useForm({defaultValues:{...auth.user, birthday: auth.user.dateOfBirth}});
-      const [selectedImage, setSelectedImage] = useState(null); // Vista previa de la imagen
-      const navigate = useNavigate();
-      const handleInputFileChange = (e) => {
-        //Vista previa de la foto
-        if (e.target.files && e.target.files.length > 0) {
-          setSelectedImage(e.target.files[0]);
-        }
-        const { name, files } = e.target;
-        setEditUser({ ...editUser, [name]: files[0] });
-      };
+  const { auth, authDispatch } = useAuth();
+  // console.log(auth);
+  const [loading, setLoading] = useState(false);
+  const [editUser, setEditUser] = useState({
+    data: {},
+    isLoading: true,
+  });
+  const {
+    register,
+    formState: { errors, defaultValues },
+    handleSubmit,
+    reset,
+  } = useForm({
+    defaultValues: { ...auth.user, birthday: auth.user.dateOfBirth },
+  });
+  const [selectedImage, setSelectedImage] = useState(null); // Vista previa de la imagen
+  const navigate = useNavigate();
+  const handleInputFileChange = (e) => {
+    //Vista previa de la foto
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedImage(e.target.files[0]);
+    }
+    const { name, files } = e.target;
+    setEditUser({ ...editUser, [name]: files[0] });
+  };
 
-    const save = async (data) => {
-        setLoading(true)
-        Swal.fire({
-          title: 'Quieres editar?',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Si, Editar!'
-        }).then(async (result) => {
-          if (result.isConfirmed) {
-  
-            try {
-              const response = await UserDataServices.updateUser(data)
-              if(selectedImage){
-                const formData = new FormData();
-                formData.append('avatar', selectedImage)
-                const responseAvatar = await UserDataServices.updateAvatarUser(formData)
-                response.data.user.avatar = responseAvatar.data.avatar
-              }
-              authDispatch({type: TYPES.UPDATE , payload: response.data.user})
-              localStorage.setItem("user",JSON.stringify(response.data.user))
-              sucessAlert('Usuario actualizado con éxito')
-              reset()
-              /* navigate('/', {replace:true}) */ //Evita que se vuelva al login * */
-            } catch (error) {
-              console.log(error);
-              errorAlert('No se pudo actualizar el usuario')
-            }
-            finally{
-              setLoading(false)
-            } 
-            
+  const save = async (data) => {
+    setLoading(true);
+    Swal.fire({
+      title: "Quieres editar?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, Editar!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await UserDataServices.updateUser(data);
+          if (selectedImage) {
+            const formData = new FormData();
+            formData.append("avatar", selectedImage);
+            const responseAvatar = await UserDataServices.updateAvatarUser(
+              formData
+            );
+            response.data.user.avatar = responseAvatar.data.avatar;
           }
-        })
+          authDispatch({ type: TYPES.UPDATE, payload: response.data.user });
+          localStorage.setItem("user", JSON.stringify(response.data.user));
+          sucessAlert("Usuario actualizado con éxito");
+          reset();
+          /* navigate('/', {replace:true}) */ //Evita que se vuelva al login * */
+        } catch (error) {
+          console.log(error);
+          errorAlert("No se pudo actualizar el usuario");
+        } finally {
+          setLoading(false);
+        }
       }
+    });
+  };
 
   return (
-  <>
-  <Container>
-    <h2>Editar perfil de usuario</h2>
+    <>
+      <Container>
+        <Row>
+          <Col>
+          <>
+
+            <Tab.Container id="profile-tabs" defaultActiveKey="MyCourses">
+              <Nav fill variant="pills">
+                <Nav.Item>
+                  <Nav.Link eventKey="MyCourses">Mis Cursos</Nav.Link>
+                </Nav.Item>
+
+                <Nav.Item>
+                  <Nav.Link eventKey="EditProfile">Editar perfil</Nav.Link>
+                </Nav.Item>
+              </Nav>
+            <Tab.Content>
+              <Tab.Pane eventKey="MyCourses">
+              <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>Módulo realizados</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+         
+          {auth.user.modules.map((module) => (
+            <tr>
+            <td>{module.title}</td>
+            </tr>
+          ))}
+
+
+
+      </tbody>
+    </Table>
+              </Tab.Pane>
+
+              <Tab.Pane eventKey="EditProfile">
+              <h2>Editar perfil de usuario</h2>
     {/* <span>{auth.user.firstName}</span> */}
     <Form onSubmit={handleSubmit(save)}>
           <Form.Group>
@@ -238,9 +295,13 @@ export const UserProfile = () => {
                           /> : "Editar perfil"}
           </Button>
         </Form>
-  </Container>
-
-
-  </>
+              </Tab.Pane>
+              </Tab.Content>
+            </Tab.Container>
+            </>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
