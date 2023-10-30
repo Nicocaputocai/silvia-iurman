@@ -27,7 +27,16 @@ export const Dashboard = () => {
       </div>
       <div className='d-flex flex-wrap border rounded-2 p-1 gap-1'>
         <Sidebar setContent={getContent}/>
-        <Preview content={content}/>
+        {
+          content?.module.typeModule === 'sincronico' ? 
+          <article className={`border rounded ${styles.content_module}`}>
+
+            <a href={content.module.link} target='_blank' className='text-center'>Ingresar a la sala</a>
+          </article>
+          :
+          <Preview content={content}/>
+        }
+        
       </div>
     </div>
     </>
