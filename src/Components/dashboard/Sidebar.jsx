@@ -20,6 +20,7 @@ export const Sidebar = ({setContent}) => {
     useEffect(() => {
       getHabilitedModules()
     },[auth])
+    console.log(modules)
   return (
     <div className={`me-auto ${styles.sidebar_size}`}>
     <Accordion defaultActiveKey="1">
@@ -34,15 +35,9 @@ export const Sidebar = ({setContent}) => {
                 <ListGroup.Item key={module._id}>
                     <Card>
                         <Card.Header>{module.title}</Card.Header>
-                        <Card.Body className='d-flex justify-content-center'>
-                        <Button className='p-1 h6' variant="warning" disabled={habilited.includes(module._id)} onClick={() => addToCheckout(module, TYPE_PURCHASE.MODULE)}>Comprar</Button>
-                        <Button 
-                        className='p-1 h6 mx-2'
-                        variant="primary" 
-                        onClick={() => {setContent({module, link:false})}}>
-                        Introducción
-                        </Button>
-                        <Button className='p-1 h6' variant="primary" disabled={!habilited.includes(module._id)} onClick={() => {setContent({module, link:true})}}>Continuar</Button>
+                        <Card.Body className='d-flex justify-content-between'>
+                        <Button variant="warning" disabled={habilited.includes(module._id) && !module.enabled} onClick={() => addToCheckout(module, TYPE_PURCHASE.MODULE)}>{!module.enabled ? 'Comprar' : 'No disponible'}</Button>
+                        <Button variant="primary" disabled={!habilited.includes(module._id)} onClick={() => {setContent({module, link:true})}}>Continuar</Button>
                         </Card.Body>
                     </Card>
                 </ListGroup.Item>

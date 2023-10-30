@@ -9,7 +9,12 @@ import {
   Tab,
   Accordion,
 } from "react-bootstrap";
-import { usePurchases, useActivities, useModules, useUsers } from "../../../hooks";
+import {
+  usePurchases,
+  useActivities,
+  useModules,
+  useUsers,
+} from "../../../hooks";
 import { FilterView } from "./FilterView/FilterView";
 import { useReactToPrint } from "react-to-print";
 
@@ -24,6 +29,12 @@ export const AdminPurchases = () => {
   const [objActivitiesGroup, setObjActivitiesGroup] = useState([]);
   const [keysModulesGroup, setKeysModulesGroup] = useState([]);
   const [objModulesGroup, setObjModulesGroup] = useState([]);
+  const [keysFinishModulesGroup, setFinishKeysModulesGroup] = useState([]);
+  const [objFinishModulesGroup, setFinishObjModulesGroup] = useState([]);
+  const [keysRecordModulesGroup, setRecordKeysModulesGroup] = useState([]);
+  const [objRecordModulesGroup, setRecordObjModulesGroup] = useState([]);
+  const [keysFinishRecordModulesGroup, setFinishRecordKeysModulesGroup] = useState([]);
+  const [objFinishRecordModulesGroup, setFinishRecordObjModulesGroup] = useState([]);
 
   const componentPDF = useRef();
 
@@ -82,30 +93,123 @@ export const AdminPurchases = () => {
 
   const gruopingModules = () => {
     const objModulesGroup = {};
-    modules.data.forEach(({ title, _id: _idModules }) => {
-      const purchasesFilter = purchases.data
-        .filter((e) => e.modules)
-        .filter(({ modules }) => _idInscription === modules);
-      if (purchasesFilter.length) objModulesGroup[title] = purchasesFilter;
+    modules.data.forEach(({ title, _id: _idModules, typeModule }) => {
+      if (typeModule === "sincronico") {
+        const purchasesFilter = purchases.data
+          .filter((e) => e.inscription)
+          .filter(
+            ({ inscription: { _id: _idInscription } }) =>
+              _idInscription === _idModules)
+              // .filter((e) => e.finish)
+              // .filter(
+              //   ({finish}) => finish === false); //En false no funciona
+
+        objModulesGroup[title] = purchasesFilter;
+      }
     });
     return objModulesGroup;
   };
 
-  const mappingModulesGroup = async () => {
+  const gruopingFinishModules = () => {
+    const objFinishModulesGroup = {};
+    modules.data.forEach(({ title, _id: _idModules, typeModule }) => {
+      if (typeModule === "sincronico") {
+        let purchasesFinishFilter = purchases.data
+          .filter((e) => e.inscription)
+          .filter(
+            ({ inscription: { _id: _idInscription } }) =>
+              _idInscription === _idModules
+          )
+          .filter(
+            ({finish}) => !finish) 
+          // console.log(purchasesFinishFilter);
+        objFinishModulesGroup[title] = purchasesFinishFilter;
+      }
+    });
+    return objFinishModulesGroup;
+  };
+
+  const gruopingRecordModules = () => {
+    const objRecordModulesGroup = {};
+    modules.data.forEach(({ title, _id: _idRecordModules, typeModule }) => {
+      if (typeModule === "asincronico") {
+        const purchasesRecordFilter = purchases.data
+          .filter((e) => e.inscription)
+          .filter(
+            ({ inscription: { _id: _idInscription } }) =>
+              _idInscription === _idRecordModules)
+              // .filter((e) => e.finish)
+              // .filter(
+              //   ({finish}) => finish === false); // En false no funciona
+
+        objRecordModulesGroup[title] = purchasesRecordFilter;
+      }
+    });
+    return objRecordModulesGroup;
+  };
+
+  const gruopingFinishRecordModules = () => {
+    const objFinishRecordModulesGroup = {};
+    modules.data.forEach(({ title, _id: _idRecordModules, typeModule }) => {
+      if (typeModule === "asincronico") {
+        const purchasesFinishRecordFilter = purchases.data
+          .filter((e) => e.inscription)
+          .filter(
+            ({ inscription: { _id: _idInscription } }) =>
+              _idInscription === _idRecordModules)
+          .filter(
+            ({finish}) => !finish);
+            // console.log(purchasesFinishRecordFilter);
+        objFinishRecordModulesGroup[title] = purchasesFinishRecordFilter;
+      }
+    });
+    return objFinishRecordModulesGroup;
+  };
+
+  const mappingModulesGroup = async () => { // Muestra las personas que no finalizaron los módulos en directo
     const objectModulesGroup = await gruopingModules();
     const keysModulesGroup = Object.keys(objectModulesGroup);
     setKeysModulesGroup(keysModulesGroup);
     setObjModulesGroup(objectModulesGroup);
   };
 
+  const mappingFinishModulesGroup = async () => { // Muestra las personas que finalizaron los módulos en directo
+    const objectFinishModulesGroup = await gruopingFinishModules();
+    const keysFinishModulesGroup = Object.keys(objectFinishModulesGroup);
+    setFinishKeysModulesGroup(keysFinishModulesGroup);
+    setFinishObjModulesGroup(objectFinishModulesGroup);
+  };
+
+  const mappingRecordModulesGroup = async () => { // Muestra las personas que no finalizaron los módulos grabados
+    const objectRecordModulesGroup = await gruopingRecordModules();
+    const keysRecordModulesGroup = Object.keys(objectRecordModulesGroup);
+    setRecordKeysModulesGroup(keysRecordModulesGroup);
+    setRecordObjModulesGroup(objectRecordModulesGroup);
+  };
+
+  const mappingFinishRecordModulesGroup = async () => { // Muestra las personas que no finalizaron los módulos grabados
+    const objectFinishRecordModulesGroup = await gruopingFinishRecordModules();
+    const keysFinishRecordModulesGroup = Object.keys(objectFinishRecordModulesGroup);
+    setFinishRecordKeysModulesGroup(keysFinishRecordModulesGroup);
+    setFinishRecordObjModulesGroup(objectFinishRecordModulesGroup);
+  };
+
+
   useEffect(() => {
-    mappingActivitiesGroup(), mappingModulesGroup();
-  }, [activities, modules]);
+    mappingActivitiesGroup();
+    mappingModulesGroup();
+    mappingFinishModulesGroup();
+    mappingRecordModulesGroup();
+    mappingFinishRecordModulesGroup();
+  }, [activities, modules, purchases]);
 
   const generatePDF = useReactToPrint({
     content: () => componentPDF.current,
     documentTitle: "listado",
   });
+
+
+
   return (
     <>
       <Container id="purchasesFilter">
@@ -133,8 +237,18 @@ export const AdminPurchases = () => {
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
+                    <Nav.Link eventKey="liveFinishModules">
+                      Inscriptos no finalizados módulos en directo
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
                     <Nav.Link eventKey="recordedModules">
                       Módulos grabados
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="recordedFinishModules">
+                    Inscriptos no finalizados módulos grabados
                     </Nav.Link>
                   </Nav.Item>
                   <Nav.Item>
@@ -198,43 +312,126 @@ export const AdminPurchases = () => {
                           })}
                     </div>
                     <br />
-                    <Button onClick={generatePDF} className="float-end">Imprimir lista</Button>
+                    <Button onClick={generatePDF} className="float-end">
+                      Imprimir lista
+                    </Button>
                   </Tab.Pane>
                   <Tab.Pane eventKey="liveModules">
                     {search.length === 0
-                      ? purchases.data.map((purchase, index) => {
+                      ? keysModulesGroup.map((key) => (
+                          <div key={key}>
+                            <Accordion defaultActiveKey={key}>
+                              <Accordion.Item eventKey={key}>
+                                <Accordion.Header>{key}</Accordion.Header>
+                                <Accordion.Body>
+                                  <ul>
+                                    {objModulesGroup[key].map(
+                                      (purchase, index) => (
+                                        <FilterView key={index} {...purchase} />
+                                      )
+                                    )}
+                                  </ul>
+                                </Accordion.Body>
+                              </Accordion.Item>
+                            </Accordion>
+                          </div>
+                        ))
+                      : purchasesResult.map((purchase, index) => {
                           if (purchase.inscription?.typeModule === "sincronico")
                             return <FilterView key={index} {...purchase} />;
-                        })
-                      : //  keysModulesGroup.map((key) => (
-                        //   <div key={key}>
-                        //   <h2>Titulo del módulo: {key}</h2>
-                        //   <ul>
-                        //   {objModulesGroup[key].map((purchase, index) =>
-                        //      <FilterView key={index} {...purchase} />
-                        //     )}
-                        //   </ul>
-                        //   </div>
-                        // ))
-                        purchasesResult.map((purchase, index) => {
+                        })}
+                  </Tab.Pane>
+                  <Tab.Pane eventKey="liveFinishModules">
+                    {search.length === 0
+                      ? keysFinishModulesGroup.map((key) => (
+                          <div key={key}>
+                            <Accordion defaultActiveKey={key}>
+                              <Accordion.Item eventKey={key}>
+                                <Accordion.Header>{key}</Accordion.Header>
+                                <Accordion.Body>
+                                  <ul>
+                                    {objFinishModulesGroup[key].map(
+                                      (purchase, index) => (
+                                        <FilterView key={index} {...purchase} />
+                                      )
+                                    )}
+                                  </ul>
+                                </Accordion.Body>
+                              </Accordion.Item>
+                            </Accordion>
+                          </div>
+                        ))
+                      : purchasesResult.map((purchase, index) => {
                           if (purchase.inscription?.typeModule === "sincronico")
                             return <FilterView key={index} {...purchase} />;
                         })}
                   </Tab.Pane>
                   <Tab.Pane eventKey="recordedModules">
-                    {search.length === 0
-                      ? purchases.data.map((purchase, index) => {
-                          if (
-                            purchase.inscription?.typeModule === "asincronico"
-                          )
-                            return <FilterView key={index} {...purchase} />;
-                        })
-                      : purchasesResult.map((purchase, index) => {
-                          if (
-                            purchase.inscription?.typeModule === "asincronico"
-                          )
-                            return <FilterView key={index} {...purchase} />;
-                        })}
+
+
+                      {search.length === 0
+                        ? keysRecordModulesGroup.map((key) => (
+                            <div key={key}>
+                              <Accordion defaultActiveKey={key}>
+                                <Accordion.Item eventKey={key}>
+                                  <Accordion.Header>{key}</Accordion.Header>
+                                  <Accordion.Body>
+                                    <ul>
+                                      {objRecordModulesGroup[key].map(
+                                        (purchase, index) => (
+                                          <FilterView
+                                            key={index}
+                                            {...purchase}
+                                          />
+                                        )
+                                      )}
+                                    </ul>
+                                  </Accordion.Body>
+                                </Accordion.Item>
+                              </Accordion>
+                            </div>
+                          ))
+                        : purchasesResult.map((purchase, index) => {
+                            if (
+                              purchase.inscription?.typeModule === "asincronico"
+                            )
+                              return <FilterView key={index} {...purchase} />;
+                          })}
+
+                  </Tab.Pane>
+
+                  <Tab.Pane eventKey="recordedFinishModules">
+
+
+                      {search.length === 0
+                        ? keysFinishRecordModulesGroup.map((key) => (
+                            <div key={key}>
+                              <Accordion defaultActiveKey={key}>
+                                <Accordion.Item eventKey={key}>
+                                  <Accordion.Header>{key}</Accordion.Header>
+                                  <Accordion.Body>
+                                    <ul>
+                                      {objFinishRecordModulesGroup[key].map(
+                                        (purchase, index) => (
+                                          <FilterView
+                                            key={index}
+                                            {...purchase}
+                                          />
+                                        )
+                                      )}
+                                    </ul>
+                                  </Accordion.Body>
+                                </Accordion.Item>
+                              </Accordion>
+                            </div>
+                          ))
+                        : purchasesResult.map((purchase, index) => {
+                            if (
+                              purchase.inscription?.typeModule === "asincronico"
+                            )
+                              return <FilterView key={index} {...purchase} />;
+                          })}
+
                   </Tab.Pane>
 
                   <Tab.Pane eventKey="completedFormation">

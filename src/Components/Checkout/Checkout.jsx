@@ -88,7 +88,7 @@ export const Checkout = () => {
             {checkout.product.description?.length < 100 && <p className='fs-5'>{checkout.product.description}</p>}
             <p className='text-end fs-2'>Total: ${checkout.total}</p>
             <div className='w-100 d-flex flex-column gap-2'>
-            {
+            {/* {
               auth.user?.country === 'Argentina' 
               ? 
 
@@ -119,17 +119,17 @@ export const Checkout = () => {
                   />
                   : <img src={pp} alt="" />}
                 </button>
-            }
-            {
+            } */}
+            {/* {
               auth.user?.country === 'Argentina' && 
-              <>
-                <p className='text-center m-0'>- o -</p>
+              <> */}
+                {/* <p className='text-center m-0'>- o -</p> */}
                 <p className='text-center m-0'>Abonar por transferencia</p>
                 <Button variant="primary" onClick={() => handleCheckoutTransfer(checkout.product)}>
                   {transferLoading ? <Spinner animation="border" variant="light" size="sm" /> : 'Enviar datos al correo'}
                 </Button>
-              </>
-            }
+             {/*  </>
+            } */}
             </div>
         </Modal.Body>
         <Modal.Footer>

@@ -38,7 +38,7 @@ const Footer = () => {
 
             <Nav className="justify-content-end">
               <Nav.Item>
-              <Nav.Link href="https://www.instagram.com/silvia_cristine_/" target="_blank" className="img-fluid">
+              <Nav.Link href="https://instagram.com/silvia_cristine_?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr" target="_blank" className="img-fluid">
                 <i className="fab fa-instagram fa-2x"></i>
               </Nav.Link>
               </Nav.Item>
@@ -53,7 +53,7 @@ const Footer = () => {
               </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-              <Nav.Link href="https://open.spotify.com/show/0uSyK47kbFHRqBtnZoPfp3" target="_blank" className="img-fluid">
+              <Nav.Link href="https://open.spotify.com/episode/0BwLzWtNCHOMBg7JUywZK9?si=HB_CFYIPQzWxYlZAvLDhBA" target="_blank" className="img-fluid">
                 <i className="fab fa-spotify fa-2x"></i>
               </Nav.Link>
               </Nav.Item>
@@ -66,7 +66,7 @@ const Footer = () => {
           <Nav className="m-auto">
             <Nav.Item>
               <Nav.Link href="https://www.instagram.com/emilyestuvoaqui/" target="_blank">
-                <span>Diseño &copy; 2022 Emily Harnan</span>
+                <span>Diseño &copy; 2023 Emily Harnan</span>
               </Nav.Link>
             </Nav.Item>
 
@@ -79,7 +79,7 @@ const Footer = () => {
             <Nav.Item>
               <Nav.Link href="https://www.divisioncode.net.ar/" target="_blank">
 
-                <span>Desarrollo &copy; 2022 The Division Code</span>
+                <span>Desarrollo &copy; 2023 The Division Code</span>
               </Nav.Link>
             </Nav.Item>
             </Nav>
