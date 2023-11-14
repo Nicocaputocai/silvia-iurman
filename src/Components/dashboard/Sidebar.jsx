@@ -36,7 +36,7 @@ export const Sidebar = ({setContent}) => {
                     <Card>
                         <Card.Header>{module.title}</Card.Header>
                         <Card.Body className='d-flex justify-content-between'>
-                        <Button variant="warning" disabled={habilited.includes(module._id) && !module.enabled} onClick={() => addToCheckout(module, TYPE_PURCHASE.MODULE)}>{!module.enabled ? 'Comprar' : 'No disponible'}</Button>
+                        <Button variant="warning" disabled={habilited.includes(module._id) && !module.open} onClick={() => addToCheckout(module, TYPE_PURCHASE.MODULE)}>Comprar</Button>
                         <Button variant="primary" disabled={!habilited.includes(module._id)} onClick={() => {setContent({module, link:true})}}>Continuar</Button>
                         </Card.Body>
                     </Card>
