@@ -14,6 +14,7 @@ import {Header} from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import Activity from "./Components/Activity";
 import Constellators from "./Components/Constellators";
+import Diary from "./Components/diary";
 import {Login as UserLogin, Register} from "./Components/auth";
 import { AuthLayout } from "./layouts/AuthLayout";
 import { ProtectAdminLayout } from "./layouts/ProtectAdminLayout";
@@ -21,6 +22,7 @@ import { GlobalProvider } from "./context/GlobalProvider";
 import { Dashboard } from "./Components/dashboard/Dashboard";
 import { Checkout } from "./Components/Checkout/Checkout";
 import { AdminRoutes, CheckoutRoutes } from "./routes";
+
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserNotLoggedLayout } from "./layouts/userNotLoggedLayout";
@@ -52,6 +54,7 @@ function App() {
               <Route path="NCFA/modulos-en-directo" element={<BuyPresencialModules />} />
               <Route path="articulos" element={<Articles />} />
               <Route path="articulos/:id" element={<ArticleDetail />} />
+              <Route path="agenda" element={<Diary />} /> 
               <Route path="conoceme" element={<About />} />
               <Route path="login" element={<UserLogin />} />
               <Route path="registro" element={<Register />} />

@@ -41,6 +41,7 @@ export const Header = () => {
         </Nav>
         <Nav className="ml-auto">
           <Nav.Link as={Link} to="/calendario">Actividades</Nav.Link>
+          <Nav.Link as={Link} to="/agenda">Agenda</Nav.Link>
           <Nav.Link as={Link} to="/consteladores">Consteladores</Nav.Link>
           <Nav.Link as={Link} to='/articulos'>Artículos</Nav.Link>
           <Nav.Link as={Link} to="/conoceme">Conoceme</Nav.Link>

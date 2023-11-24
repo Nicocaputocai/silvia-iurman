@@ -13,6 +13,7 @@ export const AdminModules = () => {
           <Row className="align-items-center">
             <Col lg="12">
               <h3> {modulo.title}</h3>
+              <span> <b>{`Modalidad: ${modulo.typeModule ==="sincronico" ? "Online" : "Grabado"}`}</b></span><br />
 
               <span>{`Proxima fecha: ${moment(modulo.date).zone("+00").format(
                 "DD/MM/YYYY [a las] HH:mm a")}`}
@@ -22,6 +23,7 @@ export const AdminModules = () => {
               <br />
               <span>{`Precio en dólares: u$s ${modulo.priceDolar}`}</span>
               <br />
+
               {/* Chequear la ruta */}
               <NavItem as={Link} to={`/admin/editar-modulo/${modulo._id}`}>
                 <br />

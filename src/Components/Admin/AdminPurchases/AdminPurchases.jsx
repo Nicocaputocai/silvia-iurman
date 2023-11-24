@@ -317,6 +317,7 @@ export const AdminPurchases = () => {
                     </Button>
                   </Tab.Pane>
                   <Tab.Pane eventKey="liveModules">
+                  <div ref={componentPDF}>
                     {search.length === 0
                       ? keysModulesGroup.map((key) => (
                           <div key={key}>
@@ -340,8 +341,14 @@ export const AdminPurchases = () => {
                           if (purchase.inscription?.typeModule === "sincronico")
                             return <FilterView key={index} {...purchase} />;
                         })}
+                        </div>
+                    <br />
+                    <Button onClick={generatePDF} className="float-end">
+                      Imprimir lista
+                    </Button>
                   </Tab.Pane>
                   <Tab.Pane eventKey="liveFinishModules">
+                  <div ref={componentPDF}>
                     {search.length === 0
                       ? keysFinishModulesGroup.map((key) => (
                           <div key={key}>
@@ -365,10 +372,14 @@ export const AdminPurchases = () => {
                           if (purchase.inscription?.typeModule === "sincronico")
                             return <FilterView key={index} {...purchase} />;
                         })}
+                         </div>
+                    <br />
+                    <Button onClick={generatePDF} className="float-end">
+                      Imprimir lista
+                    </Button>
                   </Tab.Pane>
                   <Tab.Pane eventKey="recordedModules">
-
-
+                  <div ref={componentPDF}>
                       {search.length === 0
                         ? keysRecordModulesGroup.map((key) => (
                             <div key={key}>
@@ -397,12 +408,16 @@ export const AdminPurchases = () => {
                             )
                               return <FilterView key={index} {...purchase} />;
                           })}
+                           </div>
+                    <br />
+                    <Button onClick={generatePDF} className="float-end">
+                      Imprimir lista
+                    </Button>
 
                   </Tab.Pane>
 
                   <Tab.Pane eventKey="recordedFinishModules">
-
-
+                  <div ref={componentPDF}>
                       {search.length === 0
                         ? keysFinishRecordModulesGroup.map((key) => (
                             <div key={key}>
@@ -431,13 +446,26 @@ export const AdminPurchases = () => {
                             )
                               return <FilterView key={index} {...purchase} />;
                           })}
+                          </div>
+                                              <br />
+                        
+                    <Button onClick={generatePDF} className="float-end">
+                      Imprimir lista
+                    </Button>
 
                   </Tab.Pane>
 
                   <Tab.Pane eventKey="completedFormation">
+                  <div ref={componentPDF}>
                     {users.data.map((user, index) => {
                       return <FilterView key={index} {...user} />;
                     })}
+                                              </div>
+                                              <br />
+                        
+                    <Button onClick={generatePDF} className="float-end">
+                      Imprimir lista
+                    </Button>
                   </Tab.Pane>
                 </Tab.Content>
               </Tab.Container>
