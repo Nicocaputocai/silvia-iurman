@@ -13,7 +13,6 @@ const AuthProvider = ({children}) => {
     
     const reloggedUser = async() =>{
         setAuthLoading(true);
-       
         const token = localStorage.getItem('token');
         if(!token){
             authDispatch({
@@ -39,6 +38,8 @@ const AuthProvider = ({children}) => {
                 payload : data.user
             })
             localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+            authDispatch({type:TYPES.LOGIN, payload:{user:data.user, token:data.token}});   
         } catch (error) {
             console.error(error);
             localStorage.removeItem('token')
@@ -49,13 +50,13 @@ const AuthProvider = ({children}) => {
     }
 
    useEffect(() => {
-         /* reloggedUser() */
-         if(localStorage.getItem('user')){
+         reloggedUser()
+         /* if(localStorage.getItem('user')){
             authDispatch({
                 type : TYPES.LOGIN,
                 payload : {user:JSON.parse(localStorage.getItem('user')), token:cookies.get('token')}
             })
-         }
+         } */
     }, [])
     return (
         <AuthContext.Provider

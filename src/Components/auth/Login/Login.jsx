@@ -26,11 +26,12 @@ export const Login = () => {
       localStorage.removeItem('token');
       setLoading(true);
       const response = await UserDataServices.login(data);
-      cookies.set('token', response.data.token, {path:'/'})
+      localStorage.setItem('token', response.data.token);
+      /* cookies.set('token', response.data.token, {path:'/'}) */
       localStorage.setItem('user', JSON.stringify(response.data.user));
       authDispatch({type:TYPES.LOGIN, payload:{user:response.data.user, token:response.data.token}});
       sucessAlert('Bienvenido');
-      window.location.reload();
+      
 
     } catch (error) {
       console.error(error);
@@ -44,7 +45,7 @@ export const Login = () => {
 
   useEffect(() => {
     if(auth.isLogged){
-      navigate(-1);
+      navigate(-1)
     }
   }, [auth.isLogged])
 

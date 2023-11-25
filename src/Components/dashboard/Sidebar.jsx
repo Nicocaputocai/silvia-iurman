@@ -1,16 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Card, ListGroup, Accordion } from 'react-bootstrap'
 import styles from './dashboard.module.css'
-import { useCheckout, useModules, useAuth } from '../../hooks'
+import { useCheckout, useAuth } from '../../hooks'
 import { TYPE_PURCHASE } from '../../types/TYPES'
+import modulesDataServices from '../../Services/ModulesServices'
 
 
 
 export const Sidebar = ({setContent}) => {
     const [habilited, setHabilited] = useState([])
-    const {modules} = useModules();
+    const [modules, setModules] = useState([])
+    const [loadingModules, setLoadingModules] = useState(true)
     const {addToCheckout} = useCheckout();
     const {auth} = useAuth();
+
+    const getModules = async () => {
+      try {
+        const mod = await modulesDataServices.getAllModules()
+          setModules(mod.data)
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setLoadingModules(false)
+      }
+  }
+
 
     const getHabilitedModules = () => {
         const hab = auth.user.modules.map(module => module._id)
@@ -18,9 +32,18 @@ export const Sidebar = ({setContent}) => {
     }
 
     useEffect(() => {
+      getModules()
+    
+    },[])
+
+    useEffect(() => {
       getHabilitedModules()
     },[auth])
-    console.log(modules)
+
+    if(loadingModules) return (
+      <p>Cargando...</p>
+    )
+    console.log(modules.modules)
   return (
     <div className={`me-auto ${styles.sidebar_size}`}>
     <Accordion defaultActiveKey="1">
@@ -30,7 +53,7 @@ export const Sidebar = ({setContent}) => {
           <ListGroup defaultActiveKey="#link1">
               
               {
-                modules.data.map(module => (
+                modules.modules.map(module => (
                 module.typeModule === 'sincronico' &&
                 <ListGroup.Item key={module._id}>
                     <Card>
@@ -53,7 +76,7 @@ export const Sidebar = ({setContent}) => {
           <ListGroup defaultActiveKey="#link1">
               
               {
-                modules.data.map(module => (
+                modules.modules.map(module => (
                   module.typeModule === 'asincronico' &&
                 <ListGroup.Item key={module._id}>
                     <Card>
