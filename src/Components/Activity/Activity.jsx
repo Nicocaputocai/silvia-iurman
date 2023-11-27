@@ -77,7 +77,7 @@ export const Activity = () => {
         <Container>
             <Row>
                 <Col className="justify-content-md-center">
-                    <Image  className={`mx-auto d-block ${styles.imgActivity}`} fluid="true" src={`https://api-silvia.divisioncode.net.ar/img/${activity.img}`} />
+                    <Image  className={`mx-auto d-block ${styles.imgActivity}`} fluid="true" src={`https://api.silviaiurman.com/img/${activity.img}`} />
                 </Col>
             </Row>
             <Row >

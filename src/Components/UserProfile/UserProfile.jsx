@@ -91,213 +91,200 @@ export const UserProfile = () => {
       <Container>
         <Row>
           <Col>
-          <>
+            <>
+              <Tab.Container id="profile-tabs" defaultActiveKey="MyCourses">
+                <Nav fill variant="pills">
+                  <Nav.Item>
+                    <Nav.Link eventKey="MyCourses">Mis Cursos</Nav.Link>
+                  </Nav.Item>
 
-            <Tab.Container id="profile-tabs" defaultActiveKey="MyCourses">
-              <Nav fill variant="pills">
-                <Nav.Item>
-                  <Nav.Link eventKey="MyCourses">Mis Cursos</Nav.Link>
-                </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="EditProfile">Editar perfil</Nav.Link>
+                  </Nav.Item>
+                </Nav>
+                <Tab.Content>
+                  <Tab.Pane eventKey="MyCourses">
+                    <Table striped bordered hover>
+                      <thead>
+                        <tr>
+                          <th>Módulo realizados</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {auth.user.modules.map((module) => (
+                          <tr>
+                            <td>{module.title}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  </Tab.Pane>
 
-                <Nav.Item>
-                  <Nav.Link eventKey="EditProfile">Editar perfil</Nav.Link>
-                </Nav.Item>
-              </Nav>
-            <Tab.Content>
-              <Tab.Pane eventKey="MyCourses">
-              <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>Módulo realizados</th>
-        </tr>
-      </thead>
-      <tbody>
-        
-         
-          {auth.user.modules.map((module) => (
-            <tr>
-            <td>{module.title}</td>
-            </tr>
-          ))}
-
-
-
-      </tbody>
-    </Table>
-              </Tab.Pane>
-
-              <Tab.Pane eventKey="EditProfile">
-              <h2>Editar perfil de usuario</h2>
-    {/* <span>{auth.user.firstName}</span> */}
-    <Form onSubmit={handleSubmit(save)}>
-          <Form.Group>
-            <Form.Label>Nombre</Form.Label>
-            <Form.Control
-              type="text"
-              // defaultValue={auth.user.firstName}
-              {...register("firstName", {
-                required: {
-                  value: true,
-                  message: "El nombre es requerido",
-                },
-              })}
-            />
-            {
-              errors.firstName && <Alert 
-                            variant='danger'
-                            className='p-2 mt-2'>
+                  <Tab.Pane eventKey="EditProfile">
+                    <h2>Editar perfil de usuario</h2>
+                    {/* <span>{auth.user.firstName}</span> */}
+                    <Form onSubmit={handleSubmit(save)}>
+                      <Form.Group>
+                        <Form.Label>Nombre</Form.Label>
+                        <Form.Control
+                          type="text"
+                          // defaultValue={auth.user.firstName}
+                          {...register("firstName", {
+                            required: {
+                              value: true,
+                              message: "El nombre es requerido",
+                            },
+                          })}
+                        />
+                        {errors.firstName && (
+                          <Alert variant="danger" className="p-2 mt-2">
                             {errors.firstName.message}
-                            </Alert>
-            }
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Apellido</Form.Label>
-            <Form.Control
-              type="text"
-              // defaultValue={auth.user.lastName}
-              {...register("lastName", {
-                required: {
-                  value: true,
-                  message: "El apellido es requerido",
-                },
-              })}
-            />
-            {
-              errors.lastName && <Alert 
-                            variant='danger'
-                            className='p-2 mt-2'>
+                          </Alert>
+                        )}
+                      </Form.Group>
+                      <Form.Group>
+                        <Form.Label>Apellido</Form.Label>
+                        <Form.Control
+                          type="text"
+                          // defaultValue={auth.user.lastName}
+                          {...register("lastName", {
+                            required: {
+                              value: true,
+                              message: "El apellido es requerido",
+                            },
+                          })}
+                        />
+                        {errors.lastName && (
+                          <Alert variant="danger" className="p-2 mt-2">
                             {errors.lastName.message}
-                            </Alert>
-            }
-          </Form.Group>
-          <Form.Group controlId="avatar">
-            <Form.Label>Foto</Form.Label>
-            <Form.Control
-              type="file"
-              name='avatar'
-              label="Foto de perfil"
-              accept="image/*"
-              onChange={handleInputFileChange}
-            />
-            {selectedImage ? (
-              <div
-              >
-                <Image
-                  style={{ maxWidth: "100%", maxHeight: 320 }}
-                  src={URL.createObjectURL(selectedImage)}
-                  alt="Thumb"
-                  fluid= "true"
-                />
-              </div>
-            ): 
-            <Image
-              src={`https://api-silvia.divisioncode.net.ar/img/${auth.user.avatar}`}
-              //src={`http://localhost:4000/img/${editUser.data?.avatar}`}
-              fluid= "true"
-            ></Image>
-            }
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Fecha de nacimiento</Form.Label>
-            <Form.Control
-              type="date"
-              // defaultValue={auth.user.dateOfBirth}
-              name="birthday"
-              {...register("birthday", {
-                required: {
-                  value: true,
-                  message: "La fecha de nacimiento es requerida",
-                  },
-                }
-                )
-              }
-              
-            ></Form.Control>
-            {
-              errors.dateOfBirth && <Alert 
-                              variant='danger'
-                              className='p-2 mt-2'>
-                              {errors.dateOfBirth.message}
-                            </Alert>
-            }
-            
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Teléfono</Form.Label>
-            <Form.Control
-              type="text"
-              // defaultValue={auth.user.phone}
-              {...register("phone", {
-                required: {
-                  value: true,
-                  message: "El teléfono es requerido",
-                }
-                })
-              }
-            ></Form.Control>
-            {
-              errors.phone && <Alert 
-                                      variant='danger'
-                                      className='p-2 mt-2'>
-                                      {errors.phone.message}
-                                    </Alert>
-            }
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="country">
-            <Form.Label>País</Form.Label>
-            <Form.Select
-              //defaultValue={auth.user?.country}
-              {...register('country', {
-                required: {
-                  value: true,
-                  message: 'Campo requerido'
-                }
-              })}>
-              <option value='#' hidden>Selecciona tu país</option>
-              {
-                paises.map((pais, index) => <option value={pais} key={index}>{pais}</option>)
-              }
-            </Form.Select>
-            {
-              errors.country && (
-                (<Alert
-                  variant='danger'
-                  className='p-2 mt-2'>
-                  Selecciona tu pais
-                </Alert>)
-              )
-            }
-          </Form.Group>
-          <br />
-          <NavItem as={Link} to={`/admin`}>
-            <Button 
-            className="mb-3" 
-            type={Link} size="lg" v
-            ariant="danger"
-            disabled={loading}
-            >
-              Cancelar
-            </Button>
-          </NavItem>
-          <Button
-            className="mb-3 float-end"
-            size="lg"
-            variant="primary"
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? <Spinner 
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                          /> : "Editar perfil"}
-          </Button>
-        </Form>
-              </Tab.Pane>
-              </Tab.Content>
-            </Tab.Container>
+                          </Alert>
+                        )}
+                      </Form.Group>
+                      <Form.Group controlId="avatar">
+                        <Form.Label>Foto</Form.Label>
+                        <Form.Control
+                          type="file"
+                          name="avatar"
+                          label="Foto de perfil"
+                          accept="image/*"
+                          onChange={handleInputFileChange}
+                        />
+                        {selectedImage ? (
+                          <div>
+                            <Image
+                              style={{ maxWidth: "100%", maxHeight: 320 }}
+                              src={URL.createObjectURL(selectedImage)}
+                              alt="Thumb"
+                              fluid="true"
+                            />
+                          </div>
+                        ) : (
+                          <Image
+                            src={`https://api.silviaiurman.com/img/${auth.user.avatar}`}
+                            //src={`http://localhost:4000/img/${editUser.data?.avatar}`}
+                            fluid="true"
+                          ></Image>
+                        )}
+                      </Form.Group>
+                      <Form.Group>
+                        <Form.Label>Fecha de nacimiento</Form.Label>
+                        <Form.Control
+                          type="date"
+                          // defaultValue={auth.user.dateOfBirth}
+                          name="birthday"
+                          {...register("birthday", {
+                            required: {
+                              value: true,
+                              message: "La fecha de nacimiento es requerida",
+                            },
+                          })}
+                        ></Form.Control>
+                        {errors.dateOfBirth && (
+                          <Alert variant="danger" className="p-2 mt-2">
+                            {errors.dateOfBirth.message}
+                          </Alert>
+                        )}
+                      </Form.Group>
+                      <Form.Group>
+                        <Form.Label>Teléfono</Form.Label>
+                        <Form.Control
+                          type="text"
+                          // defaultValue={auth.user.phone}
+                          {...register("phone", {
+                            required: {
+                              value: true,
+                              message: "El teléfono es requerido",
+                            },
+                          })}
+                        ></Form.Control>
+                        {errors.phone && (
+                          <Alert variant="danger" className="p-2 mt-2">
+                            {errors.phone.message}
+                          </Alert>
+                        )}
+                      </Form.Group>
+                      <Form.Group className="mb-3" controlId="country">
+                        <Form.Label>País</Form.Label>
+                        <Form.Select
+                          //defaultValue={auth.user?.country}
+                          {...register("country", {
+                            required: {
+                              value: true,
+                              message: "Campo requerido",
+                            },
+                          })}
+                        >
+                          <option value="#" hidden>
+                            Selecciona tu país
+                          </option>
+                          {paises.map((pais, index) => (
+                            <option value={pais} key={index}>
+                              {pais}
+                            </option>
+                          ))}
+                        </Form.Select>
+                        {errors.country && (
+                          <Alert variant="danger" className="p-2 mt-2">
+                            Selecciona tu pais
+                          </Alert>
+                        )}
+                      </Form.Group>
+                      <br />
+                      <NavItem as={Link} to={`/admin`}>
+                        <Button
+                          className="mb-3"
+                          type={Link}
+                          size="lg"
+                          v
+                          ariant="danger"
+                          disabled={loading}
+                        >
+                          Cancelar
+                        </Button>
+                      </NavItem>
+                      <Button
+                        className="mb-3 float-end"
+                        size="lg"
+                        variant="primary"
+                        type="submit"
+                        disabled={loading}
+                      >
+                        {loading ? (
+                          <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          "Editar perfil"
+                        )}
+                      </Button>
+                    </Form>
+                  </Tab.Pane>
+                </Tab.Content>
+              </Tab.Container>
             </>
           </Col>
         </Row>

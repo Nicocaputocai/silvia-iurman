@@ -59,7 +59,7 @@ const AdminActivity = () =>{
                 <Container key={activity._id}>
                     <Row className="align-items-center">
                         <Image
-                        src={`https://api-silvia.divisioncode.net.ar/img/${activity.img}`}
+                        src={`https://api.silviaiurman.com/img/${activity.img}`}
                         className={styles.img_activity}
                         />
                         <Col lg="6">

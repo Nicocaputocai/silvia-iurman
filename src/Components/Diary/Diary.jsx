@@ -426,12 +426,12 @@ export default function Diary() {
         <td>Presencial</td>
       </tr>
       <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>Sábado 7 de diciembre</td>
+        <td>Módulo 10 F.NCF y E</td>
+        <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
-        <td>Sábado 7 de diciembre</td>
+        <td>Domingo 8 de diciembre</td>
         <td>Módulo 10 F.NCF y E</td>
         <td>ONLINE</td>
       </tr>
