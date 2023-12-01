@@ -25,7 +25,7 @@ export const CardComponent = ({
           />
 
           <Card.Body>
-            <Card.Title>{activity.name}</Card.Title>
+            <Card.Title>{activity.title}</Card.Title>
             <Card.Text>
               {" "}
               <b>Fecha:</b>{" "}
