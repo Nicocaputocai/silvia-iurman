@@ -5,14 +5,14 @@ import { cookies } from '../config/cookies';
 const auth = {
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': cookies.get('token')
+        'Authorization': localStorage.getItem("token")
     }
 }
 
 const authFormData = {
     headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': cookies.get('token')
+        'Authorization': localStorage.getItem("token")
     }
 }
 const service = http;

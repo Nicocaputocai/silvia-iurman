@@ -9,29 +9,18 @@ import { cookies } from "../../config/cookies";
 
 const AuthProvider = ({children}) => {
     const [auth, authDispatch] = useReducer(AuthReducer, initialState);
-    const [authLoading, setAuthLoading] = useState(false);
+    const [authLoading, setAuthLoading] = useState(true);
     
     const reloggedUser = async() =>{
-        setAuthLoading(true);
-        const token = localStorage.getItem('token');
-        if(!token){
-            authDispatch({
-                type : TYPES.LOGOUT
-            })
-            setAuthLoading(false);
-            return null;
-        };
-
         try {
             const {data, status} = await UserDataServices.relogin();
-
+            console.log(data, status)
             if(status !== 200){
                 authDispatch({
                     type : TYPES.LOGOUT
                 })
                 localStorage.removeItem('token');
-                setAuthLoading(false);
-                return null;
+                return;
             }
             authDispatch({
                 type : TYPES.LOGIN,
@@ -39,7 +28,7 @@ const AuthProvider = ({children}) => {
             })
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
-            authDispatch({type:TYPES.LOGIN, payload:{user:data.user, token:data.token}});   
+            authDispatch({type:TYPES.LOGIN, payload:{user:data.user, token:data.token}});
         } catch (error) {
             console.error(error);
             localStorage.removeItem('token')
@@ -50,6 +39,15 @@ const AuthProvider = ({children}) => {
     }
 
    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if(!token) {
+            authDispatch({
+                type : TYPES.LOGOUT
+            })
+            setAuthLoading(false);
+            return;
+        }
+        
          reloggedUser()
          /* if(localStorage.getItem('user')){
             authDispatch({
