@@ -45,7 +45,7 @@ export const Login = () => {
 
   useEffect(() => {
     if(auth.isLogged){
-      navigate(-1)
+      navigate("/")
     }
   }, [auth.isLogged])
 
