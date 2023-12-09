@@ -23,12 +23,12 @@ export default function Diary() {
     </thead>
     <tbody>
       <tr style={{backgroundColor: "#d4eaf7"}}>
-        <td>Sábado 2 de diciembre</td>
+        <td>Sábado 16 de diciembre</td>
         <td>Módulo 16 F. NCF y E</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#d4eaf7"}}>
-        <td>Domingo 3 de diciembre</td>
+        <td>Domingo 17 de diciembre</td>
         <td>Módulo 16 F. NCF y E</td>
         <td>ONLINE</td>
       </tr>

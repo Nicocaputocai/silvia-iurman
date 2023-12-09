@@ -80,7 +80,7 @@ const CursosPresenciales = () => {
                     }}
                   >
                     Próximo taller: {moment(course.day).format("DD/MM/YYYY")}{" "}
-                    {course.hour}
+                    {course.hour} hs.
                   </h3>
 
                   <p>

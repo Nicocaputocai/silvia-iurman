@@ -20,7 +20,7 @@ const AdminCourse = () =>{
                         <Row className="align-items-center">
                          
                           <Col lg="12">
-                            <h3> {course.name}</h3>
+                            <h3> {course.title}</h3>
                            
                             <span>{`Proxima fecha: ${moment(course.day).format(
                               "DD/MM/YYYY"
