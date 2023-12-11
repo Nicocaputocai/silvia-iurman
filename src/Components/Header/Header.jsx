@@ -13,7 +13,8 @@ export const Header = () => {
   const logout = () =>{
     authDispatch({type:'LOGOUT'})
     localStorage.removeItem('user')
-    localStorage.remove('token')
+    // cookies.remove('token')
+    localStorage.removeItem('token')
   }
   return (
     <Navbar bg="light" expand="lg">

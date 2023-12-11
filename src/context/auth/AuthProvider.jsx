@@ -49,12 +49,13 @@ const AuthProvider = ({children}) => {
         }
         
          reloggedUser()
-         /* if(localStorage.getItem('user')){
+         if(localStorage.getItem('user')){
             authDispatch({
                 type : TYPES.LOGIN,
-                payload : {user:JSON.parse(localStorage.getItem('user')), token:cookies.get('token')}
+                // payload : {user:JSON.parse(localStorage.getItem('user')), token:cookies.get('token')}
+                payload : {user:JSON.parse(localStorage.getItem('user')), token:localStorage.getItem('token')}
             })
-         } */
+         }
     }, [])
     return (
         <AuthContext.Provider
