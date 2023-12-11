@@ -19,9 +19,10 @@ export const GoogleLogin = () => {
         try {
             const result = await signInWithPopup(auth, provider)
             const response = await UserDataServices.googleLogin(result.user);
-            cookies.set('token', response.data.token, {path:'/'})
+            localStorage.setItem('token', response.data.token);
+            // cookies.set('token', response.data.token, {path:'/'})
             localStorage.setItem('user', JSON.stringify(response.data.user));
-            authDispatch({type:TYPES.LOGIN, payload:{user:response.data.user, token:response.data?.token}});
+            authDispatch({type:TYPES.LOGIN, payload:{user:response.data.user, token:response.data.token}});
             sucessAlert('Bienvenido');
             navigate(-1);
         } catch (error) {
