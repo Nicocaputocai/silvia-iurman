@@ -50,7 +50,7 @@ export const Header = () => {
             auth.isLogged ? (
               <NavDropdown title={auth.user.name} id="basic-nav-dropdown" className="w-50">
                 <NavDropdown.Item as={Link} to='/profile'>Mi Perfil</NavDropdown.Item>
-                {/*<NavDropdown.Item as={Link} to='/dashboard'>Alumnos</NavDropdown.Item>*/}
+                <NavDropdown.Item as={Link} to='/dashboard'>Alumnos</NavDropdown.Item>
                 {
                   auth.user.role === ROLES.ADMIN && <NavDropdown.Item as={Link} to='/admin'>Admin</NavDropdown.Item>
                 }

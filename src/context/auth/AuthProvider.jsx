@@ -14,7 +14,7 @@ const AuthProvider = ({children}) => {
     const reloggedUser = async() =>{
         try {
             const {data, status} = await UserDataServices.relogin();
-            console.log(data, status)
+            // console.log(data, status)
             if(status !== 200){
                 authDispatch({
                     type : TYPES.LOGOUT

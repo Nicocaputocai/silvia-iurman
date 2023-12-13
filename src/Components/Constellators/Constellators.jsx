@@ -43,7 +43,7 @@ export const Constellators = () => {
     })
     getConstellators()
   },[])
-  console.log(constellators)
+  // console.log(constellators)
 
   if(constellators.isLoading) return (
     <PageLoader/>
