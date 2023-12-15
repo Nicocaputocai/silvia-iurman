@@ -73,7 +73,10 @@ export const Checkout = () => {
         sucessAlert(response.data.msg)
         closeModal()
       } catch (error) {
-        errorAlert(error.response.data.msg)
+        console.log(error)
+        errorAlert(`Ups! 
+        Ocurrio un error!
+        Contacte con el administrador!`)
       } finally {
         setTransferLoading(false)
       }

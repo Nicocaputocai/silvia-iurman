@@ -6,14 +6,13 @@ import { useAuth } from "../../hooks";
 import { ROLES } from "../../types/TYPES";
 import styles from './Header.module.css'
 import { MediaSocials } from "../components";
-import { cookies } from "../../config/cookies";
 
 export const Header = () => {
   const {auth, authDispatch} = useAuth()
   const logout = () =>{
     authDispatch({type:'LOGOUT'})
     localStorage.removeItem('user')
-    cookies.remove('token')
+    localStorage.removeItem('token')
   }
   return (
     <Navbar bg="light" expand="lg">

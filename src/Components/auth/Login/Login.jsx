@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import { ModalRecovery } from "../modal/Modal";
 import { GoogleLogin } from "../Google/GoogleLogin";
 import { HelmetPage } from "../../components";
-import { cookies } from "../../../config/cookies";
 
 export const Login = () => {
   const {formState:{errors}, register, handleSubmit, reset} = useForm();
@@ -27,7 +26,6 @@ export const Login = () => {
       setLoading(true);
       const response = await UserDataServices.login(data);
       localStorage.setItem('token', response.data.token);
-      /* cookies.set('token', response.data.token, {path:'/'}) */
       localStorage.setItem('user', JSON.stringify(response.data.user));
       authDispatch({type:TYPES.LOGIN, payload:{user:response.data.user, token:response.data.token}});
       sucessAlert('Bienvenido');
