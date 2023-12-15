@@ -1,21 +1,29 @@
 import React from "react";
-import { Card, Col } from "react-bootstrap";
+import { Card, Col, Container } from "react-bootstrap";
 
 export const SimpleCard = ({ constellation }) => {
   return (
+
+
+
+    
     <Col className="mb-4">
       <Card
-        data-aos="fade-up"
-        className="shadow-sm rounded-2 position-relative"
+
       >
         <Card.Img
-          className="w-100 h-100 object-fit-cover img-fluid"
+          variant="top"
           src={`https://api.silviaiurman.com/img/${constellation.avatar}`}
         />
-        <Card.Body className="text-center position-absolute bottom-0 bg-white opacity-75 w-100">
+        <Card.Body>
           <Card.Title className="fw-bold fs-5">
             {`${constellation.firstName} ${constellation.lastName}`}
           </Card.Title>
+          <Card.Subtitle>{`${constellation.country != undefined ? constellation.country : ""}`}</Card.Subtitle>
+          <Card.Subtitle className="mt-1">Contacto:</Card.Subtitle>
+          <Card.Link style={{textDecoration: "none", color: 'inherit'}}  href={`mailto:${constellation.email}`}>{`${constellation.email != undefined ? constellation.email :""}`}</Card.Link>
+          <Card.Link  style={{textDecoration: "none", color: 'inherit'}} href={`callto:${constellation.phone}`}>{`${constellation.phone != undefined ? constellation.phone : ""}`}</Card.Link>
+
         </Card.Body>
       </Card>
     </Col>

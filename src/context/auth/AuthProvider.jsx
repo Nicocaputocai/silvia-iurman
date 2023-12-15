@@ -12,7 +12,7 @@ const AuthProvider = ({children}) => {
     const reloggedUser = async() =>{
         try {
             const {data, status} = await UserDataServices.relogin();
-            console.log(data, status)
+            // console.log(data, status)
             if(status !== 200){
                 authDispatch({
                     type : TYPES.LOGOUT
@@ -47,6 +47,13 @@ const AuthProvider = ({children}) => {
         }
         
          reloggedUser()
+         /* if(localStorage.getItem('user')){
+            authDispatch({
+                type : TYPES.LOGIN,
+                // payload : {user:JSON.parse(localStorage.getItem('user')), token:cookies.get('token')}
+                payload : {user:JSON.parse(localStorage.getItem('user')), token:localStorage.getItem('token')}
+            })
+         } */
     }, [])
     return (
         <AuthContext.Provider

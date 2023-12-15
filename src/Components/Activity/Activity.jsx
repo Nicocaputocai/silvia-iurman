@@ -82,7 +82,7 @@ export const Activity = () => {
             </Row>
             <Row >
                 <Col className="m-3">
-                    <h1> {activity.name} </h1>
+                    <h1> {activity.title} </h1>
                 </Col>
             </Row>
             <Row>

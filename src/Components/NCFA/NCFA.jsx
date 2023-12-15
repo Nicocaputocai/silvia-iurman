@@ -78,9 +78,9 @@ const Constelaciones = ()=>{
 
           <b>Honorarios con descuento por pago anticipado</b>: ${course.priceAnticipedPesos}<br />
           <b>Honorarios comunes</b>: ${course.pricePesos}.-<br />
-          <b>-Medio de pago</b>: por transferencia bancaria.<br />
+          <b>-Medio de pago para residentes en Argentina</b>: por transferencia bancaria.<br />
           <b>Otros países </b>: USD {course.priceDolar}<br />
-          <b>-Medio de pago </b>: paypal - Western Unión<br /><br />
+          <b>-Medio de pago para otros países </b>: paypal - Western Unión<br /><br />
 
           Al servicio de la vida y de la conciencia colectiva.<br />
         </p>

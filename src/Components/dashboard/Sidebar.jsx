@@ -43,7 +43,6 @@ export const Sidebar = ({setContent}) => {
     if(loadingModules) return (
       <p>Cargando...</p>
     )
-    console.log(modules.modules)
   return (
     <div className={`me-auto ${styles.sidebar_size}`}>
     <Accordion defaultActiveKey="1">
@@ -59,7 +58,7 @@ export const Sidebar = ({setContent}) => {
                     <Card>
                         <Card.Header>{module.title}</Card.Header>
                         <Card.Body className='d-flex justify-content-between'>
-                        <Button variant="warning" disabled={habilited.includes(module._id) && !module.open} onClick={() => addToCheckout(module, TYPE_PURCHASE.MODULE)}>Comprar</Button>
+                        <Button variant="warning" disabled={habilited.includes(module._id) || !module.open} onClick={() => addToCheckout(module, TYPE_PURCHASE.MODULE)}>Comprar</Button>
                         <Button variant="primary" disabled={!habilited.includes(module._id)} onClick={() => {setContent({module, link:true})}}>Continuar</Button>
                         </Card.Body>
                     </Card>
@@ -85,7 +84,7 @@ export const Sidebar = ({setContent}) => {
                         <Button 
                         className='p-1 h6'
                         variant="warning" 
-                        disabled={habilited.includes(module._id)} 
+                        disabled={habilited.includes(module._id)|| !module.open} 
                         onClick={() => addToCheckout(module, TYPE_PURCHASE.MODULE)}>
                         Comprar
                         </Button>

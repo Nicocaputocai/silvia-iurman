@@ -20,7 +20,7 @@ export const GoogleLogin = () => {
             const response = await UserDataServices.googleLogin(result.user);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('user', JSON.stringify(response.data.user));
-            authDispatch({type:TYPES.LOGIN, payload:{user:response.data.user, token:response.data?.token}});
+            authDispatch({type:TYPES.LOGIN, payload:{user:response.data.user, token:response.data.token}});
             sucessAlert('Bienvenido');
             navigate(-1);
         } catch (error) {

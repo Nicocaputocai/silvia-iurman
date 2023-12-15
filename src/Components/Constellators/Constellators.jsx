@@ -43,7 +43,7 @@ export const Constellators = () => {
     })
     getConstellators()
   },[])
-  console.log(constellators)
+  // console.log(constellators)
 
   if(constellators.isLoading) return (
     <PageLoader/>
@@ -54,20 +54,21 @@ export const Constellators = () => {
     <HelmetPage section='Consteladores' content='Consteladores - Nuevas Constelaciones Familiares Argentina'/>
 
     <Container className='text-center d-flex flex-column' style={{minHeight: '80vh', minWidth: '100vw'}}>
-      <h1 className='mt-3 mb-3 textColor'>Consteladores acreditados</h1>
+      <h1 className='mt-3 mb-3 textColor'>Consteladores acreditados</h1> 
+
 
     {/* Esto solo es a modo de prueba! */}
-    <Row xs={1} sm={2} md={4} className="g-4 mb-3">
+    {/* <Row xs={1} sm={2} md={4} className="g-4 mb-3">
           {
             constellators.data.map((constellation, idx) => <SimpleCard constellation={constellation} key={idx}/>)
           }
-    </Row>
+    </Row> */}
     
-      {/* {Array.from({ length: 4 }).map((_, idx) => (
-        <SimpleCard constellation={constellation_} key={idx}/>
-      ))} */}
-       {/*  <Row xs={1} sm={2} md={4} className="g-4 mb-3">
-        </Row> */}
+        <Row xs={1} sm={2} md={4} className="g-4 mb-3">
+        {
+            constellators.data.map((constellation, idx) => <SimpleCard constellation={constellation} key={idx}/>)
+          }
+        </Row>
     
     
    
