@@ -44,6 +44,11 @@ export const Login = () => {
   useEffect(() => {
     if(auth.isLogged){
       navigate("/")
+      setTimeout(()=>{
+        navigate(0)
+      }, 1400)
+      // wait(2000)
+
     }
   }, [auth.isLogged])
 
