@@ -21,8 +21,8 @@ export const SimpleCard = ({ constellation }) => {
           </Card.Title>
           <Card.Subtitle>{`${constellation.country != undefined ? constellation.country : ""}`}</Card.Subtitle>
           <Card.Subtitle className="mt-1">Contacto:</Card.Subtitle>
-          <Card.Link style={{textDecoration: "none", color: 'inherit'}}  href={`mailto:${constellation.email}`}>{`${constellation.email != undefined ? constellation.email :""}`}</Card.Link>
-          <Card.Link  style={{textDecoration: "none", color: 'inherit'}} href={`callto:${constellation.phone}`}>{`${constellation.phone != undefined ? constellation.phone : ""}`}</Card.Link>
+          <h6 className="m-1">Correo: <Card.Link style={{textDecoration: "none", color: 'inherit'}}  href={`mailto:${constellation.email}`}>{`${constellation.email != undefined ? constellation.email :""}`}</Card.Link></h6>
+          <h6>Teléfono: <Card.Link  style={{textDecoration: "none", color: 'inherit'}} href={`callto:${constellation.phone}`}>{`${constellation.phone != undefined ? constellation.phone : ""}`}</Card.Link></h6>
 
         </Card.Body>
       </Card>
