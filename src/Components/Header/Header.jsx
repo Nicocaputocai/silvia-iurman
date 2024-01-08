@@ -35,7 +35,7 @@ export const Header = () => {
       <Navbar.Collapse 
       id="basic-navbar-nav" 
       className={styles.navbar_items}>
-        <Nav className="me-auto">
+        <Nav className="ml-auto">
           <Nav.Link as={Link} to="/" onClick={handleNavItemClick}>Inicio</Nav.Link>
           <NavDropdown title="Taller de constelaciones" id="basic-nav-dropdown">
             <NavDropdown.Item as={Link} to='/talleres-presenciales'>Talleres presenciales</NavDropdown.Item>
@@ -45,7 +45,7 @@ export const Header = () => {
             Formación en Eneagrama y Nuevas Constelaciones Familiares
           </Nav.Link>
         </Nav>
-        <Nav className="ml-auto">
+        <Nav className="me-auto">
           <Nav.Link as={Link} to="/calendario" onClick={handleNavItemClick}>Actividades</Nav.Link>
           <Nav.Link as={Link} to="/agenda" onClick={handleNavItemClick}>Agenda</Nav.Link>
           <Nav.Link as={Link} to="/consteladores" onClick={handleNavItemClick}>Consteladores</Nav.Link>
