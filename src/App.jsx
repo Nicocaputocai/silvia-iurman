@@ -21,6 +21,7 @@ import { ProtectAdminLayout } from "./layouts/ProtectAdminLayout";
 import { GlobalProvider } from "./context/GlobalProvider";
 import { Dashboard } from "./Components/dashboard/Dashboard";
 import { Checkout } from "./Components/Checkout/Checkout";
+import {Syllabus} from "./Components/NCFA/Syllabus/Syllabus"
 import { AdminRoutes, CheckoutRoutes } from "./routes";
 
 
@@ -29,6 +30,7 @@ import { UserNotLoggedLayout } from "./layouts/userNotLoggedLayout";
 import { Confirm } from "./Components/auth/confirm/Confirm";
 import { RecoveryPassword } from "./Components/auth/recover/RecoveryPassword";
 import UserProfile from "./Components/UserProfile";
+
 
 function App() {
 
@@ -50,6 +52,7 @@ function App() {
               <Route path="calendario/:id" element={<Activity />} />
               <Route path="consteladores" element={<Constellators />} />
               <Route path="NCFA" element={<NCFA />} />
+              <Route path="NCFA/temario" element={<Syllabus />} />
               <Route path="NCFA/modulos-grabados" element={<BuyFilmedModules />} />
               <Route path="NCFA/modulos-en-directo" element={<BuyPresencialModules />} />
               <Route path="articulos" element={<Articles />} />

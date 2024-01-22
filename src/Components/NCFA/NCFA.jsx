@@ -84,14 +84,24 @@ const Constelaciones = ()=>{
 
           Al servicio de la vida y de la conciencia colectiva.<br />
         </p>
+        <div className=" d-flex justify-content-center align-items-center">
         <Button
           variant="secondary"
-          className="mt-3 bgColor"
+          className="m-3 bgColor"
           size="lg">
           <Link to="/dashboard" className="text-white text-decoration-none">
               Inscribite
           </Link>
         </Button>
+        <Button
+          variant="secondary"
+          className="m-3 bgColor"
+          size="lg">
+          <Link to="/NCFA/temario" className="text-white text-decoration-none">
+              Programa
+          </Link>
+        </Button>
+        </div>
      
 
 
