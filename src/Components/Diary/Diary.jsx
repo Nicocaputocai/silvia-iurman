@@ -152,6 +152,21 @@ export default function Diary() {
         <td>Taller constelaciones fam</td>
         <td>ONLINE</td>
       </tr>
+      <tr style={{backgroundColor: "#ffffa1"}}>  {/* amarillo */}
+        <td>Sábado 18 de abril</td>
+        <td>EEV</td>
+        <td>Presencial</td>
+      </tr>
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+        <td>Sábado 27 de abril</td>
+        <td>Córdoba</td>
+        <td>Presencial</td>
+      </tr>
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+        <td>Domingo 28 de abril</td>
+        <td>Córdoba</td>
+        <td>Presencial</td>
+      </tr>
     </tbody>
   </Table>
   <h2>
@@ -190,6 +205,21 @@ export default function Diary() {
         <td>Viernes 24 de mayo</td>
         <td>EEV</td>
         <td>Presencial <b>*a confirmar*</b></td>
+      </tr>
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+        <td>Miércoles 1 de mayo</td>
+        <td>Iruya. Servicio a la comunidad</td>
+        <td>Presencial</td>
+      </tr>
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+        <td>Sábado 4 de mayo</td>
+        <td>Ciudad de Salta</td>
+        <td>Presencial</td>
+      </tr>
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+        <td>Domingo 5 de mayoAhj</td>
+        <td>Ciudad de Salta</td>
+        <td>Presencial</td>
       </tr>
     </tbody>
   </Table>
