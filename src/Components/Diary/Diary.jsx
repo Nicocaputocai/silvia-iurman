@@ -75,7 +75,7 @@ export default function Diary() {
       <tr style={{backgroundColor: "#ff983f"}}> {/* naranja */}
         
         <td>Sábado 17 de febrero</td>
-        <td>Taller constelaciones fam</td>
+        <td>Taller constelaciones familiares</td>
         <td>ONLINE</td>
       </tr>
     </tbody>
@@ -109,7 +109,7 @@ export default function Diary() {
       </tr>
       <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
         <td>Sábado 16 de marzo</td>
-        <td>Taller constelaciones fam</td>
+        <td>Taller constelaciones familiares</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#ffffa1"}}>  {/* amarillo */}
@@ -149,7 +149,7 @@ export default function Diary() {
       </tr>
       <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
         <td>Sábado 20 de abril</td>
-        <td>Taller constelaciones fam</td>
+        <td>Taller constelaciones familiares</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#ffffa1"}}>  {/* amarillo */}
@@ -198,13 +198,8 @@ export default function Diary() {
       </tr>
       <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
         <td>Sábado 18 de mayo</td>
-        <td>Taller constelaciones fam</td>
+        <td>Taller constelaciones familiares</td>
         <td>ONLINE</td>
-      </tr>
-      <tr style={{backgroundColor: "#ffffa1"}}>  {/* amarillo */}
-        <td>Viernes 24 de mayo</td>
-        <td>EEV</td>
-        <td>Presencial <b>*a confirmar*</b></td>
       </tr>
       <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
         <td>Miércoles 1 de mayo</td>
@@ -241,18 +236,18 @@ export default function Diary() {
         <td>Presencial</td>
       </tr>
       <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
-        <td>Sábado 15 de junio</td>
+        <td>Sábado 22 de junio</td>
         <td>Módulo 5 F.NCF y E</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
-        <td>Domingo 16 de junio</td>
+        <td>Domingo 23 de junio</td>
         <td>Módulo 5 F.NCF y E</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
-        <td>Sábado 15 de junio</td>
-        <td>Taller constelaciones fam</td>
+        <td>Sábado 22 de junio</td>
+        <td>Taller constelaciones familiares</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#ffffa1"}}>  {/* amarillo */}
@@ -316,7 +311,7 @@ export default function Diary() {
       </tr>
       <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
         <td>Sábado 24 de agosto</td>
-        <td>Taller constelaciones fam</td>
+        <td>Taller constelaciones familiares</td>
         <td>ONLINE</td>
       </tr>
     </tbody>
@@ -350,13 +345,13 @@ export default function Diary() {
       </tr>
       <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
         <td>Sábado 14 de septiembre</td>
-        <td>Taller constelaciones fam</td>
+        <td>Taller constelaciones familiares</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#ffffa1"}}>  {/* amarillo */}
-        <td>Viernes 20 de septiembre</td>
+        <td>Viernes 27 de septiembre</td>
         <td>EEV</td>
-        <td>Presencial <b>*a confirmar*</b></td>
+        <td>Presencial</td>
       </tr>
     </tbody>
   </Table>
@@ -389,7 +384,7 @@ export default function Diary() {
       </tr>
       <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
         <td>Sábado 26 de octubre</td>
-        <td>Taller constelaciones fam</td>
+        <td>Taller constelaciones familiares</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#ffffa1"}}>  {/* amarillo */}
@@ -428,7 +423,7 @@ export default function Diary() {
       </tr>
       <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
         <td>Sábado 16 de noviembre</td>
-        <td>Taller constelaciones fam</td>
+        <td>Taller constelaciones familiares</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#ffffa1"}}>  {/* amarillo */}
