@@ -260,17 +260,17 @@ export default function Diary() {
       </tr>
     </thead>
     <tbody>
-    <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
+    <tr style={{backgroundColor: "#8FBC8F"}}> {/* celeste */}
         <td>Sábado 6 de julio</td>
         <td>Módulo 5 F.NCF y E</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
-        <td>Domingo 7 de junio</td>
-        <td>Taller constelaciones familiares</td>
+        <td>Domingo 7 de julio</td>
+        <td>  MÓDULO 5 FNCF y E</td>
         <td>ONLINE</td>
       </tr>
-    <tr style={{backgroundColor: "#ff983f"}}> {/* naranja */}
+    <tr style={{backgroundColor: "#d4eaf7"}}> {/* naranja */}
         <td>Sábado 6 de julio</td>
         <td>Taller de Constelaciones Familiares</td>
         <td>ONLINE</td>
