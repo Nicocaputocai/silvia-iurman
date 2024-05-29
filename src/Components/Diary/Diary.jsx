@@ -230,32 +230,22 @@ export default function Diary() {
       </tr>
     </thead>
     <tbody>
-    <tr style={{backgroundColor: "#ff983f"}}> {/* naranja */}
-        <td>Sábado 8 de junio</td>
-        <td>Taller presencial Palermo</td>
-        <td>Presencial</td>
-      </tr>
       <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
-        <td>Sábado 22 de junio</td>
-        <td>Módulo 5 F.NCF y E</td>
+        <td>Miércoles 12 de junio</td>
+        <td>Curso de neurociencias para todos</td>
         <td>ONLINE</td>
       </tr>
-      <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
-        <td>Domingo 23 de junio</td>
-        <td>Módulo 5 F.NCF y E</td>
-        <td>ONLINE</td>
-      </tr>
-      <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
-        <td>Sábado 22 de junio</td>
-        <td>Taller constelaciones familiares</td>
-        <td>ONLINE</td>
-      </tr>
+      
       <tr style={{backgroundColor: "#ffffa1"}}>  {/* amarillo */}
-        <td>Viernes 28 de junio</td>
+        <td>Viernes 21 de junio</td>
         <td>EEV</td>
         <td>Presencial</td>
       </tr>
-
+      <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
+        <td>Miércoles 26 de junio</td>
+        <td>Curso de neurociencias para todos</td>
+        <td>ONLINE</td>
+      </tr>
     </tbody>
   </Table>
   <h2>
@@ -270,16 +260,22 @@ export default function Diary() {
       </tr>
     </thead>
     <tbody>
+    <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
+        <td>Sábado 6 de julio</td>
+        <td>Módulo 5 F.NCF y E</td>
+        <td>ONLINE</td>
+      </tr>
+      <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
+        <td>Domingo 7 de junio</td>
+        <td>Taller constelaciones familiares</td>
+        <td>ONLINE</td>
+      </tr>
     <tr style={{backgroundColor: "#ff983f"}}> {/* naranja */}
-        <td>Sábado 13 de julio</td>
-        <td>Taller presencial Palermo</td>
-        <td>Presencial</td>
+        <td>Sábado 6 de julio</td>
+        <td>Taller de Constelaciones Familiares</td>
+        <td>ONLINE</td>
       </tr>
-      <tr style={{backgroundColor: "#ffffa1"}}>  {/* amarillo */}
-        <td>Viernes 5 de julio</td>
-        <td>EEV</td>
-        <td>Presencial</td>
-      </tr>
+
     </tbody>
   </Table>
   <h2>
