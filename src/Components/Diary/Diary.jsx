@@ -35,6 +35,7 @@ export default function Diary() {
 
         <br />
         <Tab.Content>
+          {/* 2024 */}
           <Tab.Pane eventKey="2024">
           <h2>
     Febrero 2024
@@ -460,12 +461,12 @@ export default function Diary() {
     </tbody>
   </Table>
           </Tab.Pane>
-
-          <Tab.Pane eventKey="2025">
+{/* 2025 */}
+          <Tab.Pane eventKey="2025" >
             <h2>
     Enero 2025
     </h2>
-    <Table striped bordered hover responsive="lg">
+    <Table striped bordered hover responsive="lg" >
     <thead>
       <tr>
         <th>Fecha</th>
