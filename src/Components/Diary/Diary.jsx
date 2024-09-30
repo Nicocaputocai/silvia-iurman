@@ -434,7 +434,7 @@ export default function Diary() {
     </thead>
     <tbody>
     <tr style={{backgroundColor: "#ff983f"}}> {/* naranja */}
-        <td>Sábado 14 de dicembre</td>
+        <td>Sábado 14 de diciembre</td>
         <td>Taller presencial Palermo</td>
         <td>Presencial</td>
       </tr>
@@ -941,7 +941,7 @@ export default function Diary() {
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#ff983f"}}> {/* naranja */}
-        <td>Sábado 20 de dicembre</td>
+        <td>Sábado 20 de diciembre</td>
         <td>Taller constelaciones familiares</td>
         <td>Presencial Palermo</td>
       </tr>
