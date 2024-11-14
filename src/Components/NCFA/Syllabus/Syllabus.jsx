@@ -36,7 +36,7 @@ export const Syllabus = () => {
         <h6>MODULO 8 Entrenamiento en constelar desde las nuevas constelaciones
         familiares - Los grupos hornevianos y armónicos-</h6>
         <br />
-        <h6>MODULO 9Los padres y los hijos. Liberar a los niños: hijos y nietos. Psicología del eneagrama</h6>
+        <h6>MODULO 9 Los padres y los hijos. Liberar a los niños: hijos y nietos. Psicología del eneagrama</h6>
         <br />
         <h6> MODULO 10 La fuerza del dinero y el trabajo. La invitación a despertar
         de cada eneatipo</h6>
