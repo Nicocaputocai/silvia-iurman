@@ -42,7 +42,7 @@ export const Header = () => {
             <NavDropdown.Item as={Link} to='/talleres-virtuales'>Talleres virtuales</NavDropdown.Item>
           </NavDropdown>
           <Nav.Link as={Link} to="/NCFA" className="w-100" onClick={handleNavItemClick}>
-            Formación en Eneagrama y Nuevas Constelaciones Familiares
+          Formación Int. en Nuevas Constelaciones Familiares y Eneagrama
           </Nav.Link>
         </Nav>
         <Nav className="me-auto">
