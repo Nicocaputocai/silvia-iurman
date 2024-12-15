@@ -204,7 +204,7 @@ export default function Diary() {
         <td>Presencial</td>
       </tr>
       <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
-        <td>Domingo 5 de mayoAhj</td>
+        <td>Domingo 5 de mayo</td>
         <td>Ciudad de Salta</td>
         <td>Presencial</td>
       </tr>
@@ -458,6 +458,16 @@ export default function Diary() {
         <td>EEV</td>
         <td>Presencial</td>
       </tr>
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+        <td>Jueves 19 de diciembre 19 hs Arg</td>
+        <td>Taller online EEUU</td>
+        <td>Online</td>
+      </tr>
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+        <td>Lunes 23 de diciembre a las 19 hs Arg</td>
+        <td>Taller al servicio de la comunidad</td>
+        <td>Online</td>
+      </tr>
     </tbody>
   </Table>
           </Tab.Pane>
@@ -482,12 +492,25 @@ export default function Diary() {
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#ff983f"}}> {/* naranja */}
-        
         <td>Sábado 18 de enero</td>
         <td>Taller constelaciones familiares</td>
         <td>Presencial Palermo</td>
       </tr>
-
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+        <td>Martes 7 de enero 18 hs </td>
+        <td>Programa de Gestión del Trauma y del Estrés</td>
+        <td>ONLINE</td>
+      </tr>
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+      <td>Martes 14 de enero 18 hs </td>
+        <td>Clase Trauma, estrés y neurociencia del cuerpo</td>
+        <td>ONLINE</td>
+      </tr>
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+      <td>Jueves 16 de enero 18 hs  </td>
+        <td>Supervisión en NCF</td>
+        <td>ONLINE</td>
+      </tr>
     </tbody>
   </Table>
   <h2>
@@ -529,6 +552,11 @@ export default function Diary() {
         <td>EEV</td>
         <td>Presencial</td>
       </tr>
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+        <td>Miércoles 12 de febrero  </td>
+        <td>Programa de Gestión del Trauma y del Estrés</td>
+        <td>ONLINE</td>
+      </tr>
     </tbody>
   </Table>
   <h2>
@@ -565,7 +593,11 @@ export default function Diary() {
         </td>
         <td>Presencial Palermo</td>
       </tr>
-
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+        <td>Martes 18 de marzo</td>
+        <td>Programa de Gestión del Trauma y del Estrés</td>
+        <td>ONLINE</td>
+      </tr>
     </tbody>
   </Table>
   <h2>
@@ -606,6 +638,11 @@ export default function Diary() {
         <td>Taller constelaciones familiares</td>
         <td>Presencial Palermo</td>
       </tr>
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+        <td>Martes 29 de abril</td>
+        <td>Programa de Gestión del Trauma y del Estrés</td>
+        <td>ONLINE</td>
+      </tr>
     </tbody>
   </Table>
   <h2>
@@ -645,6 +682,11 @@ export default function Diary() {
         <td>Sábado 17 de mayo</td>
         <td>Taller constelaciones familiares</td>
         <td>Presencial Palermo</td>
+      </tr>
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+        <td>Martes 18 de mayo </td>
+        <td>Programa de Gestión del Trauma y del Estrés</td>
+        <td>ONLINE</td>
       </tr>
     </tbody>
   </Table>
@@ -689,6 +731,11 @@ export default function Diary() {
         <td>Sábado 21 de junio</td>
         <td>Taller de Constelaciones Familiares</td>
         <td>Presencial Palermo</td>
+      </tr>
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+        <td>Jueves 19 de junio</td>
+        <td>Programa de Gestión del Trauma y del Estrés</td>
+        <td>ONLINE</td>
       </tr>
     </tbody>
   </Table>
@@ -771,6 +818,11 @@ export default function Diary() {
         <td>Sábado 23 de agosto</td>
         <td>Taller presencial Palermo</td>
         <td>Presencial</td>
+      </tr>
+      <tr style={{backgroundColor: "#ea80fc"}}> {/* lila */}
+        <td>Martes 26 de agosto</td>
+        <td>Programa de Gestión del Trauma y del Estrés</td>
+        <td>ONLINE</td>
       </tr>
     </tbody>
   </Table>
