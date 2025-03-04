@@ -316,36 +316,36 @@ export default function Diary() {
         <th>Modalidad</th>
       </tr>
     </thead>
-    <tbody>
-    <tr style={{backgroundColor: "#ffffa1"}}>  {/* amarillo */}
+    {/* <tbody>
+    <tr style={{backgroundColor: "#ffffa1"}}> 
         <td>Viernes 4 de julio</td>
         <td>EEV</td>
         <td>Presencial</td>
       </tr>
-    <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
+    <tr style={{backgroundColor: "#d4eaf7"}}> 
         <td>Sábado 12 de julio</td>
         <td>Módulo 16 F.NCF y E</td>
         <td>ONLINE</td>
       </tr>
-      <tr style={{backgroundColor: "#d4eaf7"}}> {/* Celeste */}
+      <tr style={{backgroundColor: "#d4eaf7"}}> 
         <td>Domingo 13 de julio</td>
         <td>MÓDULO 16 FNCF y E</td>
         <td>ONLINE</td>
       </tr>
 
-      <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
+      <tr style={{backgroundColor: "#8FBC8F"}}>
         <td>Sábado 12 de julio</td>
         <td>Taller constelaciones familiares</td>
         <td>ONLINE</td>
       </tr>
 
-    <tr style={{backgroundColor: "#ff983f"}}> {/* naranja */}
+    <tr style={{backgroundColor: "#ff983f"}}> 
         <td>Sábado 19 de julio</td>
         <td>Taller de Constelaciones Familiares</td>
         <td>Presencial Palermo</td>
       </tr>
 
-    </tbody>
+    </tbody> */}
   </Table>
   <h2>
     Agosto 2025
