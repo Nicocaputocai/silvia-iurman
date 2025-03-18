@@ -367,12 +367,12 @@ export default function Diary() {
 
       <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
         <td>Sábado 9 de agosto</td>
-        <td>Módulo 0 F.NCF y E</td>
+        <td>Módulo 16 F.NCF y E</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
         <td>Domingo 10 de agosto</td>
-        <td>Módulo 0 F.NCF y E</td>
+        <td>Módulo 16 F.NCF y E</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
@@ -412,12 +412,12 @@ export default function Diary() {
 
       <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
         <td>Sábado 13 de septiembre</td>
-        <td>Módulo 1 F.NCF y E</td>
+        <td>Módulo 0 F.NCF y E</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
         <td>Domingo 14 de septiembre</td>
-        <td>Módulo 1 F.NCF y E</td>
+        <td>Módulo 0 F.NCF y E</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
@@ -452,12 +452,12 @@ export default function Diary() {
     
       <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
         <td>Sábado 11 de octubre</td>
-        <td>Módulo 2 F.NCF y E</td>
+        <td>Módulo 1 F.NCF y E</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
         <td>Domingo 12 de octubre</td>
-        <td>Módulo 2 F.NCF y E</td>
+        <td>Módulo 1 F.NCF y E</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
@@ -487,12 +487,12 @@ export default function Diary() {
 
       <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
         <td>Sábado 8 de noviembre</td>
-        <td>Módulo 3 F.NCF y E</td>
+        <td>Módulo 2 F.NCF y E</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
         <td>Domingo 9 de noviembre</td>
-        <td>Módulo 3 F.NCF y E</td>
+        <td>Módulo 2 F.NCF y E</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
@@ -527,12 +527,12 @@ export default function Diary() {
 
       <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
         <td>Sábado 13 de diciembre</td>
-        <td>Módulo 4 F.NCF y E</td>
+        <td>Módulo 3 F.NCF y E</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#d4eaf7"}}> {/* celeste */}
         <td>Domingo 14 de diciembre</td>
-        <td>Módulo 4 F.NCF y E</td>
+        <td>Módulo 3 F.NCF y E</td>
         <td>ONLINE</td>
       </tr>
       <tr style={{backgroundColor: "#8FBC8F"}}> {/* verde */}
@@ -550,8 +550,6 @@ export default function Diary() {
           </Tab.Pane>
 
          </Tab.Content>
-
-  
   </Tab.Container>
  </div> }
 
