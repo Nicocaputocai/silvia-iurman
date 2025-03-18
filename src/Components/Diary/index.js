@@ -1,3 +1,3 @@
-import Diary from "./diary"
+import Diary from "./Diary"
 
 export default Diary

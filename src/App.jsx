@@ -14,7 +14,7 @@ import {Header} from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import Activity from "./Components/Activity";
 import Constellators from "./Components/Constellators";
-import Diary from "./Components/diary";
+import Diary from "./Components/Diary";
 import {Login as UserLogin, Register} from "./Components/auth";
 import { AuthLayout } from "./layouts/AuthLayout";
 import { ProtectAdminLayout } from "./layouts/ProtectAdminLayout";
@@ -23,8 +23,6 @@ import { Dashboard } from "./Components/dashboard/Dashboard";
 import { Checkout } from "./Components/Checkout/Checkout";
 import {Syllabus} from "./Components/NCFA/Syllabus/Syllabus"
 import { AdminRoutes, CheckoutRoutes } from "./routes";
-
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserNotLoggedLayout } from "./layouts/userNotLoggedLayout";
 import { Confirm } from "./Components/auth/confirm/Confirm";
@@ -38,7 +36,6 @@ function App() {
     <BrowserRouter>
       <GlobalProvider>
         <Header />
-        
           {/* Rutas públicas */}
           <Routes>
             <Route path="/" element={<AuthLayout />}>
@@ -56,14 +53,14 @@ function App() {
               <Route path="NCFA/modulos-grabados" element={<BuyFilmedModules />} />
               <Route path="NCFA/modulos-en-directo" element={<BuyPresencialModules />} />
               <Route path="articulos" element={<Articles />} />
-              <Route path="articulos/:id" element={<ArticleDetail />} />
-              <Route path="agenda" element={<Diary />} /> 
+              <Route path="articulos/:id" element={<ArticleDetail />} /> 
+              <Route path="agenda" element={<Diary />} />  
               <Route path="conoceme" element={<About />} />
-              <Route path="login" element={<UserLogin />} />
-              <Route path="registro" element={<Register />} />
-              <Route path="confirm/:uuid" element={<Confirm />}/>
-              <Route path="recover-password/:uuid" element={<RecoveryPassword />}/>
-              <Route path='dashboard' element={
+              <Route path="login" element={<UserLogin />} /> 
+              <Route path="registro" element={<Register />} /> 
+              <Route path="confirm/:uuid" element={<Confirm />}/> 
+              <Route path="recover-password/:uuid" element={<RecoveryPassword />}/> 
+              <Route path='dashboard' element={ 
                 <UserNotLoggedLayout>
                   <Dashboard />
                 </UserNotLoggedLayout>
