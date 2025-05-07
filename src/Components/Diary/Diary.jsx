@@ -305,8 +305,16 @@ export default function Diary() {
                             <td>Programa de Gestión del Trauma y del Estrés</td>
                             <td>ONLINE</td>
                           </tr>
+                          <tr style={{ backgroundColor: "#ffffa1" }}>
+                            {" "}
+                            {/* amarillo */}
+                            <td>Viernes 30 de mayo </td>
+                            <td>EEV</td>
+                            <td>Presencial</td>
+                          </tr>
                         </tbody>
                       </Table>
+
                       <h2>Junio 2025</h2>
                       <Table striped bordered hover responsive="lg">
                         <thead>
@@ -328,9 +336,16 @@ export default function Diary() {
                           <tr style={{ backgroundColor: "#d4eaf7" }}>
                             {" "}
                             {/* celeste */}
-                            <td>Sábado 14 de junio</td>
+                            <td>Sábado 7 de junio</td>
                             <td>Módulo 15 F.NCF y E</td>
                             <td>ONLINE</td>
+                          </tr>
+                          <tr style={{ backgroundColor: "#8FBC8F" }}>
+                            {" "}
+                            {/* naranja */}
+                            <td>Domingo 8 de junio</td>
+                            <td>Taller Nuevas constelaciones familiares</td>
+                            <td>Online 15hs</td>
                           </tr>
 
                           <tr style={{ backgroundColor: "#d4eaf7" }}>
